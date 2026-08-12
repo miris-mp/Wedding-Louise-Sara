@@ -1,0 +1,14 @@
+{
+  "hero": {
+    "title": "Ci sposiamo!",
+    "subtitle": "Festeggia con noi questo giorno speciale"
+  },
+
+  "nav": {
+    "details": "Dettagli",
+    "rsvp": "Conferma",
+    "menu": "Menù",
+    "travel": "Come arrivare",
+    "playlist": "Playlist"
+  }
+}

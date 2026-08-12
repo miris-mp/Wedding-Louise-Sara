@@ -1,0 +1,14 @@
+{
+  "hero": {
+    "title": "We're getting married!",
+    "subtitle": "Join us for our special day"
+  },
+
+  "nav": {
+    "details": "Details",
+    "rsvp": "RSVP",
+    "menu": "Menu",
+    "travel": "Travel",
+    "playlist": "Playlist"
+  }
+}

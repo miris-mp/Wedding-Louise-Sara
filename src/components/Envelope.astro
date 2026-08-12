@@ -1,0 +1,86 @@
+---
+---
+
+<div class="intro">
+    <div class="envelope" id="envelope">
+      <img src="/images/letter.png" class="letter" alt="" />
+  
+      <img src="/images/leftEnvelope.png" class="piece left" alt="" />
+      <img src="/images/rightEnvelope.png" class="piece right" alt="" />
+    </div>
+  </div>
+  
+  <script>
+    const envelope = document.getElementById("envelope");
+  
+    envelope.addEventListener("click", () => {
+      envelope.classList.add("open");
+    });
+  </script>
+  
+  <style>
+  /* ---------- Layout ---------- */
+  
+  .intro {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #f6f1eb;
+    z-index: 1000;
+  }
+  
+  .envelope {
+    position: relative;
+    width: min(360px, 90vw);
+    aspect-ratio: 3 / 4;
+    cursor: pointer;
+  }
+  
+  /* ---------- Images ---------- */
+  
+  .envelope img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  /* ---------- Initial State ---------- */
+  
+  .letter {
+    z-index: 1;
+    opacity: 0;
+  }
+  
+  .piece {
+    z-index: 2;
+  }
+  
+  .left {
+    transform: translateX(0);
+  }
+  
+  .right {
+    transform: translateX(0);
+  }
+  
+  /* ---------- OPEN STATE ---------- */
+  
+  .envelope.open .left {
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+  
+  .envelope.open .right {
+    transform: translateX(60%);
+    opacity: 0;
+  }
+  
+  .envelope.open .letter {
+    opacity: 1;
+  }
+  </style>
+  

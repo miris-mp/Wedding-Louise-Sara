@@ -1,0 +1,14 @@
+<button data-lang="it">🇮🇹 IT</button>
+<button data-lang="en">🇬🇧 EN</button>
+
+<script type="module">
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.dataset.lang;
+
+      localStorage.setItem("lang", lang);
+
+      location.reload();
+    });
+  });
+</script>

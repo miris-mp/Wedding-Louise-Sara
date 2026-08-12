@@ -1,0 +1,93 @@
+---
+interface Props {
+  date: string;
+}
+
+const { date } = Astro.props;
+
+const items = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Minutes" },
+  { key: "seconds", label: "Seconds" },
+];
+---
+
+<section class="py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-12 text-center">
+      <p class="mb-3 text-sm uppercase tracking-[0.35em] text-stone-500">
+        We're counting the days
+      </p>
+
+      <h2 class="font-serif text-4xl text-stone-800 md:text-5xl">
+        Until We Say "I Do"
+      </h2>
+
+      <div class="mx-auto mt-6 h-px w-20 bg-stone-300"></div>
+    </div>
+
+    <div
+      class="countdown grid grid-cols-2 gap-5 md:grid-cols-4"
+      data-date={date}
+    >
+      {
+        items.map(({ key, label }) => (
+          <div class="rounded-3xl border border-stone-200 bg-white/80 p-8 text-center shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <span
+              class={`${key} block font-serif text-5xl text-stone-800 md:text-6xl`}
+            >
+              00
+            </span>
+
+            <div class="mx-auto my-4 h-px w-10 bg-stone-300" />
+
+            <p class="text-xs uppercase tracking-[0.35em] text-stone-500">
+              {label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const countdown = document.querySelector(".countdown");
+
+  if (countdown) {
+    const target = new Date((countdown as HTMLElement).dataset.date || "");
+
+    const days = countdown.querySelector(".days");
+    const hours = countdown.querySelector(".hours");
+    const minutes = countdown.querySelector(".minutes");
+    const seconds = countdown.querySelector(".seconds");
+
+    function update() {
+      const now = new Date();
+      const distance = target.getTime() - now.getTime();
+
+      if (distance <= 0) {
+        [days, hours, minutes, seconds].forEach((el) => {
+          if (el) el.textContent = "00";
+        });
+
+        clearInterval(timer);
+        return;
+      }
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((distance / (1000 * 60)) % 60);
+      const s = Math.floor((distance / 1000) % 60);
+
+      if (days) days.textContent = String(d).padStart(2, "0");
+      if (hours) hours.textContent = String(h).padStart(2, "0");
+      if (minutes) minutes.textContent = String(m).padStart(2, "0");
+      if (seconds) seconds.textContent = String(s).padStart(2, "0");
+    }
+
+    update();
+    const timer = setInterval(update, 1000);
+  }
+</script>

@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  title: string;
+  subtitle?: string;
+  height?: "screen" | "large" | "medium";
+}
+
+const { image, alt, title, subtitle, height = "screen" } = Astro.props;
+
+const heights = {
+  screen: "min-h-screen",
+  large: "min-h-[80vh]",
+  medium: "min-h-[60vh]",
+};
+---
+
+<section
+  class={`relative ${heights[height]} flex items-center justify-center overflow-hidden`}
+>
+  <!-- Background Image -->
+  <Image
+    src={image}
+    alt={alt}
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[640, 768, 1024, 1280, 1600, 1920]}
+    sizes="100vw"
+    format="webp"
+    quality={90}
+    loading="eager"
+  />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/35"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center text-white">
+    <h1 class="text-5xl font-serif md:text-7xl">
+      {title}
+    </h1>
+
+    {
+      subtitle && (
+        <p class="mt-6 text-lg md:text-2xl text-white/90">{subtitle}</p>
+      )
+    }
+  </div>
+</section>

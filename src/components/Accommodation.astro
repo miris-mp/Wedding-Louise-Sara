@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+
+interface Hotel {
+  id?: string;
+  name: string;
+  location: string;
+  description: string;
+  distance?: string;
+  url: string;
+  image?: ImageMetadata;
+}
+
+interface Props {
+  id?: string;
+  hotels: Hotel[];
+}
+
+const { hotels } = Astro.props;
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <!-- Header -->
+    <div class="mb-16 text-center">
+      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+        For our guests
+      </p>
+
+      <h2 class="mt-4 font-serif text-5xl text-stone-800">Where To Stay</h2>
+
+      <p class="mx-auto mt-6 max-w-2xl text-stone-600">
+        We have selected some lovely places nearby where you can relax and enjoy
+        your stay in Tuscany.
+      </p>
+
+      <div class="mx-auto mt-6 h-px w-24 bg-stone-300"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        hotels.map((hotel) => (
+          <article class="group overflow-hidden rounded-[2rem] border border-stone-200 bg-stone-50 transition hover:-translate-y-1 hover:shadow-xl">
+            {hotel.image && (
+              <div class="h-56 overflow-hidden">
+                <Image
+                  src={hotel.image}
+                  alt={hotel.name}
+                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  inferSize={true}
+                  width={100}
+                  height={100}
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            <div class="p-8">
+              <h3 class="font-serif text-3xl text-stone-800">{hotel.name}</h3>
+
+              <p class="mt-2 text-sm uppercase tracking-widest text-stone-500">
+                {hotel.location}
+              </p>
+
+              <p class="mt-5 leading-7 text-stone-600">{hotel.description}</p>
+
+              {hotel.distance && (
+                <p class="mt-5 text-sm text-stone-500">📍 {hotel.distance}</p>
+              )}
+
+              <a
+                href={hotel.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-8 inline-flex rounded-full border border-stone-300 px-6 py-3 text-xs uppercase tracking-[0.25em] text-stone-700 transition hover:bg-stone-800 hover:text-white"
+              >
+                Discover
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

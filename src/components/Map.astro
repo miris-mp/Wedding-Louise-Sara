@@ -1,0 +1,673 @@
+---
+import "maplibre-gl/dist/maplibre-gl.css";
+---
+
+<div class="game">
+  <div class="game-header">
+    <div>
+      <p class="eyebrow">WHERE DID THIS HAPPEN?</p>
+
+      <h1 id="city-name">Loading...</h1>
+
+      <p id="city-country" class="city-country"></p>
+    </div>
+
+    <div class="instructions" id="instructions">
+      Click on the map where you think this city is.
+    </div>
+  </div>
+
+  <div class="map-wrapper">
+    <div id="map"></div>
+
+    <div class="map-message" id="map-message">
+      Click anywhere on the map to place your guess.
+    </div>
+  </div>
+
+  <div class="game-actions">
+    <button id="guess-button" type="button" disabled> Guess </button>
+
+    <button id="next-button" type="button" hidden> Next city </button>
+  </div>
+
+  <section id="result" class="result" hidden>
+    <div class="result-distance">
+      <span>You were</span>
+      <strong id="distance"></strong>
+      <span>away</span>
+    </div>
+
+    <h2 id="result-title"></h2>
+
+    <p id="result-story"></p>
+  </section>
+</div>
+
+<script>
+  import { Map, Marker, NavigationControl, setWorkerUrl } from "maplibre-gl";
+
+  import * as maplibregl from "maplibre-gl";
+
+  import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+
+  setWorkerUrl(workerUrl);
+
+  // --------------------------------------------------
+  // Types
+  // --------------------------------------------------
+
+  type City = {
+    id: string;
+    name: string;
+    country: string;
+
+    coordinates: {
+      lng: number;
+      lat: number;
+    };
+
+    history: string;
+  };
+
+  // --------------------------------------------------
+  // Cities
+  //
+  // Later we can move this into src/data/cities.ts
+  // --------------------------------------------------
+
+  const cities: City[] = [
+    {
+      id: "rome",
+      name: "Rome",
+      country: "Italy",
+
+      coordinates: {
+        lng: 12.4964,
+        lat: 41.9028,
+      },
+
+      history:
+        "This is where the story of this memory begins. Replace this text with your own story about what happened in Rome.",
+    },
+
+    {
+      id: "paris",
+      name: "Paris",
+      country: "France",
+
+      coordinates: {
+        lng: 2.3522,
+        lat: 48.8566,
+      },
+
+      history:
+        "This is the story connected to Paris. Replace this text with the memory you want to tell about this place.",
+    },
+
+    {
+      id: "lisbon",
+      name: "Lisbon",
+      country: "Portugal",
+
+      coordinates: {
+        lng: -9.1393,
+        lat: 38.7223,
+      },
+
+      history:
+        "This is the story connected to Lisbon. Replace this text with your own memory.",
+    },
+
+    {
+      id: "london",
+      name: "London",
+      country: "United Kingdom",
+
+      coordinates: {
+        lng: -0.1276,
+        lat: 51.5072,
+      },
+
+      history:
+        "This is the story connected to London. Replace this text with your own memory.",
+    },
+
+    {
+      id: "barcelona",
+      name: "Barcelona",
+      country: "Spain",
+
+      coordinates: {
+        lng: 2.1734,
+        lat: 41.3851,
+      },
+
+      history:
+        "This is the story connected to Barcelona. Replace this text with your own memory.",
+    },
+  ];
+
+  // --------------------------------------------------
+  // DOM elements
+  // --------------------------------------------------
+
+  const cityNameElement =
+    document.querySelector<HTMLHeadingElement>("#city-name");
+
+  const cityCountryElement =
+    document.querySelector<HTMLParagraphElement>("#city-country");
+
+  const instructionsElement =
+    document.querySelector<HTMLDivElement>("#instructions");
+
+  const mapMessageElement =
+    document.querySelector<HTMLDivElement>("#map-message");
+
+  const guessButton =
+    document.querySelector<HTMLButtonElement>("#guess-button");
+
+  const nextButton = document.querySelector<HTMLButtonElement>("#next-button");
+
+  const resultElement = document.querySelector<HTMLElement>("#result");
+
+  const distanceElement = document.querySelector<HTMLElement>("#distance");
+
+  const resultTitleElement =
+    document.querySelector<HTMLHeadingElement>("#result-title");
+
+  const resultStoryElement =
+    document.querySelector<HTMLParagraphElement>("#result-story");
+
+  // --------------------------------------------------
+  // Game state
+  // --------------------------------------------------
+
+  let currentCity: City;
+  let playerGuess: {
+    lng: number;
+    lat: number;
+  } | null = null;
+
+  let guessMarker: Marker | null = null;
+  let realMarker: Marker | null = null;
+
+  let gameState: "guessing" | "revealed" = "guessing";
+
+  // --------------------------------------------------
+  // Select a random city
+  // --------------------------------------------------
+
+  function selectRandomCity() {
+    const randomIndex = Math.floor(Math.random() * cities.length);
+
+    currentCity = cities[randomIndex];
+
+    updateCityUI();
+  }
+
+  // --------------------------------------------------
+  // Update city information
+  // --------------------------------------------------
+
+  function updateCityUI() {
+    cityNameElement!.textContent = currentCity.name;
+    cityCountryElement!.textContent = currentCity.country;
+  }
+
+  // --------------------------------------------------
+  // Distance calculation
+  // --------------------------------------------------
+
+  function distanceInKm(
+    lat1: number,
+    lng1: number,
+    lat2: number,
+    lng2: number
+  ) {
+    const R = 6371;
+
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLng = ((lng2 - lng1) * Math.PI) / 180;
+
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLng / 2) ** 2;
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c;
+  }
+
+  // --------------------------------------------------
+  // Map
+  // --------------------------------------------------
+
+  const map = new Map({
+    container: "map",
+
+    style: {
+      version: 8,
+
+      projection: {
+        type: "globe",
+      },
+
+      sources: {
+        satellite: {
+          type: "raster",
+
+          tiles: [
+            "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg",
+          ],
+
+          tileSize: 256,
+        },
+      },
+
+      layers: [
+        {
+          id: "satellite",
+          type: "raster",
+          source: "satellite",
+        },
+      ],
+    },
+
+    center: [10, 45],
+    zoom: 2,
+  });
+
+  map.addControl(new NavigationControl());
+
+  // --------------------------------------------------
+  // Add the line source
+  // --------------------------------------------------
+
+  map.on("load", () => {
+    map.addSource("guess-line", {
+      type: "geojson",
+
+      data: {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [],
+        },
+        properties: {},
+      },
+    });
+
+    map.addLayer({
+      id: "guess-line",
+      type: "line",
+      source: "guess-line",
+
+      paint: {
+        "line-width": 3,
+        "line-opacity": 0.8,
+      },
+    });
+
+    selectRandomCity();
+  });
+
+  // --------------------------------------------------
+  // Click on map
+  // --------------------------------------------------
+
+  map.on("click", (event) => {
+    // Don't allow changing the guess after revealing
+    if (gameState === "revealed") {
+      return;
+    }
+
+    const { lng, lat } = event.lngLat;
+
+    playerGuess = {
+      lng,
+      lat,
+    };
+
+    // Remove previous guess marker
+    guessMarker?.remove();
+
+    // Create new guess marker
+    guessMarker = new Marker({
+      color: "#2563eb",
+    })
+      .setLngLat([lng, lat])
+      .addTo(map);
+
+    // Enable the Guess button
+    guessButton!.disabled = false;
+
+    // Update UI
+    mapMessageElement!.textContent = "Happy with your guess?";
+
+    instructionsElement!.textContent =
+      "You can move your guess by clicking somewhere else.";
+
+    console.log("Selected:", playerGuess);
+  });
+
+  // --------------------------------------------------
+  // Guess button
+  // --------------------------------------------------
+
+  guessButton?.addEventListener("click", () => {
+    if (!playerGuess) {
+      return;
+    }
+
+    revealAnswer();
+  });
+
+  // --------------------------------------------------
+  // Reveal the real city
+  // --------------------------------------------------
+
+  function revealAnswer() {
+    if (!playerGuess) {
+      return;
+    }
+
+    gameState = "revealed";
+
+    const actualLocation = currentCity.coordinates;
+
+    // ----------------------------------------------
+    // Add real location marker
+    // ----------------------------------------------
+
+    realMarker = new Marker({
+      color: "#dc2626",
+    })
+      .setLngLat([actualLocation.lng, actualLocation.lat])
+      .addTo(map);
+
+    // ----------------------------------------------
+    // Calculate distance
+    // ----------------------------------------------
+
+    const distance = distanceInKm(
+      playerGuess.lat,
+      playerGuess.lng,
+      actualLocation.lat,
+      actualLocation.lng
+    );
+
+    const roundedDistance = Math.round(distance);
+
+    // ----------------------------------------------
+    // Update line
+    // ----------------------------------------------
+
+    const lineSource = map.getSource(
+      "guess-line"
+    ) as import("maplibre-gl").GeoJSONSource;
+
+    lineSource.setData({
+      type: "Feature",
+
+      geometry: {
+        type: "LineString",
+
+        coordinates: [
+          [playerGuess.lng, playerGuess.lat],
+          [actualLocation.lng, actualLocation.lat],
+        ],
+      },
+
+      properties: {},
+    });
+
+    // ----------------------------------------------
+    // Update UI
+    // ----------------------------------------------
+
+    distanceElement!.textContent = `${roundedDistance.toLocaleString()} km`;
+
+    resultTitleElement!.textContent = `${currentCity.name}, ${currentCity.country}`;
+
+    resultStoryElement!.textContent = currentCity.history;
+
+    resultElement!.hidden = false;
+
+    guessButton!.hidden = true;
+
+    nextButton!.hidden = false;
+
+    instructionsElement!.textContent = "Here is where it actually happened.";
+
+    mapMessageElement!.textContent = `${roundedDistance.toLocaleString()} km away`;
+
+    // ----------------------------------------------
+    // Fit map around both points
+    // ----------------------------------------------
+
+    const bounds = new maplibregl.LngLatBounds();
+
+    bounds.extend([playerGuess.lng, playerGuess.lat]);
+
+    bounds.extend([actualLocation.lng, actualLocation.lat]);
+
+    map.fitBounds(bounds, {
+      padding: 100,
+      duration: 1500,
+      maxZoom: 8,
+    });
+  }
+
+  // --------------------------------------------------
+  // Next city
+  // --------------------------------------------------
+
+  nextButton?.addEventListener("click", () => {
+    resetGame();
+  });
+
+  function resetGame() {
+    gameState = "guessing";
+
+    playerGuess = null;
+
+    guessMarker?.remove();
+    realMarker?.remove();
+
+    guessMarker = null;
+    realMarker = null;
+
+    // Clear line
+    const lineSource = map.getSource("guess-line") as
+      | import("maplibre-gl").GeoJSONSource
+      | undefined;
+
+    if (lineSource) {
+      lineSource.setData({
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [],
+        },
+        properties: {},
+      });
+    }
+
+    // Reset UI
+    resultElement!.hidden = true;
+
+    guessButton!.hidden = false;
+    guessButton!.disabled = true;
+
+    nextButton!.hidden = true;
+
+    instructionsElement!.textContent =
+      "Click on the map where you think this city is.";
+
+    mapMessageElement!.textContent =
+      "Click anywhere on the map to place your guess.";
+
+    // Reset map position
+    map.flyTo({
+      center: [10, 45],
+      zoom: 2,
+      duration: 1200,
+    });
+
+    // Choose another city
+    selectRandomCity();
+  }
+</script>
+
+<style>
+  .game {
+    width: 100%;
+  }
+
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  .city-country {
+    margin: 0.25rem 0 0;
+    opacity: 0.6;
+  }
+
+  .instructions {
+    max-width: 300px;
+    text-align: right;
+    opacity: 0.7;
+  }
+
+  .map-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  #map {
+    width: 100%;
+    height: 600px;
+  }
+
+  .map-message {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+
+    padding: 0.6rem 1rem;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+
+    font-size: 0.875rem;
+    white-space: nowrap;
+
+    pointer-events: none;
+  }
+
+  .game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    margin-top: 1.5rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: #111;
+    color: white;
+
+    font: inherit;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.85;
+  }
+
+  button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .result {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+
+  .result-distance {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.5rem;
+
+    margin-bottom: 1rem;
+
+    opacity: 0.7;
+  }
+
+  .result-distance strong {
+    font-size: 2rem;
+    opacity: 1;
+  }
+
+  .result h2 {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+  }
+
+  .result p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 700px) {
+    .game-header {
+      display: block;
+    }
+
+    .instructions {
+      max-width: none;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    #map {
+      height: 500px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
