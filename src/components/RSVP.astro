@@ -1,129 +1,231 @@
-<section class="bg-stone-50 py-24">
-  <div class="mx-auto max-w-3xl px-6">
-    <div class="mb-12 text-center">
-      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">RSVP</p>
+<section id="rsvp" class="rsvp-section relative bg-[#fffdf6] py-14 md:py-18">
+  <div class="relative z-10 mx-auto max-w-3xl px-6">
+    <!-- Heading -->
+    <div class="mb-9 text-center md:mb-10">
+      <p
+        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
+      >
+        RSVP
+      </p>
 
-      <h2 class="mt-4 font-serif text-5xl text-stone-800">Will You Join Us?</h2>
+      <h2 class="mt-3 font-serif text-4xl text-[#294653] md:text-5xl">
+        Will You Join Us?
+      </h2>
 
-      <p class="mt-6 text-stone-600">Please confirm your attendance.</p>
+      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
+
+      <p class="mt-5 font-sans text-base text-[#426b7a]">
+        Please confirm your attendance.
+      </p>
     </div>
 
+    <!-- Form -->
     <form
       id="rsvp-form"
-      class="space-y-6 rounded-[2rem] bg-white p-8 shadow-xl md:p-12"
+      class="space-y-5 rounded-[2rem] border border-[#b9dce5]/50 bg-white/80 p-6 shadow-lg backdrop-blur md:p-9"
     >
+      <!-- Name -->
       <input
         name="name"
+        type="text"
         placeholder="Your name"
         required
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"
+        class="w-full rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition placeholder:text-[#426b7a]/60 focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
       />
 
+      <!-- Email -->
       <input
         name="email"
         type="email"
         placeholder="Email"
         required
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"
+        class="w-full rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition placeholder:text-[#426b7a]/60 focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
       />
 
+      <!-- Attendance -->
       <select
         name="attendance"
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"
+        required
+        class="w-full rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
       >
-        <option value="Yes"> Joyfully accepting </option>
-
-        <option value="No"> Sadly declining </option>
+        <option value="Yes">Joyfully accepting</option>
+        <option value="No">Sadly declining</option>
       </select>
 
+      <!-- Number of guests -->
       <input
         name="guests"
         type="number"
         min="1"
         value="1"
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"
+        required
+        class="w-full rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
       />
 
+      <!-- Dietary requirements -->
       <textarea
         name="dietary"
         placeholder="Dietary requirements"
         rows="3"
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"></textarea>
+        class="w-full resize-none rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition placeholder:text-[#426b7a]/60 focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
+      ></textarea>
 
+      <!-- Message -->
       <textarea
         name="message"
         placeholder="A message for the couple"
         rows="3"
-        class="w-full rounded-xl border border-stone-200 px-5 py-4"></textarea>
+        class="w-full resize-none rounded-xl border border-[#b9dce5]/60 bg-[#f5faf9] px-5 py-3.5 font-sans text-[#294653] outline-none transition placeholder:text-[#426b7a]/60 focus:border-[#426b7a] focus:ring-2 focus:ring-[#b9dce5]/40"
+      ></textarea>
 
+      <!-- Submit -->
       <button
-        class="w-full rounded-full bg-stone-800 py-4 text-sm uppercase tracking-[0.25em] text-white transition hover:bg-stone-700"
+        type="submit"
+        class="w-full rounded-full bg-[#e8c95a] py-4 font-sans text-xs font-medium uppercase tracking-[0.25em] text-[#294653] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#426b7a] hover:text-[#fffdf6] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
       >
         Confirm Attendance
       </button>
 
-      <p
-        id="success"
-        class="hidden rounded-2xl bg-stone-100 p-8 text-center font-serif text-2xl text-stone-700"
-      >
-        Thank you! ❤️
-        <br />
-        <span class="mt-3 block text-base font-sans text-stone-500">
+      <!-- Success -->
+      <div id="success" class="hidden rounded-2xl text-center">
+        <p class="font-serif text-2xl text-[#294653]">Thank you! ❤️</p>
+
+        <p class="mt-3 font-sans text-base text-[#426b7a]">
           Your RSVP has been received. We can't wait to celebrate with you!
-        </span>
-      </p>
+        </p>
+      </div>
+
+      <!-- Error -->
+      <div
+        id="error"
+        class="hidden rounded-2xl bg-red-50 p-5 text-center font-sans text-sm text-red-700"
+      >
+        Something went wrong. Please try again.
+      </div>
     </form>
   </div>
 </section>
 
 <script>
   const form = document.querySelector("#rsvp-form") as HTMLFormElement;
-  const button = form?.querySelector("button") as HTMLButtonElement;
+  const button = form?.querySelector(
+    'button[type="submit"]'
+  ) as HTMLButtonElement;
+
   const success = document.querySelector("#success");
+  const errorMessage = document.querySelector("#error");
+
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwLPHMzx-2JmQCMVgKCjA4yXK8tPrYBfhbA7azzbLULoRvjhwTXTKfK94UYar2X-PE/exec";
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!button) return;
 
+    // Hide previous error
+    errorMessage?.classList.add("hidden");
+
+    // Disable button while sending
     button.disabled = true;
     button.textContent = "Sending...";
 
     const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
-    const data = Object.fromEntries(formData);
+    console.log("Sending RSVP:", data);
 
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzkE73AhqE_8CdoRSnz-ZsiPo_iDdYEFB10ubGNg13qTbszmu4t9Pwda_NltlOL6hkA/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+
+        /*
+         * text/plain is intentional here.
+         * It avoids the browser making a CORS preflight request
+         * to Google Apps Script.
+         */
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+
+        body: JSON.stringify(data),
+      });
 
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error(`Request failed with status ${response.status}`);
       }
 
-      form.reset();
+      const result = await response.json();
 
+      console.log("Google response:", result);
+
+      if (!result.success) {
+        throw new Error(result.error || "Google Apps Script returned an error");
+      }
+
+      /*
+       * Success!
+       */
+
+      // Hide all form controls
       form
         .querySelectorAll("input, textarea, select, button")
         .forEach((element) => {
           (element as HTMLElement).style.display = "none";
         });
 
+      // Show success message
       success?.classList.remove("hidden");
-
-      success?.classList.add("animate-fade-in");
     } catch (error) {
-      console.error(error);
+      console.error("RSVP error:", error);
 
       button.disabled = false;
       button.textContent = "Confirm Attendance";
 
-      alert("Sorry, something went wrong. Please try again.");
+      errorMessage?.classList.remove("hidden");
     }
   });
 </script>
+
+<style>
+  .rsvp-section {
+    position: relative;
+
+    background: #fffdf6;
+
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  /* Top diagonal */
+  .rsvp-section::before {
+    content: "";
+
+    position: absolute;
+    top: -5rem;
+    left: 0;
+
+    width: 100%;
+    height: 5rem;
+
+    background: #fffdf6;
+
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  /* Bottom diagonal */
+  .rsvp-section::after {
+    content: "";
+
+    position: absolute;
+    bottom: -5rem;
+    left: 0;
+
+    width: 100%;
+    height: 5rem;
+
+    background: #fffdf6;
+
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+</style>

@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import logoImage from "../../public/images/logo.svg";
 import { getTranslation } from "../lib/i18n";
 import Hero from "../components/Hero.astro";
-import heroImage from "../../public/images/heroExample.jpg";
+import heroImage from "../../public/images/foto/machuPicchu.jpeg";
 import Countdown from "../components/Countdown.astro";
 import WeddingLocation from "../components/WeddingLocation.astro";
 import OurStory from "../components/OurStory.astro";
@@ -17,9 +17,10 @@ import Map from "../components/Map.astro";
 
 const t = getTranslation("en");
 
-import villaLaMassaImage from "../../public/images/rightEnvelope.png";
-import hotelSpadaiImage from "../../public/images/rightEnvelope.png";
-import agriturismoToscanaImage from "../../public/images/rightEnvelope.png";
+import villaLaMassaImage from "../../public/images/accomodationExample.png";
+import hotelSpadaiImage from "../../public/images/accomodationExample.png";
+import agriturismoToscanaImage from "../../public/images/accomodationExample.png";
+import Footer from "../components/Footer.astro";
 
 const hotels = [
   {
@@ -87,11 +88,9 @@ const questions = [
     title="Louise & Sara"
     subtitle="05 June 2027 • Puglia"
   />
-  <Map />
+
   <Countdown date="2027-06-05T15:00:00" />
-  <OurStory id="story" />
   <WeddingLocation
-    id="location"
     venue="Masseria San Lorenzo"
     address="Via Flora Francesco, 1, 73100"
     city="Lecce"
@@ -100,20 +99,26 @@ const questions = [
     mapsUrl="https://maps.app.goo.gl/jJp3esBd1aEKTgV76"
     embedUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.616161038176!2d18.19021007650206!3d40.395198971443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13442dcd7a6c008d%3A0x862d26eb6dc1e2c!2sMasseria%20San%20Lorenzo!5e0!3m2!1sen!2sit!4v1785074790892!5m2!1sen!2sit"
   />
-  <section id="rsvp">
-    <RSVP />
+
+  <RSVP />
+
+  <Accommodation hotels={hotels} />
+
+  <section id="story">
+    <Map />
   </section>
-  <section id="accomodation">
-    <Accommodation hotels={hotels} />
+  <section id="honeymoon">
+    <Gift
+      iban="IT00X0000000000000000000000"
+      accountName="Luca Rossi & Emma Bianchi"
+      bankName="Banca Example"
+    />
   </section>
-  <Gift
-    iban="IT00X0000000000000000000000"
-    accountName="Luca Rossi & Emma Bianchi"
-    bankName="Banca Example"
-  />
-  <FAQ items={questions} />
-  <h1 id="title">{t.hero.title}</h1>
-  <p id="subtitle">{t.hero.subtitle}</p>
+  <section id="faq">
+    <FAQ items={questions} />
+  </section>
+
+  <Footer />
 
   <script type="module">
     import en from "../locales/en.json";

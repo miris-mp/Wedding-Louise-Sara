@@ -2,54 +2,66 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 ---
 
-<div class="game">
-  <div class="game-header">
-    <div>
-      <p class="eyebrow">WHERE DID THIS HAPPEN?</p>
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mb-12 text-center">
+      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+        Our Story
+      </p>
 
-      <h1 id="city-name">Loading...</h1>
+      <h2 class="mt-4 font-serif text-5xl text-stone-800">How I met her?</h2>
 
-      <p id="city-country" class="city-country"></p>
+      <div class="mt-6 text-stone-600" id="instructions">
+        Click on the map where you think this city is
+      </div>
     </div>
 
-    <div class="instructions" id="instructions">
-      Click on the map where you think this city is.
+    <div class="flex justify-center items-center">
+      <div>
+        <h1 id="city-name">Loading...</h1>
+        <p id="city-country" class="city-country"></p>
+      </div>
     </div>
+
+    <div class="map-wrapper">
+      <div id="map"></div>
+
+      <div class="map-message" id="map-message">
+        Click anywhere on the map to place your guess.
+      </div>
+    </div>
+
+    <div class="game-actions">
+      <button id="guess-button" type="button" disabled> Guess </button>
+
+      <button id="next-button" type="button" hidden> Next city </button>
+    </div>
+
+    <section id="result" class="result" hidden>
+      <div class="result-distance">
+        <span>You were</span>
+        <strong id="distance"></strong>
+        <span>away</span>
+      </div>
+
+      <h2 id="result-title"></h2>
+
+      <p id="result-story"></p>
+    </section>
   </div>
-
-  <div class="map-wrapper">
-    <div id="map"></div>
-
-    <div class="map-message" id="map-message">
-      Click anywhere on the map to place your guess.
-    </div>
-  </div>
-
-  <div class="game-actions">
-    <button id="guess-button" type="button" disabled> Guess </button>
-
-    <button id="next-button" type="button" hidden> Next city </button>
-  </div>
-
-  <section id="result" class="result" hidden>
-    <div class="result-distance">
-      <span>You were</span>
-      <strong id="distance"></strong>
-      <span>away</span>
-    </div>
-
-    <h2 id="result-title"></h2>
-
-    <p id="result-story"></p>
-  </section>
-</div>
+</section>
 
 <script>
-  import { Map, Marker, NavigationControl, setWorkerUrl } from "maplibre-gl";
-
-  import * as maplibregl from "maplibre-gl";
+  import {
+    Map,
+    Marker,
+    NavigationControl,
+    LngLatBounds,
+    setWorkerUrl,
+  } from "maplibre-gl";
 
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+  import { cities } from "../data/memories";
 
   setWorkerUrl(workerUrl);
 
@@ -69,84 +81,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     history: string;
   };
-
-  // --------------------------------------------------
-  // Cities
-  //
-  // Later we can move this into src/data/cities.ts
-  // --------------------------------------------------
-
-  const cities: City[] = [
-    {
-      id: "rome",
-      name: "Rome",
-      country: "Italy",
-
-      coordinates: {
-        lng: 12.4964,
-        lat: 41.9028,
-      },
-
-      history:
-        "This is where the story of this memory begins. Replace this text with your own story about what happened in Rome.",
-    },
-
-    {
-      id: "paris",
-      name: "Paris",
-      country: "France",
-
-      coordinates: {
-        lng: 2.3522,
-        lat: 48.8566,
-      },
-
-      history:
-        "This is the story connected to Paris. Replace this text with the memory you want to tell about this place.",
-    },
-
-    {
-      id: "lisbon",
-      name: "Lisbon",
-      country: "Portugal",
-
-      coordinates: {
-        lng: -9.1393,
-        lat: 38.7223,
-      },
-
-      history:
-        "This is the story connected to Lisbon. Replace this text with your own memory.",
-    },
-
-    {
-      id: "london",
-      name: "London",
-      country: "United Kingdom",
-
-      coordinates: {
-        lng: -0.1276,
-        lat: 51.5072,
-      },
-
-      history:
-        "This is the story connected to London. Replace this text with your own memory.",
-    },
-
-    {
-      id: "barcelona",
-      name: "Barcelona",
-      country: "Spain",
-
-      coordinates: {
-        lng: 2.1734,
-        lat: 41.3851,
-      },
-
-      history:
-        "This is the story connected to Barcelona. Replace this text with your own memory.",
-    },
-  ];
 
   // --------------------------------------------------
   // DOM elements
@@ -194,6 +128,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
   let gameState: "guessing" | "revealed" = "guessing";
 
+  let cityNum = 0;
+
+  //
+  function selectNextCity() {
+    cityNum = cityNum++;
+    currentCity = cities[cityNum];
+    updateCityUI();
+  }
   // --------------------------------------------------
   // Select a random city
   // --------------------------------------------------
@@ -311,7 +253,11 @@ import "maplibre-gl/dist/maplibre-gl.css";
       },
     });
 
-    selectRandomCity();
+    selectNextCity();
+    updateCityUI();
+
+    cityNum++;
+    // selectRandomCity();
   });
 
   // --------------------------------------------------
@@ -448,7 +394,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
     // Fit map around both points
     // ----------------------------------------------
 
-    const bounds = new maplibregl.LngLatBounds();
+    const bounds = new LngLatBounds();
 
     bounds.extend([playerGuess.lng, playerGuess.lat]);
 
@@ -518,23 +464,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
     });
 
     // Choose another city
-    selectRandomCity();
+    selectNextCity();
+    // selectRandomCity();
   }
 </script>
 
 <style>
-  .game {
-    width: 100%;
-  }
-
-  .game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
-    margin-bottom: 1rem;
-  }
-
   .eyebrow {
     margin: 0 0 0.5rem;
     font-size: 0.75rem;

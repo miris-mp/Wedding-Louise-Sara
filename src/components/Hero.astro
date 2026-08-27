@@ -19,33 +19,73 @@ const heights = {
 ---
 
 <section
+  data-parallax
   class={`relative ${heights[height]} flex items-center justify-center overflow-hidden`}
 >
   <!-- Background Image -->
   <Image
     src={image}
     alt={alt}
-    class="absolute inset-0 h-full w-full object-cover"
+    class="parallax-image absolute inset-0 h-[120%] w-full object-cover"
     widths={[640, 768, 1024, 1280, 1600, 1920]}
     sizes="100vw"
     format="webp"
-    quality={90}
+    quality={100}
     loading="eager"
   />
 
   <!-- Overlay -->
-  <div class="absolute inset-0 bg-black/35"></div>
+  <div class="absolute inset-0 bg-black/25"></div>
 
   <!-- Content -->
   <div class="relative z-10 mx-auto max-w-4xl px-6 text-center text-white">
-    <h1 class="text-5xl font-serif md:text-7xl">
+    <h1 class="font-serif text-5xl md:text-7xl">
       {title}
     </h1>
 
     {
       subtitle && (
-        <p class="mt-6 text-lg md:text-2xl text-white/90">{subtitle}</p>
+        <p class="mt-6 text-lg text-white/90 md:text-2xl">{subtitle}</p>
       )
     }
   </div>
 </section>
+
+<script>
+  const sections = document.querySelectorAll("[data-parallax]");
+
+  const updateParallax = () => {
+    sections.forEach((section) => {
+      const image = section.querySelector(".parallax-image") as HTMLElement;
+
+      if (!image) return;
+
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      if (rect.bottom < 0 || rect.top > windowHeight) return;
+
+      const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+
+      const offset = -180;
+      const movement = (progress - 0.5) * 650 + offset;
+
+      image.style.transform = `translate3d(0, ${movement}px, 0)`;
+    });
+  };
+
+  let ticking = false;
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+
+  updateParallax();
+</script>
