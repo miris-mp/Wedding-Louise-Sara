@@ -1,27 +1,22 @@
----
-import Welcome from "../components/Welcome.astro";
-import Header from "../components/Header.astro";
-import Layout from "../layouts/Layout.astro";
-import logoImage from "../../public/images/logo.svg";
-import { getTranslation } from "../lib/i18n";
-import Hero from "../components/Hero.astro";
-import heroImage from "../../public/images/foto/machuPicchu.jpeg";
-import Countdown from "../components/Countdown.astro";
-import WeddingLocation from "../components/WeddingLocation.astro";
-import OurStory from "../components/OurStory.astro";
-import Accommodation from "../components/Accommodation.astro";
-import FAQ from "../components/FAQ.astro";
-import RSVP from "../components/RSVP.astro";
-import Gift from "../components/Gift.astro";
-import Map from "../components/Map.astro";
-import GoTo from "../components/GoTo.astro";
+<!-- ---
+import Accommodation from "../../components/Accommodation.astro";
+import Countdown from "../../components/Countdown.astro";
+import FAQ from "../../components/FAQ.astro";
+import Footer from "../../components/Footer.astro";
+import Gift from "../../components/Gift.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import RSVP from "../../components/RSVP.astro";
+import WeddingLocation from "../../components/WeddingLocation.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getTranslation } from "../../lib/i18n";
+
+import villaLaMassaImage from "../../../public/images/accomodationExample.png";
+import hotelSpadaiImage from "../../../public/images/accomodationExample.png";
+import agriturismoToscanaImage from "../../../public/images/accomodationExample.png";
+import heroImage from "../../../public/images/foto/machuPicchu.jpeg";
 
 const t = getTranslation("en");
-
-import villaLaMassaImage from "../../public/images/accomodationExample.png";
-import hotelSpadaiImage from "../../public/images/accomodationExample.png";
-import agriturismoToscanaImage from "../../public/images/accomodationExample.png";
-import Footer from "../components/Footer.astro";
 
 const hotels = [
   {
@@ -104,43 +99,7 @@ const questions = [
   <RSVP />
 
   <Accommodation hotels={hotels} />
-  <GoTo
-    tours={[
-      {
-        id: "florence",
-        name: "A Day in Florence",
-        location: "Florence",
-        duration: "Full day",
-        description:
-          "Lose yourself among Renaissance streets, beautiful piazzas and little cafés. A wonderful choice if you've never visited Florence before.",
-        perfectFor: "Art, history, shopping & a long Italian lunch",
-        url: "https://www.google.com/maps/search/?api=1&query=Florence%2C%20Italy",
-        image: hotelSpadaiImage,
-      },
-      {
-        id: "lucca",
-        name: "Wander Around Lucca",
-        location: "Lucca",
-        duration: "Half day",
-        description:
-          "A charming walled city that's perfect for wandering slowly, stopping for coffee and enjoying an aperitivo as the sun goes down.",
-        perfectFor: "A relaxed afternoon, coffee & aperitivo",
-        url: "https://www.google.com/maps/search/?api=1&query=Lucca%2C%20Italy",
-        image: hotelSpadaiImage,
-      },
-      {
-        id: "chianti",
-        name: "Through the Chianti Hills",
-        location: "Chianti",
-        duration: "Half / full day",
-        description:
-          "Beautiful countryside, winding roads, vineyards and long lunches. The kind of day where the journey is almost as lovely as the destination.",
-        perfectFor: "Wine, scenery & a leisurely countryside drive",
-        url: "https://www.google.com/maps/search/?api=1&query=Chianti%2C%20Tuscany%2C%20Italy",
-        image: hotelSpadaiImage,
-      },
-    ]}
-  />
+
   <section id="story">
     <Map />
   </section>
@@ -174,4 +133,4 @@ const questions = [
     document.getElementById("title").textContent = t.hero.title;
     document.getElementById("subtitle").textContent = t.hero.subtitle;
   </script>
-</Layout>
+</Layout> -->

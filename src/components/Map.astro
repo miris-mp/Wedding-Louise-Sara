@@ -2,51 +2,132 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 ---
 
-<section class="bg-white py-24">
-  <div class="mx-auto max-w-3xl px-6">
-    <div class="mb-12 text-center">
-      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+<section class="memory-game relative bg-[#e1f3e4] py-16 md:py-20">
+  <div class="relative z-10 mx-auto max-w-5xl px-6">
+    <!-- Header -->
+    <div class="mb-10 text-center md:mb-12">
+      <p
+        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
+      >
         Our Story
       </p>
 
-      <h2 class="mt-4 font-serif text-5xl text-stone-800">How I met her?</h2>
+      <h2 class="mt-3 font-serif text-4xl text-[#294653] md:text-5xl">
+        Where Did It Happen?
+      </h2>
 
-      <div class="mt-6 text-stone-600" id="instructions">
-        Click on the map where you think this city is
+      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
+
+      <p
+        id="instructions"
+        class="mx-auto mt-5 max-w-xl font-sans text-base leading-7 text-[#426b7a]"
+      >
+        Can you guess where this memory happened?
+      </p>
+    </div>
+
+    <!-- Memory introduction -->
+    <div class="memory-intro mx-auto mb-8 max-w-3xl">
+      <div
+        class="memory-card overflow-hidden rounded-[2rem] border border-white/70 bg-[#fffdf6] shadow-md"
+      >
+        <!-- Optional memory image -->
+        <div
+          id="memory-image-wrapper"
+          class="hidden h-56 overflow-hidden md:h-72"
+        >
+          <img
+            id="memory-image"
+            src=""
+            alt=""
+            class="h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="p-7 text-center md:p-9">
+          <p
+            class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#7e9b72]"
+          >
+            The memory
+          </p>
+
+          <h3
+            id="city-name"
+            class="mt-2 font-serif text-3xl text-[#294653] md:text-4xl"
+          >
+            Loading...
+          </h3>
+
+          <p id="city-country" class="mt-1 font-sans text-sm text-[#426b7a]">
+          </p>
+        </div>
       </div>
     </div>
 
-    <div class="flex justify-center items-center">
-      <div>
-        <h1 id="city-name">Loading...</h1>
-        <p id="city-country" class="city-country"></p>
-      </div>
-    </div>
+    <!-- Map -->
+    <div class="map-card relative mx-auto max-w-4xl">
+      <div id="map" class="overflow-hidden rounded-[2rem] shadow-xl"></div>
 
-    <div class="map-wrapper">
-      <div id="map"></div>
-
-      <div class="map-message" id="map-message">
+      <!-- Map instruction -->
+      <div id="map-message" class="map-message">
         Click anywhere on the map to place your guess.
       </div>
     </div>
 
-    <div class="game-actions">
-      <button id="guess-button" type="button" disabled> Guess </button>
+    <!-- Actions -->
+    <div class="game-actions mt-6 flex justify-center">
+      <button id="guess-button" type="button" disabled class="game-button">
+        Reveal the memory
+      </button>
 
-      <button id="next-button" type="button" hidden> Next city </button>
+      <button id="next-button" type="button" hidden class="game-button">
+        Next memory
+      </button>
     </div>
 
-    <section id="result" class="result" hidden>
-      <div class="result-distance">
+    <!-- Result / Story -->
+    <section id="result" hidden class="result-card mx-auto mt-10 max-w-3xl">
+      <!-- Distance -->
+      <div class="distance-badge">
         <span>You were</span>
         <strong id="distance"></strong>
         <span>away</span>
       </div>
 
-      <h2 id="result-title"></h2>
+      <!-- Story -->
+      <div class="story-card">
+        <div class="story-card-inner">
+          <p
+            class="font-sans text-xs font-medium uppercase tracking-[0.25em] text-[#7e9b72]"
+          >
+            The memory
+          </p>
 
-      <p id="result-story"></p>
+          <h2
+            id="result-title"
+            class="mt-3 font-serif text-3xl text-[#294653] md:text-4xl"
+          >
+          </h2>
+
+          <div class="mx-auto mt-4 h-1 w-10 rounded-full bg-[#e8c95a]"></div>
+
+          <p
+            id="result-story"
+            class="mt-6 font-sans text-base leading-8 text-[#426b7a]"
+          >
+          </p>
+
+          <div class="mt-7 flex justify-center">
+            <span class="heart-divider">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <path
+                  d="M12 21s-7-4.35-9.5-9.15C.5 7.8 2.8 4 6.5 4c2.05 0 3.45 1.15 4.5 2.6C12.05 5.15 13.45 4 15.5 4 19.2 4 21.5 7.8 21.5 11.85 19 16.65 12 21 12 21Z"
+                ></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </section>
@@ -61,6 +142,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
   } from "maplibre-gl";
 
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+
   import { cities } from "../data/memories";
 
   setWorkerUrl(workerUrl);
@@ -80,10 +162,13 @@ import "maplibre-gl/dist/maplibre-gl.css";
     };
 
     history: string;
+
+    // Optional image for the memory
+    image?: string;
   };
 
   // --------------------------------------------------
-  // DOM elements
+  // DOM
   // --------------------------------------------------
 
   const cityNameElement =
@@ -93,7 +178,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
     document.querySelector<HTMLParagraphElement>("#city-country");
 
   const instructionsElement =
-    document.querySelector<HTMLDivElement>("#instructions");
+    document.querySelector<HTMLParagraphElement>("#instructions");
 
   const mapMessageElement =
     document.querySelector<HTMLDivElement>("#map-message");
@@ -113,52 +198,69 @@ import "maplibre-gl/dist/maplibre-gl.css";
   const resultStoryElement =
     document.querySelector<HTMLParagraphElement>("#result-story");
 
+  const memoryImageWrapper = document.querySelector<HTMLDivElement>(
+    "#memory-image-wrapper"
+  );
+
+  const memoryImage = document.querySelector<HTMLImageElement>("#memory-image");
+
   // --------------------------------------------------
   // Game state
   // --------------------------------------------------
 
   let currentCity: City;
+
   let playerGuess: {
     lng: number;
     lat: number;
   } | null = null;
 
   let guessMarker: Marker | null = null;
+
   let realMarker: Marker | null = null;
 
   let gameState: "guessing" | "revealed" = "guessing";
 
   let cityNum = 0;
 
-  //
+  // --------------------------------------------------
+  // Select next city
+  // --------------------------------------------------
+
   function selectNextCity() {
-    cityNum = cityNum++;
-    currentCity = cities[cityNum];
-    updateCityUI();
-  }
-  // --------------------------------------------------
-  // Select a random city
-  // --------------------------------------------------
+    if (!cities.length) return;
 
-  function selectRandomCity() {
-    const randomIndex = Math.floor(Math.random() * cities.length);
+    currentCity = cities[cityNum % cities.length] as City;
 
-    currentCity = cities[randomIndex];
+    cityNum++;
 
     updateCityUI();
   }
 
   // --------------------------------------------------
-  // Update city information
+  // Update memory UI
   // --------------------------------------------------
 
   function updateCityUI() {
+    if (!currentCity) return;
+
     cityNameElement!.textContent = currentCity.name;
+
     cityCountryElement!.textContent = currentCity.country;
+
+    // Optional image
+    if (currentCity.image) {
+      memoryImage!.src = currentCity.image;
+      memoryImage!.alt = `${currentCity.name}, ${currentCity.country}`;
+
+      memoryImageWrapper!.classList.remove("hidden");
+    } else {
+      memoryImageWrapper!.classList.add("hidden");
+    }
   }
 
   // --------------------------------------------------
-  // Distance calculation
+  // Distance
   // --------------------------------------------------
 
   function distanceInKm(
@@ -170,6 +272,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
     const R = 6371;
 
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
+
     const dLng = ((lng2 - lng1) * Math.PI) / 180;
 
     const a =
@@ -219,13 +322,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
     },
 
     center: [10, 45],
+
     zoom: 2,
   });
 
-  map.addControl(new NavigationControl());
+  map.addControl(new NavigationControl(), "bottom-right");
 
   // --------------------------------------------------
-  // Add the line source
+  // Map load
   // --------------------------------------------------
 
   map.on("load", () => {
@@ -244,28 +348,28 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     map.addLayer({
       id: "guess-line",
+
       type: "line",
+
       source: "guess-line",
 
       paint: {
         "line-width": 3,
-        "line-opacity": 0.8,
+
+        "line-opacity": 0.75,
+
+        "line-dasharray": [2, 2],
       },
     });
 
     selectNextCity();
-    updateCityUI();
-
-    cityNum++;
-    // selectRandomCity();
   });
 
   // --------------------------------------------------
-  // Click on map
+  // Map click = place guess
   // --------------------------------------------------
 
   map.on("click", (event) => {
-    // Don't allow changing the guess after revealing
     if (gameState === "revealed") {
       return;
     }
@@ -277,65 +381,58 @@ import "maplibre-gl/dist/maplibre-gl.css";
       lat,
     };
 
-    // Remove previous guess marker
+    // Remove previous marker
     guessMarker?.remove();
 
-    // Create new guess marker
+    // Add new guess marker
     guessMarker = new Marker({
-      color: "#2563eb",
+      color: "#426b7a",
     })
       .setLngLat([lng, lat])
       .addTo(map);
 
-    // Enable the Guess button
+    // Enable reveal
     guessButton!.disabled = false;
 
-    // Update UI
     mapMessageElement!.textContent = "Happy with your guess?";
 
     instructionsElement!.textContent =
       "You can move your guess by clicking somewhere else.";
-
-    console.log("Selected:", playerGuess);
   });
 
   // --------------------------------------------------
-  // Guess button
+  // Reveal button
   // --------------------------------------------------
 
   guessButton?.addEventListener("click", () => {
-    if (!playerGuess) {
-      return;
-    }
+    if (!playerGuess) return;
 
     revealAnswer();
   });
 
   // --------------------------------------------------
-  // Reveal the real city
+  // Reveal answer
   // --------------------------------------------------
 
   function revealAnswer() {
-    if (!playerGuess) {
-      return;
-    }
+    if (!playerGuess) return;
 
     gameState = "revealed";
 
     const actualLocation = currentCity.coordinates;
 
     // ----------------------------------------------
-    // Add real location marker
+    // Real location marker
     // ----------------------------------------------
 
     realMarker = new Marker({
-      color: "#dc2626",
+      color: "#d69e2e",
     })
       .setLngLat([actualLocation.lng, actualLocation.lat])
       .addTo(map);
 
     // ----------------------------------------------
-    // Calculate distance
+    // Distance
     // ----------------------------------------------
 
     const distance = distanceInKm(
@@ -348,14 +445,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
     const roundedDistance = Math.round(distance);
 
     // ----------------------------------------------
-    // Update line
+    // Line
     // ----------------------------------------------
 
-    const lineSource = map.getSource(
-      "guess-line"
-    ) as import("maplibre-gl").GeoJSONSource;
+    const lineSource = map.getSource("guess-line") as
+      | import("maplibre-gl").GeoJSONSource
+      | undefined;
 
-    lineSource.setData({
+    lineSource?.setData({
       type: "Feature",
 
       geometry: {
@@ -363,6 +460,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
         coordinates: [
           [playerGuess.lng, playerGuess.lat],
+
           [actualLocation.lng, actualLocation.lat],
         ],
       },
@@ -371,7 +469,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
     });
 
     // ----------------------------------------------
-    // Update UI
+    // Result content
     // ----------------------------------------------
 
     distanceElement!.textContent = `${roundedDistance.toLocaleString()} km`;
@@ -380,18 +478,35 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     resultStoryElement!.textContent = currentCity.history;
 
+    // ----------------------------------------------
+    // Reveal story
+    // ----------------------------------------------
+
     resultElement!.hidden = false;
+
+    requestAnimationFrame(() => {
+      resultElement!.classList.add("result-visible");
+    });
+
+    // ----------------------------------------------
+    // Buttons
+    // ----------------------------------------------
 
     guessButton!.hidden = true;
 
     nextButton!.hidden = false;
 
-    instructionsElement!.textContent = "Here is where it actually happened.";
+    // ----------------------------------------------
+    // Instructions
+    // ----------------------------------------------
+
+    instructionsElement!.textContent =
+      "And this is where the memory really happened.";
 
     mapMessageElement!.textContent = `${roundedDistance.toLocaleString()} km away`;
 
     // ----------------------------------------------
-    // Fit map around both points
+    // Fit map around both locations
     // ----------------------------------------------
 
     const bounds = new LngLatBounds();
@@ -402,18 +517,24 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     map.fitBounds(bounds, {
       padding: 100,
+
       duration: 1500,
+
       maxZoom: 8,
     });
   }
 
   // --------------------------------------------------
-  // Next city
+  // Next memory
   // --------------------------------------------------
 
   nextButton?.addEventListener("click", () => {
     resetGame();
   });
+
+  // --------------------------------------------------
+  // Reset
+  // --------------------------------------------------
 
   function resetGame() {
     gameState = "guessing";
@@ -421,9 +542,11 @@ import "maplibre-gl/dist/maplibre-gl.css";
     playerGuess = null;
 
     guessMarker?.remove();
+
     realMarker?.remove();
 
     guessMarker = null;
+
     realMarker = null;
 
     // Clear line
@@ -431,178 +554,408 @@ import "maplibre-gl/dist/maplibre-gl.css";
       | import("maplibre-gl").GeoJSONSource
       | undefined;
 
-    if (lineSource) {
-      lineSource.setData({
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: [],
-        },
-        properties: {},
-      });
-    }
+    lineSource?.setData({
+      type: "Feature",
 
-    // Reset UI
+      geometry: {
+        type: "LineString",
+
+        coordinates: [],
+      },
+
+      properties: {},
+    });
+
+    // Hide result
     resultElement!.hidden = true;
 
+    resultElement!.classList.remove("result-visible");
+
+    // Buttons
     guessButton!.hidden = false;
+
     guessButton!.disabled = true;
 
     nextButton!.hidden = true;
 
+    // Text
     instructionsElement!.textContent =
-      "Click on the map where you think this city is.";
+      "Can you guess where this memory happened?";
 
     mapMessageElement!.textContent =
       "Click anywhere on the map to place your guess.";
 
-    // Reset map position
+    // Reset map
     map.flyTo({
       center: [10, 45],
+
       zoom: 2,
+
       duration: 1200,
     });
 
-    // Choose another city
+    // Next memory
     selectNextCity();
-    // selectRandomCity();
   }
 </script>
 
 <style>
-  .eyebrow {
-    margin: 0 0 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
+  /* -----------------------------------------------
+     Section
+  ------------------------------------------------ */
 
-  h1 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
-
-  .city-country {
-    margin: 0.25rem 0 0;
-    opacity: 0.6;
-  }
-
-  .instructions {
-    max-width: 300px;
-    text-align: right;
-    opacity: 0.7;
-  }
-
-  .map-wrapper {
+  .memory-game {
     position: relative;
-    overflow: hidden;
-    border-radius: 12px;
+
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
+
+  .memory-game::before {
+    content: "";
+
+    position: absolute;
+
+    top: -4rem;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4rem;
+
+    background: #fff;
+
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  .memory-game::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -4rem;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4rem;
+
+    background: #fff;
+
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  /* -----------------------------------------------
+     Map
+  ------------------------------------------------ */
 
   #map {
     width: 100%;
-    height: 600px;
+
+    height: 520px;
+
+    cursor: crosshair;
+
+    background: #dce8e5;
   }
+
+  .map-card {
+    overflow: hidden;
+
+    border-radius: 2rem;
+
+    border: 6px solid rgba(255, 253, 246, 0.75);
+
+    box-shadow: 0 20px 45px rgba(41, 70, 83, 0.12);
+  }
+
+  /* -----------------------------------------------
+     Floating map message
+  ------------------------------------------------ */
 
   .map-message {
     position: absolute;
+
     left: 50%;
-    bottom: 1rem;
+
+    bottom: 1.25rem;
+
     transform: translateX(-50%);
 
-    padding: 0.6rem 1rem;
+    padding: 0.65rem 1.1rem;
 
     border-radius: 999px;
 
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
+    background: rgba(41, 70, 83, 0.88);
 
-    font-size: 0.875rem;
+    color: #fffdf6;
+
+    font-family: sans-serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.04em;
+
     white-space: nowrap;
 
     pointer-events: none;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+      opacity 300ms ease,
+      transform 300ms ease;
   }
 
-  .game-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  /* -----------------------------------------------
+     Buttons
+  ------------------------------------------------ */
 
-    margin-top: 1.5rem;
-  }
-
-  button {
-    padding: 0.75rem 1.5rem;
+  .game-button {
+    padding: 0.85rem 1.8rem;
 
     border: 0;
+
     border-radius: 999px;
 
-    background: #111;
-    color: white;
+    background: #e8c95a;
 
-    font: inherit;
+    color: #294653;
+
+    font-family: sans-serif;
+
+    font-size: 0.7rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
     cursor: pointer;
+
+    box-shadow: 0 6px 15px rgba(41, 70, 83, 0.1);
+
+    transition:
+      transform 300ms ease,
+      box-shadow 300ms ease,
+      background 300ms ease;
   }
 
-  button:hover {
-    opacity: 0.85;
+  .game-button:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+
+    background: #426b7a;
+
+    color: #fffdf6;
+
+    box-shadow: 0 10px 22px rgba(41, 70, 83, 0.16);
   }
 
-  button:disabled {
-    opacity: 0.4;
+  .game-button:disabled {
+    opacity: 0.45;
+
     cursor: not-allowed;
+
+    box-shadow: none;
   }
 
-  .result {
-    max-width: 700px;
-    margin: 3rem auto 0;
+  /* -----------------------------------------------
+     Result
+  ------------------------------------------------ */
+
+  .result-card {
+    opacity: 0;
+
+    transform: translateY(20px) scale(0.98);
+
+    transition:
+      opacity 600ms ease,
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .result-card.result-visible {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+
+  /* -----------------------------------------------
+     Distance
+  ------------------------------------------------ */
+
+  .distance-badge {
+    display: flex;
+
+    align-items: baseline;
+
+    justify-content: center;
+
+    gap: 0.45rem;
+
+    margin-bottom: 1.25rem;
+
+    color: #426b7a;
+
+    font-family: sans-serif;
+
+    font-size: 0.8rem;
+  }
+
+  .distance-badge strong {
+    color: #294653;
+
+    font-family: serif;
+
+    font-size: 2rem;
+
+    font-weight: 400;
+  }
+
+  /* -----------------------------------------------
+     Story card
+  ------------------------------------------------ */
+
+  .story-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 2rem;
+
+    background: #fffdf6;
+
+    border: 1px solid rgba(185, 220, 229, 0.55);
+
+    box-shadow: 0 14px 35px rgba(41, 70, 83, 0.09);
+  }
+
+  .story-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: #e8c95a;
+  }
+
+  .story-card-inner {
+    padding: 2rem 1.5rem;
+
     text-align: center;
   }
 
-  .result-distance {
+  .heart-divider {
     display: flex;
+
+    align-items: center;
+
     justify-content: center;
-    align-items: baseline;
-    gap: 0.5rem;
 
-    margin-bottom: 1rem;
+    width: 2.5rem;
 
-    opacity: 0.7;
+    height: 2.5rem;
+
+    margin: 0 auto;
+
+    border-radius: 999px;
+
+    background: #e1f3e4;
+
+    color: #7e9b72;
   }
 
-  .result-distance strong {
-    font-size: 2rem;
-    opacity: 1;
+  /* -----------------------------------------------
+     Memory card
+  ------------------------------------------------ */
+
+  .memory-card {
+    transition:
+      transform 400ms ease,
+      box-shadow 400ms ease;
   }
 
-  .result h2 {
-    margin: 0 0 1rem;
-    font-size: 2rem;
+  .memory-card:hover {
+    transform: scale(1.01);
+
+    box-shadow: 0 14px 30px rgba(41, 70, 83, 0.1);
   }
 
-  .result p {
-    margin: 0;
-    line-height: 1.7;
+  #memory-image {
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  @media (max-width: 700px) {
-    .game-header {
-      display: block;
+  .memory-card:hover #memory-image {
+    transform: scale(1.035);
+  }
+
+  /* -----------------------------------------------
+     Mobile
+  ------------------------------------------------ */
+
+  @media (max-width: 767px) {
+    .memory-game {
+      margin-top: 2.5rem;
+
+      margin-bottom: 2.5rem;
     }
 
-    .instructions {
-      max-width: none;
-      margin-top: 1rem;
-      text-align: left;
+    .memory-game::before {
+      top: -2.5rem;
+
+      height: 2.5rem;
+    }
+
+    .memory-game::after {
+      bottom: -2.5rem;
+
+      height: 2.5rem;
     }
 
     #map {
-      height: 500px;
+      height: 440px;
     }
 
-    h1 {
-      font-size: 2rem;
+    .map-card {
+      border-width: 4px;
+
+      border-radius: 1.5rem;
+    }
+
+    .map-message {
+      bottom: 0.75rem;
+
+      max-width: calc(100% - 2rem);
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    .story-card-inner {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+
+  /* -----------------------------------------------
+     Reduced motion
+  ------------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .result-card,
+    .memory-card,
+    #memory-image,
+    .game-button {
+      transition: none !important;
     }
   }
 </style>
