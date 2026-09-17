@@ -2,11 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import { getTranslation } from "../../lib/i18n";
 import Hero from "../../components/Hero.astro";
-import heroImage from "../../public/images/foto/machuPicchu.jpeg";
+import heroImage from "../../../public/images/foto/machuPicchu.jpeg";
 import Countdown from "../../components/Countdown.astro";
 import WeddingLocation from "../../components/WeddingLocation.astro";
-
-const t = getTranslation("en");
 ---
 
 <Layout>
@@ -19,22 +17,4 @@ const t = getTranslation("en");
 
   <Countdown date="2027-06-05T15:00:00" />
   <WeddingLocation />
-
-  <script type="module">
-    import en from "../locales/en.json";
-    import it from "../locales/it.json";
-
-    const translations = { en, it };
-
-    let lang =
-      localStorage.getItem("lang") ||
-      (navigator.language.startsWith("it") ? "it" : "en");
-
-    document.documentElement.lang = lang;
-
-    const t = translations[lang];
-
-    document.getElementById("title").textContent = t.hero.title;
-    document.getElementById("subtitle").textContent = t.hero.subtitle;
-  </script>
 </Layout>

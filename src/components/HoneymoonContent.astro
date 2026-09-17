@@ -1,0 +1,133 @@
+---
+import { getTranslations, type Locale } from "../i18n/utils";
+import { honeymoonData } from "../data/honeymoonData";
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
+
+const accounts = [
+  {
+    id: "italian",
+    label: t.honeymoon.italianAccount,
+    ...honeymoonData.italian,
+  },
+  {
+    id: "english",
+    label: t.honeymoon.englishAccount,
+    ...honeymoonData.english,
+  },
+];
+---
+
+<section id="honeymoon" class="bg-stone-50 py-24">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="text-center">
+      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+        {t.honeymoon.eyebrow}
+      </p>
+
+      <h2 class="mt-4 font-serif text-5xl text-stone-800">
+        {t.honeymoon.title}
+      </h2>
+
+      <div class="mx-auto mt-6 h-px w-24 bg-white"></div>
+
+      <p class="mx-auto mt-8 max-w-xl leading-8 text-stone-600">
+        {t.honeymoon.intro}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {
+        accounts.map((account) => (
+          <div class="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm">
+            <p class="text-sm uppercase tracking-[0.25em] text-stone-500">
+              {account.label}
+            </p>
+
+            <p class="mt-5 text-sm text-stone-500">{t.honeymoon.ibanLabel}</p>
+
+            <p
+              id={`iban-${account.id}`}
+              class="mt-2 break-all font-mono text-lg text-stone-800 md:text-xl"
+            >
+              {account.iban}
+            </p>
+
+            {account.bankName && (
+              <p class="mt-4 text-sm text-stone-500">{account.bankName}</p>
+            )}
+
+            <p class="mt-2 text-sm text-stone-500">
+              {t.honeymoon.accountHolder}:
+              <span class="font-medium text-stone-700">
+                {account.accountName}
+              </span>
+            </p>
+
+            <button
+              type="button"
+              data-copy-iban={account.id}
+              class="mt-8 rounded-full border border-stone-300 px-8 py-3 text-xs uppercase tracking-[0.25em] text-stone-700 transition hover:bg-stone-800 hover:text-white"
+            >
+              {t.honeymoon.copyIban}
+            </button>
+
+            <p
+              data-copied={account.id}
+              class="mt-4 hidden text-sm text-green-700"
+            >
+              {t.honeymoon.copied}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="mx-auto mt-8 max-w-md rounded-[2rem] border border-stone-200 bg-white p-8 text-center shadow-sm"
+    >
+      <p class="text-sm uppercase tracking-[0.25em] text-stone-500">
+        {t.honeymoon.qrTitle}
+      </p>
+
+      <p class="mt-4 leading-7 text-stone-600">
+        {t.honeymoon.qrIntro}
+      </p>
+
+      <div class="mt-8 flex justify-center">
+        <img
+          src={honeymoonData.qrCode}
+          alt={t.honeymoon.qrAlt}
+          class="h-56 w-56 rounded-xl object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-copy-iban]")
+    .forEach((button) => {
+      button.addEventListener("click", async () => {
+        const accountId = button.dataset.copyIban;
+
+        if (!accountId) return;
+
+        const iban = document.querySelector(`#iban-${accountId}`);
+
+        const copied = document.querySelector(`[data-copied="${accountId}"]`);
+
+        if (!iban) return;
+
+        await navigator.clipboard.writeText(iban.textContent?.trim() || "");
+
+        copied?.classList.remove("hidden");
+
+        setTimeout(() => {
+          copied?.classList.add("hidden");
+        }, 2500);
+      });
+    });
+</script>

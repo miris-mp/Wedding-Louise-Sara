@@ -1,7 +1,6 @@
 ---
 import { locationWedding } from "../data/locationWedding";
 import { getTranslations, type Locale } from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
 
 const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);

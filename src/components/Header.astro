@@ -11,13 +11,15 @@ const { logoPath = "/images/logo.svg" } = Astro.props;
 const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);
 
+const prefix = locale === "en" ? "" : `/${locale}`;
+
 const navItems = [
-  { name: t.nav.rsvp, href: "/rsvp" },
-  { name: t.nav.explorePuglia, href: "/goto" },
-  { name: t.nav.accommodation, href: "/accomodation" },
-  { name: t.nav.ourStory, href: "/our-story" },
-  { name: t.nav.honeymoon, href: "/honeymoon" },
-  { name: t.nav.faq, href: "/faq" },
+  { name: t.nav.rsvp, href: `${prefix}/rsvp` },
+  { name: t.nav.explorePuglia, href: `${prefix}/goto` },
+  { name: t.nav.accommodation, href: `${prefix}/accommodation` },
+  { name: t.nav.ourStory, href: `${prefix}/our-story` },
+  { name: t.nav.honeymoon, href: `${prefix}/honeymoon` },
+  { name: t.nav.faq, href: `${prefix}/faq` },
 ];
 ---
 

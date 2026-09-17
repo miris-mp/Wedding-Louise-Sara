@@ -1,7 +1,11 @@
 ---
+import { getTranslations, type Locale } from "../i18n/utils";
+
 interface Props {
   date: string;
 }
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
 
 const { date } = Astro.props;
 
@@ -11,6 +15,8 @@ const items = [
   { key: "minutes", label: "Minutes" },
   { key: "seconds", label: "Seconds" },
 ];
+
+const t = getTranslations(locale);
 ---
 
 <section
@@ -23,11 +29,11 @@ const items = [
       <p
         class="mb-2 font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
       >
-        We're counting the days
+        {t.countdown.title}
       </p>
 
       <h2 class="font-serif text-3xl text-[#294653] md:text-4xl">
-        Until We Say "I Do"
+        {t.countdown.subtitle}
       </h2>
 
       <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
