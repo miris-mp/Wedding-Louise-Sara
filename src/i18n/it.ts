@@ -39,6 +39,79 @@ export const it = {
     title: "Contiamo i giorni",
     subtitle: "Fino a quando diremo 'Sì'",
   },
+  faq: {
+    eyebrow: "Informazioni utili",
+    title: "Domande frequenti",
+
+    items: {
+      arrival: {
+        question: "A che ora dovremmo arrivare?",
+        answer:
+          "Vi consigliamo di arrivare 30 minuti prima dell'inizio della cerimonia, così tutti potranno accomodarsi comodamente.",
+      },
+
+      children: {
+        question: "I bambini sono invitati?",
+        answer:
+          "Anche se amiamo tantissimo i vostri piccoli, abbiamo deciso di celebrare il nostro matrimonio come evento riservato agli adulti, ad eccezione dei bambini sotto i 12 mesi e dei familiari. Speriamo che questo permetta a tutti di lasciarsi andare e godersi appieno la festa!",
+      },
+
+      ceilidh: {
+        question: "Ci sarà un ceilidh?",
+        answer:
+          "Sì! Durante la serata ci sarà un piccolo assaggio di ceilidh, per celebrare le nostre radici scozzesi. Non servono ritmo, stile o esperienza: portate solo tanto entusiasmo! Vi consigliamo di avere con voi un paio di scarpe comode da indossare per ballare.",
+      },
+
+      venues: {
+        question: "Dovremo spostarci tra diverse location?",
+        answer:
+          "No! Sia la cerimonia che il ricevimento si terranno nella stessa location, quindi una volta arrivati sarete sistemati per il resto della giornata.",
+      },
+
+      parking: {
+        question: "È disponibile un parcheggio presso la location?",
+        answer:
+          "Sì, c'è molto spazio per parcheggiare direttamente in loco. Se vi trattenete al bar, potete tranquillamente lasciare l'auto durante la notte; vi chiediamo solo di ritirarla entro le 11:00 del mattino seguente.",
+      },
+
+      dressCode: {
+        question: "Qual è il dress code?",
+        answer:
+          "Abbigliamento da matrimonio! Soprattutto, indossate qualcosa che vi faccia sentire bene, a vostro agio e pronti a festeggiare.",
+      },
+
+      indoorOutdoor: {
+        question: "Il matrimonio si svolgerà al chiuso o all'aperto?",
+        answer:
+          "Stiamo organizzando tutto al chiuso, anche se il programma potrebbe cambiare in base alle condizioni meteorologiche.",
+      },
+
+      dietary: {
+        question:
+          "Come posso comunicare eventuali esigenze alimentari o allergie?",
+        answer:
+          "Vi chiediamo di segnalarle quando compilate il modulo RSVP. Il nostro catering sarà felice di venire incontro alle vostre esigenze.",
+      },
+
+      bar: {
+        question: "Ci sarà un bar? Devo portare contanti?",
+        answer:
+          "Da bere offriamo noi! Ci sarà un open bar completo, quindi non c'è bisogno di portare né contanti né carte.",
+      },
+
+      accommodation: {
+        question: "Ci sono strutture dove soggiornare nelle vicinanze?",
+        answer:
+          "Sì! Abbiamo selezionato alcuni hotel e strutture caratteristiche nelle vicinanze della location.",
+      },
+
+      gettingThere: {
+        question: "Come possiamo raggiungere la location?",
+        answer:
+          "La location è facilmente raggiungibile in auto. Forniremo inoltre informazioni sul servizio navetta più vicino alla data del matrimonio.",
+      },
+    },
+  },
   hero: {
     title: "Louise & Sara",
     subtitle: "05 June 2027 • Puglia",
