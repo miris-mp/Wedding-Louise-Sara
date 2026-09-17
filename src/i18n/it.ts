@@ -39,14 +39,10 @@ export const it = {
     title: "Contiamo i giorni",
     subtitle: "Fino a quando diremo 'Sì'",
   },
-
-  location: {
-    eyebrow: "Unisciti a noi",
-    title: 'Dove diremo "Sì"',
-    venue: "La location",
-    date: "Data",
-    ceremony: "Cerimonia",
-    openMaps: "Apri in Google Maps",
+  hero: {
+    title: "Louise & Sara",
+    subtitle: "05 June 2027 • Puglia",
+    imageAlt: "Bride and bride embracing",
   },
   honeymoon: {
     eyebrow: "Una piccola nota",
@@ -63,6 +59,14 @@ export const it = {
     qrIntro:
       "Se preferisci, puoi utilizzare il nostro codice QR per effettuare il tuo contributo.",
     qrAlt: "Codice QR per il nostro fondo luna di miele",
+  },
+  location: {
+    eyebrow: "Unisciti a noi",
+    title: 'Dove diremo "Sì"',
+    venue: "La location",
+    date: "Data",
+    ceremony: "Cerimonia",
+    openMaps: "Apri in Google Maps",
   },
   nav: {
     rsvp: "RSVP",

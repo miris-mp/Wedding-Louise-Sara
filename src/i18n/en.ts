@@ -10,7 +10,6 @@ export const en = {
     intro:
       "To help you organise your stay in Salento for our wedding at Masseria San Lorenzo, we have selected a range of recommended places to stay.",
     discover: "Discover",
-
     categories: {
       centerCouples: {
         title: "In the heart of Lecce",
@@ -30,11 +29,18 @@ export const en = {
         description: "For a countryside atmosphere",
       },
     },
-
     features: "Features",
     distance: "Distance",
   },
-
+  countdown: {
+    title: "Counting the days",
+    subtitle: "Until we say 'I do'",
+  },
+  hero: {
+    title: "Louise & Sara",
+    subtitle: "05 June 2027 • Puglia",
+    imageAlt: "Bride and bride embracing",
+  },
   honeymoon: {
     eyebrow: "A little note",
     title: "Your Presence Is Our Gift",
@@ -51,6 +57,14 @@ export const en = {
       "If you prefer, you can use our QR code to make your contribution.",
     qrAlt: "QR code for our honeymoon fund",
   },
+  location: {
+    eyebrow: "Join us",
+    title: 'Where We’ll Say "I Do"',
+    venue: "The venue",
+    date: "Date",
+    ceremony: "Ceremony",
+    openMaps: "Open in Google Maps",
+  },
   nav: {
     rsvp: "RSVP",
     explorePuglia: "Explore Puglia",
@@ -59,14 +73,5 @@ export const en = {
     honeymoon: "Honeymoon",
     gift: "Gift",
     faq: "FAQ",
-  },
-
-  location: {
-    eyebrow: "Join us",
-    title: 'Where We’ll Say "I Do"',
-    venue: "The venue",
-    date: "Date",
-    ceremony: "Ceremony",
-    openMaps: "Open in Google Maps",
   },
 };

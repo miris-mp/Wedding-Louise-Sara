@@ -6,6 +6,7 @@ interface Props {
 }
 
 const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
 
 const { date } = Astro.props;
 
@@ -15,8 +16,6 @@ const items = [
   { key: "minutes", label: "Minutes" },
   { key: "seconds", label: "Seconds" },
 ];
-
-const t = getTranslations(locale);
 ---
 
 <section

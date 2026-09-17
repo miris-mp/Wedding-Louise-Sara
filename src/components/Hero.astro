@@ -1,31 +1,20 @@
 ---
 import { Image } from "astro:assets";
+import heroImage from "@public/images/foto/machuPicchu.jpeg";
+import { getTranslations, type Locale } from "../i18n/utils";
 
-interface Props {
-  image: ImageMetadata;
-  alt: string;
-  title: string;
-  subtitle?: string;
-  height?: "screen" | "large" | "medium";
-}
-
-const { image, alt, title, subtitle, height = "screen" } = Astro.props;
-
-const heights = {
-  screen: "min-h-screen",
-  large: "min-h-[80vh]",
-  medium: "min-h-[60vh]",
-};
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
 ---
 
 <section
   data-parallax
-  class={`relative ${heights[height]} flex items-center justify-center overflow-hidden`}
+  class="relative flex min-h-screen items-center justify-center overflow-hidden"
 >
   <!-- Background Image -->
   <Image
-    src={image}
-    alt={alt}
+    src={heroImage}
+    alt={t.hero.imageAlt}
     class="parallax-image absolute inset-0 h-[120%] w-full object-cover"
     widths={[640, 768, 1024, 1280, 1600, 1920]}
     sizes="100vw"
@@ -40,14 +29,12 @@ const heights = {
   <!-- Content -->
   <div class="relative z-10 mx-auto max-w-4xl px-6 text-center text-white">
     <h1 class="font-serif text-5xl md:text-7xl">
-      {title}
+      {t.hero.title}
     </h1>
 
-    {
-      subtitle && (
-        <p class="mt-6 text-lg text-white/90 md:text-2xl">{subtitle}</p>
-      )
-    }
+    <p class="mt-6 text-lg text-white/90 md:text-2xl">
+      {t.hero.subtitle}
+    </p>
   </div>
 </section>
 
