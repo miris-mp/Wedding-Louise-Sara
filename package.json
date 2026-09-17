@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^5.16.11",
-    "maplibre-gl": "^6.3.0",
+    "astro": "^7.3.3",
+    "maplibre-gl": "^6.10.0",
     "tailwindcss": "^4.3.3"
   }
 }

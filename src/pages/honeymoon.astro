@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { locationWedding } from "../data/locationWedding";
+import { getTranslations, type Locale } from "../i18n/utils";
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
+
+interface Props {
+  iban: string;
+  accountName: string;
+  bankName?: string;
+}
+
+const { iban, accountName, bankName } = Astro.props;
+---
+
+<Layout>
+  <section id="honeymoon" class="bg-stone-50 py-24">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="text-center">
+        <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+          A little note
+        </p>
+
+        <h2 class="mt-4 font-serif text-5xl text-stone-800">
+          Your Presence Is Our Gift
+        </h2>
+
+        <div class="mx-auto mt-6 h-px w-24 bg-white"></div>
+
+        <p class="mx-auto mt-8 max-w-xl leading-8 text-stone-600">
+          Having you celebrate this special day with us is already the greatest
+          gift. If you would like to contribute to our future together, we will
+          be grateful for your kindness.
+        </p>
+
+        <div
+          class="mt-12 rounded-[2rem] border border-stone-200 bg-stone-50 p-8 shadow-sm"
+        >
+          <p class="text-sm uppercase tracking-[0.25em] text-stone-500">IBAN</p>
+
+          <p
+            id="iban"
+            class="mt-5 break-all font-mono text-lg text-stone-800 md:text-xl"
+          >
+            {iban}
+          </p>
+
+          {bankName && <p class="mt-4 text-sm text-stone-500">{bankName}</p>}
+
+          <p class="mt-2 text-sm text-stone-500">
+            Account holder:
+            <span class="font-medium text-stone-700">
+              {accountName}
+            </span>
+          </p>
+
+          <button
+            id="copy-iban"
+            class="mt-8 rounded-full border border-stone-300 px-8 py-3 text-xs uppercase tracking-[0.25em] text-stone-700 transition hover:bg-stone-800 hover:text-white"
+          >
+            Copy IBAN
+          </button>
+
+          <p id="copied" class="mt-4 hidden text-sm text-green-700">
+            IBAN copied ❤️
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const button = document.querySelector("#copy-iban");
+  const iban = document.querySelector("#iban");
+  const copied = document.querySelector("#copied");
+
+  button?.addEventListener("click", async () => {
+    if (!iban) return;
+
+    await navigator.clipboard.writeText(iban.textContent || "");
+
+    copied?.classList.remove("hidden");
+
+    setTimeout(() => {
+      copied?.classList.add("hidden");
+    }, 2500);
+  });
+</script>

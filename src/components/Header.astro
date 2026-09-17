@@ -1,4 +1,5 @@
 ---
+import { getTranslations, type Locale } from "../i18n/utils";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -7,14 +8,16 @@ interface Props {
 
 const { logoPath = "/images/logo.svg" } = Astro.props;
 
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
+
 const navItems = [
-  { name: "Location", href: "#location" },
-  { name: "RSVP", href: "#rsvp" },
-  { name: "Accomodation", href: "#accomodation" },
-  { name: "Explore Puglia", href: "#goto" },
-  { name: "Our Story", href: "#story" },
-  { name: "Honeymoon", href: "#honeymoon" },
-  { name: "FAQ", href: "#faq" },
+  { name: t.nav.rsvp, href: "/rsvp" },
+  { name: t.nav.explorePuglia, href: "/goto" },
+  { name: t.nav.accommodation, href: "/accomodation" },
+  { name: t.nav.ourStory, href: "/our-story" },
+  { name: t.nav.honeymoon, href: "/honeymoon" },
+  { name: t.nav.faq, href: "/faq" },
 ];
 ---
 
@@ -28,7 +31,7 @@ const navItems = [
 <header class="wedding-header">
   <div class="header-container">
     <!-- Logo -->
-    <a href="/" class="logo-link">
+    <a href={locale === "en" ? "/" : "/it/"} class="logo-link">
       <Image
         src={logoPath}
         width={100}
@@ -79,7 +82,7 @@ const navItems = [
   }
 
   .wedding-header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -176,7 +179,7 @@ const navItems = [
 
   /* RSVP */
 
-  .nav-menu li:nth-child(2) .nav-link {
+  .nav-menu li:nth-child(1) .nav-link {
     color: var(--color-deep-blue);
 
     background: var(--color-yellow);
@@ -187,7 +190,7 @@ const navItems = [
     box-shadow: 0 3px 10px rgba(66, 107, 122, 0.12);
   }
 
-  .nav-menu li:nth-child(2) .nav-link:hover {
+  .nav-menu li:nth-child(1) .nav-link:hover {
     color: var(--color-cream);
 
     background: var(--color-sage);

@@ -1,15 +1,24 @@
 ---
-interface Props {
-  venue: string;
-  address: string;
-  city: string;
-  date: string;
-  time: string;
-  mapsUrl: string;
-  embedUrl: string;
-}
+import { locationWedding } from "../data/locationWedding";
+import { getTranslations, type Locale } from "../i18n/utils";
+import Layout from "../layouts/Layout.astro";
 
-const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const t = getTranslations(locale);
+
+const date = new Date(`${locationWedding.date}T${locationWedding.time}:00`);
+
+const formattedDate = new Intl.DateTimeFormat(locale, {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+}).format(date);
+
+const formattedTime = new Intl.DateTimeFormat(locale, {
+  hour: "numeric",
+  minute: "2-digit",
+}).format(date);
 ---
 
 <section id="location" class="location-section relative py-14 md:py-18">
@@ -19,11 +28,11 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
       <p
         class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
       >
-        Join us
+        {t.location.eyebrow}
       </p>
 
       <h2 class="mt-3 font-serif text-4xl text-[#294653] md:text-5xl">
-        Where We'll Say "I Do"
+        {t.location.title}
       </h2>
 
       <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
@@ -35,16 +44,16 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
         <p
           class="font-sans text-xs font-medium uppercase tracking-[0.25em] text-[#426b7a]"
         >
-          The venue
+          {t.location.venue}
         </p>
 
         <h3 class="mt-3 font-serif text-3xl text-[#294653] md:text-4xl">
-          {venue}
+          {locationWedding.venue}
         </h3>
 
         <p class="mt-4 font-sans text-base leading-7 text-[#426b7a]">
-          {address}<br />
-          {city}
+          {locationWedding.address}<br />
+          {locationWedding.city}
         </p>
 
         <div class="my-7 h-px w-12 bg-[#e8c95a]"></div>
@@ -54,7 +63,7 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
             <p
               class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#7e9b72]"
             >
-              Date
+              {t.location.date}
             </p>
 
             <p class="mt-1 font-serif text-xl text-[#294653]">
@@ -66,22 +75,22 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
             <p
               class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#7e9b72]"
             >
-              Ceremony
+              {t.location.ceremony}
             </p>
 
             <p class="mt-1 font-serif text-xl text-[#294653]">
-              {time}
+              {locationWedding.time}
             </p>
           </div>
         </div>
 
         <a
-          href={mapsUrl}
+          href={locationWedding.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="mt-8 inline-flex items-center rounded-full bg-[#e8c95a] px-7 py-3.5 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#294653] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#426b7a] hover:text-[#fffdf6] hover:shadow-md"
         >
-          Open in Google Maps
+          {t.location.openMaps}
         </a>
       </div>
 
@@ -90,7 +99,7 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
         class="overflow-hidden rounded-[2rem] border-4 border-[#fffdf6] shadow-lg"
       >
         <iframe
-          src={embedUrl}
+          src={locationWedding.embedUrl}
           width="100%"
           height="430"
           loading="lazy"
@@ -103,6 +112,7 @@ const { venue, address, city, date, time, mapsUrl, embedUrl } = Astro.props;
     </div>
   </div>
 </section>
+
 <style>
   .location-section {
     position: relative;

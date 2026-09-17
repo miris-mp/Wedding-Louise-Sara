@@ -1,83 +1,15 @@
-<!-- ---
-import Accommodation from "../../components/Accommodation.astro";
-import Countdown from "../../components/Countdown.astro";
-import FAQ from "../../components/FAQ.astro";
-import Footer from "../../components/Footer.astro";
-import Gift from "../../components/Gift.astro";
-import Header from "../../components/Header.astro";
-import Hero from "../../components/Hero.astro";
-import RSVP from "../../components/RSVP.astro";
-import WeddingLocation from "../../components/WeddingLocation.astro";
+---
 import Layout from "../../layouts/Layout.astro";
 import { getTranslation } from "../../lib/i18n";
-
-import villaLaMassaImage from "../../../public/images/accomodationExample.png";
-import hotelSpadaiImage from "../../../public/images/accomodationExample.png";
-import agriturismoToscanaImage from "../../../public/images/accomodationExample.png";
-import heroImage from "../../../public/images/foto/machuPicchu.jpeg";
+import Hero from "../../components/Hero.astro";
+import heroImage from "../../public/images/foto/machuPicchu.jpeg";
+import Countdown from "../../components/Countdown.astro";
+import WeddingLocation from "../../components/WeddingLocation.astro";
 
 const t = getTranslation("en");
-
-const hotels = [
-  {
-    name: "Villa La Massa",
-    location: "Florence",
-    description:
-      "A beautiful riverside hotel surrounded by Tuscan gardens, perfect for a romantic stay.",
-    distance: "15 minutes from the venue",
-    url: "https://example.com",
-    image: villaLaMassaImage,
-  },
-  {
-    name: "Hotel Spadai",
-    location: "Florence Historic Center",
-    description:
-      "A charming boutique hotel close to the Duomo and the main attractions.",
-    distance: "25 minutes from the venue",
-    url: "https://example.com",
-    image: hotelSpadaiImage,
-  },
-  {
-    name: "Agriturismo Toscana",
-    location: "Chianti Hills",
-    description:
-      "A peaceful countryside experience surrounded by vineyards and nature.",
-    distance: "20 minutes from the venue",
-    url: "https://example.com",
-    image: agriturismoToscanaImage,
-  },
-];
-const questions = [
-  {
-    question: "What time should we arrive?",
-    answer:
-      "We recommend arriving 30 minutes before the ceremony starts so everyone can be seated comfortably.",
-  },
-  {
-    question: "Is there a dress code?",
-    answer:
-      "The dress code is elegant garden attire. We suggest light colors and comfortable shoes for the outdoor areas.",
-  },
-  {
-    question: "Can we bring children?",
-    answer:
-      "Children are welcome. Please let us know their names when confirming your attendance.",
-  },
-  {
-    question: "Are there accommodation options nearby?",
-    answer:
-      "Yes! We have selected a few hotels and charming stays close to the venue.",
-  },
-  {
-    question: "How can we reach the venue?",
-    answer:
-      "The venue is accessible by car. We will also provide shuttle information closer to the wedding date.",
-  },
-];
 ---
 
 <Layout>
-  <Header logoPath="/images/logo.svg" />
   <Hero
     image={heroImage}
     alt="Bride and groom embracing"
@@ -86,35 +18,7 @@ const questions = [
   />
 
   <Countdown date="2027-06-05T15:00:00" />
-  <WeddingLocation
-    venue="Masseria San Lorenzo"
-    address="Via Flora Francesco, 1, 73100"
-    city="Lecce"
-    date="Saturday, June 05, 2027"
-    time="4:00 PM"
-    mapsUrl="https://maps.app.goo.gl/jJp3esBd1aEKTgV76"
-    embedUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.616161038176!2d18.19021007650206!3d40.395198971443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13442dcd7a6c008d%3A0x862d26eb6dc1e2c!2sMasseria%20San%20Lorenzo!5e0!3m2!1sen!2sit!4v1785074790892!5m2!1sen!2sit"
-  />
-
-  <RSVP />
-
-  <Accommodation hotels={hotels} />
-
-  <section id="story">
-    <Map />
-  </section>
-  <section id="honeymoon">
-    <Gift
-      iban="IT00X0000000000000000000000"
-      accountName="Luca Rossi & Emma Bianchi"
-      bankName="Banca Example"
-    />
-  </section>
-  <section id="faq">
-    <FAQ items={questions} />
-  </section>
-
-  <Footer />
+  <WeddingLocation />
 
   <script type="module">
     import en from "../locales/en.json";
@@ -133,4 +37,4 @@ const questions = [
     document.getElementById("title").textContent = t.hero.title;
     document.getElementById("subtitle").textContent = t.hero.subtitle;
   </script>
-</Layout> -->
+</Layout>
