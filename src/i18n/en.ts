@@ -109,6 +109,48 @@ export const en = {
       },
     },
   },
+  goto: {
+    title: "A little trip before or after",
+    subtitle: "Make the most of Puglia",
+
+    intro:
+      "If you have a little extra time before or after the wedding, here are a few ideas for making the most of your stay in Puglia.",
+
+    guideLabel: "Our little guide",
+    guideTitle: "Three ways to explore Puglia",
+
+    focus: "The idea",
+    sleepingBases: "Where to stay",
+    nights: "Nights",
+
+    day: "Day",
+    days: "Days",
+    city: "City to visit",
+    beach: "Beach to go to",
+
+    viewOnMap: "View on map →",
+
+    itinerary: {
+      bariCentral: {
+        label: "Culture, trulli & food",
+      },
+
+      lecceSalento: {
+        label: "Baroque & two coasts",
+      },
+
+      salentoDeepDive: {
+        label: "Beach lover & coastal drives",
+      },
+    },
+
+    comparison: {
+      title: "Which kind of trip sounds like you?",
+      subtitle: "Three ways to experience Puglia",
+      travelStyle: "Travel style",
+      featuredBeaches: "Key beaches",
+    },
+  },
   hero: {
     title: "Louise & Sara",
     subtitle: "05 June 2027 • Puglia",
@@ -141,10 +183,50 @@ export const en = {
   nav: {
     rsvp: "RSVP",
     explorePuglia: "Explore Puglia",
+    timeline: "Timeline",
     accommodation: "Accommodation",
     ourStory: "Our Story",
     honeymoon: "Honeymoon",
     gift: "Gift",
     faq: "FAQ",
+  },
+  lineup: {
+    eyebrow: "THE DAY",
+    title: "A day to remember",
+    intro:
+      "From saying I do to dancing into the night, here is how we'll celebrate together.",
+
+    events: {
+      ceremony: {
+        title: "Wedding ceremony",
+        description: "The moment we've all been waiting for.",
+      },
+      photos: {
+        title: "Photos",
+        description:
+          "A few photographs together before the celebrations begin.",
+      },
+      drinks: {
+        title: "Drinks reception",
+        description:
+          "Raise a glass, enjoy some drinks and mingle with everyone.",
+      },
+      dinner: {
+        title: "Dinner & speeches",
+        description: "Good food, heartfelt words and plenty of laughter.",
+      },
+      dancing: {
+        title: "Dancing",
+        description: "Time to celebrate, dance and enjoy the evening together.",
+      },
+      cake: {
+        title: "Cake cutting",
+        description: "A sweet moment before the night continues.",
+      },
+      carriages: {
+        title: "Carriages",
+        description: "Time to say goodnight and head home.",
+      },
+    },
   },
 };

@@ -7,6 +7,67 @@
   --font-serif: "DM Serif Display", Georgia, serif;
 }
 
+:root {
+  /* =========================
+     PALETTE
+     ========================= */
+
+  --color-rose: #cf8981;
+  --color-ivory: #f2e6da;
+  --color-peach: #dfa688;
+  --color-sage: #7e9b86;
+  --color-forest: #2f4a3f;
+
+  /* =========================
+     SEMANTIC
+     ========================= */
+
+  --color-page-bg: var(--color-ivory);
+
+  --color-surface: #fffdf9;
+  --color-surface-soft: #f8eee8;
+
+  --color-heading: var(--color-forest);
+  --color-text: #496158;
+  --color-text-muted: #6f8078;
+
+  --color-primary: var(--color-rose);
+  --color-primary-hover: #bd746c;
+
+  --color-secondary: var(--color-sage);
+  --color-accent: var(--color-peach);
+
+  --color-border: rgba(47, 74, 63, 0.14);
+  --color-border-soft: rgba(126, 155, 134, 0.25);
+
+  /* =========================
+     SPECIAL WEDDING COLORS
+     ========================= */
+
+  --color-floral: var(--color-rose);
+  --color-nature: var(--color-sage);
+  --color-dark: var(--color-forest);
+
+  --color-highlight: rgba(207, 137, 129, 0.15);
+  --color-sage-soft: rgba(126, 155, 134, 0.14);
+  --color-peach-soft: rgba(223, 166, 136, 0.18);
+
+  /* =========================
+     GRADIENTS
+     ========================= */
+
+  --gradient-wedding: linear-gradient(
+    135deg,
+    var(--color-rose),
+    var(--color-peach)
+  );
+
+  --gradient-soft: linear-gradient(
+    135deg,
+    var(--color-ivory),
+    var(--color-sage-soft)
+  );
+}
 html,
 body {
   font-family: var(--font-sans);

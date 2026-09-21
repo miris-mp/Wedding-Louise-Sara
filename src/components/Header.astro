@@ -15,6 +15,7 @@ const prefix = locale === "en" ? "" : `/${locale}`;
 
 const navItems = [
   { name: t.nav.rsvp, href: `${prefix}/rsvp` },
+  { name: t.nav.timeline, href: `${prefix}/timeline` },
   { name: t.nav.explorePuglia, href: `${prefix}/goto` },
   { name: t.nav.accommodation, href: `${prefix}/accommodation` },
   { name: t.nav.ourStory, href: `${prefix}/our-story` },
@@ -72,16 +73,69 @@ const navItems = [
     --font-display: "DM Serif Display", Georgia, serif;
     --font-sans: "DM Sans", sans-serif;
 
-    /* Mediterranean garden palette */
-    --color-sky: #b9dce5;
-    --color-blue: #426b7a;
-    --color-deep-blue: #294653;
+    /* =========================
+       PALETTE
+       ========================= */
 
-    --color-sage: #7e9b72;
-    --color-yellow: #e8c95a;
+    --color-rose: #cf8981;
+    --color-ivory: #f2e6da;
+    --color-peach: #dfa688;
+    --color-sage: #7e9b86;
+    --color-forest: #2f4a3f;
 
-    --color-cream: #fffdf6;
+    /* =========================
+       SEMANTIC
+       ========================= */
+
+    --color-page-bg: var(--color-ivory);
+    --color-surface: #fffdf9;
+    --color-surface-soft: #f8eee8;
+
+    --color-heading: var(--color-forest);
+    --color-text: #496158;
+    --color-text-muted: #6f8078;
+
+    --color-primary: var(--color-rose);
+    --color-primary-hover: #bd746c;
+
+    --color-secondary: var(--color-sage);
+    --color-accent: var(--color-peach);
+
+    --color-border: rgba(47, 74, 63, 0.14);
+    --color-border-soft: rgba(126, 155, 134, 0.25);
+
+    /* =========================
+       SPECIAL WEDDING COLORS
+       ========================= */
+
+    --color-floral: var(--color-rose);
+    --color-nature: var(--color-sage);
+    --color-dark: var(--color-forest);
+
+    --color-highlight: rgba(207, 137, 129, 0.15);
+    --color-sage-soft: rgba(126, 155, 134, 0.14);
+    --color-peach-soft: rgba(223, 166, 136, 0.18);
+
+    /* =========================
+       GRADIENTS
+       ========================= */
+
+    --gradient-wedding: linear-gradient(
+      135deg,
+      var(--color-rose),
+      var(--color-peach)
+    );
+
+    --gradient-soft: linear-gradient(
+      135deg,
+      var(--color-ivory),
+      var(--color-sage-soft)
+    );
   }
+
+  /* =========================
+     HEADER
+     ========================= */
 
   .wedding-header {
     position: sticky;
@@ -92,11 +146,11 @@ const navItems = [
 
     background: linear-gradient(
       180deg,
-      rgba(185, 220, 229, 0.92) 0%,
-      rgba(255, 253, 246, 0.92) 100%
+      rgba(242, 230, 218, 0.96) 0%,
+      rgba(255, 253, 249, 0.94) 100%
     );
 
-    border-bottom: 1px solid rgba(66, 107, 122, 0.15);
+    border-bottom: 1px solid var(--color-border);
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -114,7 +168,9 @@ const navItems = [
     gap: 0.4rem;
   }
 
-  /* Logo */
+  /* =========================
+     LOGO
+     ========================= */
 
   .logo-link {
     display: inline-block;
@@ -135,7 +191,9 @@ const navItems = [
     object-fit: contain;
   }
 
-  /* Navigation */
+  /* =========================
+     NAVIGATION
+     ========================= */
 
   .nav-menu ul {
     list-style: none;
@@ -160,7 +218,7 @@ const navItems = [
     font-weight: 500;
     letter-spacing: 0.02em;
 
-    color: var(--color-deep-blue);
+    color: var(--color-heading);
     text-decoration: none;
 
     border-radius: 999px;
@@ -172,37 +230,41 @@ const navItems = [
   }
 
   .nav-link:hover {
-    color: var(--color-blue);
+    color: var(--color-heading);
 
-    background: rgba(126, 155, 114, 0.14);
+    background: var(--color-sage-soft);
 
     transform: translateY(-1px);
   }
 
-  /* RSVP */
+  /* =========================
+     RSVP
+     ========================= */
 
   .nav-menu li:nth-child(1) .nav-link {
-    color: var(--color-deep-blue);
+    color: var(--color-surface);
 
-    background: var(--color-yellow);
+    background: var(--color-primary);
 
     padding-left: 1.05rem;
     padding-right: 1.05rem;
 
-    box-shadow: 0 3px 10px rgba(66, 107, 122, 0.12);
+    box-shadow: 0 3px 10px rgba(47, 74, 63, 0.12);
   }
 
   .nav-menu li:nth-child(1) .nav-link:hover {
-    color: var(--color-cream);
+    color: var(--color-surface);
 
-    background: var(--color-sage);
+    background: var(--color-primary-hover);
 
     transform: translateY(-2px);
 
-    box-shadow: 0 5px 14px rgba(66, 107, 122, 0.18);
+    box-shadow: 0 5px 14px rgba(47, 74, 63, 0.18);
   }
 
-  /* Mobile */
+  /* =========================
+     MOBILE MENU
+     ========================= */
 
   .mobile-toggle {
     display: none;
@@ -220,12 +282,14 @@ const navItems = [
     width: 25px;
     height: 2px;
 
-    background-color: var(--color-deep-blue);
+    background-color: var(--color-dark);
 
     border-radius: 2px;
   }
 
-  /* Desktop */
+  /* =========================
+     DESKTOP
+     ========================= */
 
   @media (min-width: 768px) {
     .header-container {
@@ -245,7 +309,9 @@ const navItems = [
     }
   }
 
-  /* Small screens */
+  /* =========================
+     SMALL SCREENS
+     ========================= */
 
   @media (max-width: 600px) {
     .header-container {

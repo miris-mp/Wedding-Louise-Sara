@@ -112,6 +112,48 @@ export const it = {
       },
     },
   },
+  goto: {
+    title: "Un piccolo viaggio prima o dopo",
+    subtitle: "Scoprite la Puglia",
+
+    intro:
+      "Se avete un po' di tempo prima o dopo il matrimonio, ecco qualche idea per godervi al meglio il vostro soggiorno in Puglia.",
+
+    guideLabel: "La nostra piccola guida",
+    guideTitle: "Tre modi per scoprire la Puglia",
+
+    focus: "L'idea",
+    sleepingBases: "Dove soggiornare",
+    nights: "Notti",
+
+    day: "Giorno",
+    days: "Giorni",
+    city: "Città da visitare",
+    beach: "Spiaggia da scoprire",
+
+    viewOnMap: "Vedi sulla mappa →",
+
+    itinerary: {
+      bariCentral: {
+        label: "Cultura, trulli e buon cibo",
+      },
+
+      lecceSalento: {
+        label: "Barocco e due coste",
+      },
+
+      salentoDeepDive: {
+        label: "Mare e strade costiere",
+      },
+    },
+
+    comparison: {
+      title: "Che tipo di viaggio fa per voi?",
+      subtitle: "Tre modi per vivere la Puglia",
+      travelStyle: "Stile di viaggio",
+      featuredBeaches: "Spiagge principali",
+    },
+  },
   hero: {
     title: "Louise & Sara",
     subtitle: "05 June 2027 • Puglia",
@@ -144,10 +186,51 @@ export const it = {
   nav: {
     rsvp: "RSVP",
     explorePuglia: "Esplora la Puglia",
+    timeline: "Timeline",
     accommodation: "Dove alloggiare",
     ourStory: "La nostra storia",
     honeymoon: "Luna di miele",
     gift: "Regalo",
     faq: "FAQ",
+  },
+  lineup: {
+    eyebrow: "LA GIORNATA",
+    title: "Una giornata da ricordare",
+    intro:
+      "Dal momento del sì fino ai balli della sera, ecco come festeggeremo insieme.",
+
+    events: {
+      ceremony: {
+        title: "Cerimonia",
+        description: "Il momento che tutti stavamo aspettando.",
+      },
+      photos: {
+        title: "Foto",
+        description:
+          "Qualche fotografia insieme prima di dare inizio ai festeggiamenti.",
+      },
+      drinks: {
+        title: "Aperitivo",
+        description:
+          "Brindiamo insieme, gustiamo qualcosa e godiamoci il momento.",
+      },
+      dinner: {
+        title: "Cena e discorsi",
+        description: "Buon cibo, parole dal cuore e tante risate.",
+      },
+      dancing: {
+        title: "Balli",
+        description:
+          "È il momento di festeggiare, ballare e divertirci insieme.",
+      },
+      cake: {
+        title: "Taglio della torta",
+        description: "Un dolce momento prima di continuare la serata.",
+      },
+      carriages: {
+        title: "Rientro",
+        description: "È ora di salutarci e tornare a casa.",
+      },
+    },
   },
 };

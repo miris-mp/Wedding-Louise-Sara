@@ -27,22 +27,27 @@ const categories = [
   class="accommodation-section relative py-14 md:py-18"
 >
   <div class="relative z-10 mx-auto max-w-6xl px-6">
+
     <!-- Header -->
     <div class="mb-12 text-center md:mb-16">
       <p
-        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
+        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
       >
         {t.accommodation.eyebrow}
       </p>
 
-      <h2 class="mt-3 font-serif text-4xl text-[#294653] md:text-5xl">
+      <h2
+        class="mt-3 font-serif text-4xl text-[var(--color-heading)] md:text-5xl"
+      >
         {t.accommodation.title}
       </h2>
 
-      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
+      <div
+        class="mx-auto mt-4 h-1 w-12 rounded-full bg-[var(--color-primary)]"
+      ></div>
 
       <p
-        class="mx-auto mt-5 max-w-2xl font-sans text-base leading-7 text-[#426b7a]"
+        class="mx-auto mt-5 max-w-2xl font-sans text-base leading-7 text-[var(--color-text)]"
       >
         {t.accommodation.intro}
       </p>
@@ -58,17 +63,24 @@ const categories = [
 
           return (
             <div>
+
               <!-- Category heading -->
               <div class="mb-8 text-center">
-                <p class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#7e9b72]">
+                <p
+                  class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
+                >
                   {category.translation.subtitle}
                 </p>
 
-                <h3 class="mt-2 font-serif text-3xl text-[#294653] md:text-4xl">
+                <h3
+                  class="mt-2 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
+                >
                   {category.translation.title}
                 </h3>
 
-                <p class="mt-2 font-sans text-sm text-[#426b7a]">
+                <p
+                  class="mt-2 font-sans text-sm text-[var(--color-text)]"
+                >
                   {category.translation.description}
                 </p>
               </div>
@@ -77,7 +89,9 @@ const categories = [
               <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {
                   categoryHotels.map((hotel) => (
-                    <article class="group overflow-hidden rounded-[2rem] border border-white/70 bg-[#fffdf6] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <article
+                      class="group overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
                       {hotel.image && (
                         <div class="h-52 overflow-hidden">
                           <Image
@@ -93,28 +107,43 @@ const categories = [
                       )}
 
                       <div class="p-7">
-                        <h4 class="font-serif text-2xl text-[#294653] md:text-3xl">
+
+                        <!-- Hotel name -->
+                        <h4
+                          class="font-serif text-2xl text-[var(--color-heading)] md:text-3xl"
+                        >
                           {hotel.name}
                         </h4>
 
-                        <p class="mt-4 font-sans text-sm leading-6 text-[#426b7a]">
+                        <!-- Description -->
+                        <p
+                          class="mt-4 font-sans text-sm leading-6 text-[var(--color-text)]"
+                        >
                           {hotel.description}
                         </p>
 
                         {hotel.features && (
                           <div class="mt-5">
-                            <p class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#7e9b72]">
+
+                            <p
+                              class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-sage)]"
+                            >
                               {t.accommodation.features}
                             </p>
 
-                            <p class="mt-2 font-sans text-sm leading-6 text-[#426b7a]">
+                            <p
+                              class="mt-2 font-sans text-sm leading-6 text-[var(--color-text)]"
+                            >
                               {hotel.features}
                             </p>
+
                           </div>
                         )}
 
                         {hotel.distance && (
-                          <p class="mt-5 font-sans text-xs text-[#426b7a]">
+                          <p
+                            class="mt-5 font-sans text-xs text-[var(--color-text-muted)]"
+                          >
                             📍 {hotel.distance}
                           </p>
                         )}
@@ -124,11 +153,12 @@ const categories = [
                             href={hotel.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-6 inline-flex rounded-full bg-[#e8c95a] px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#294653] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#426b7a] hover:text-[#fffdf6] hover:shadow-md"
+                            class="mt-6 inline-flex rounded-full bg-[var(--color-primary)] px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-surface)] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] hover:shadow-md"
                           >
                             {t.accommodation.discover}
                           </a>
                         )}
+
                       </div>
                     </article>
                   ))
@@ -148,6 +178,8 @@ const categories = [
 
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
+
+    background: var(--color-page-bg);
   }
 
   /* Top diagonal */
@@ -161,7 +193,7 @@ const categories = [
     width: 100%;
     height: 3.5rem;
 
-    background: #fff;
+    background: var(--color-page-bg);
 
     clip-path: polygon(0 100%, 100% 0, 100% 100%);
   }
@@ -177,7 +209,7 @@ const categories = [
     width: 100%;
     height: 3.5rem;
 
-    background: #fff;
+    background: var(--color-page-bg);
 
     clip-path: polygon(0 0, 100% 0, 0 100%);
   }

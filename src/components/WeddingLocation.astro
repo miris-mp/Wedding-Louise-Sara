@@ -30,7 +30,7 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
         {t.location.eyebrow}
       </p>
 
-      <h2 class="mt-3 font-serif text-4xl text-[#294653] md:text-5xl">
+      <h2 class="mt-3 font-serif text-4xl text-wedding-heading md:text-5xl">
         {t.location.title}
       </h2>
 
@@ -46,7 +46,7 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
           {t.location.venue}
         </p>
 
-        <h3 class="mt-3 font-serif text-3xl text-[#294653] md:text-4xl">
+        <h3 class="mt-3 font-serif text-3xl text-wedding-heading md:text-4xl">
           {locationWedding.venue}
         </h3>
 
@@ -65,7 +65,7 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
               {t.location.date}
             </p>
 
-            <p class="mt-1 font-serif text-xl text-[#294653]">
+            <p class="mt-1 font-serif text-xl text-wedding-heading">
               {formattedDate}
             </p>
           </div>
@@ -77,7 +77,7 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
               {t.location.ceremony}
             </p>
 
-            <p class="mt-1 font-serif text-xl text-[#294653]">
+            <p class="mt-1 font-serif text-xl text-wedding-heading">
               {formattedTime}
             </p>
           </div>
@@ -87,7 +87,7 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
           href={locationWedding.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="mt-8 inline-flex items-center rounded-full bg-[#e8c95a] px-7 py-3.5 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#294653] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#426b7a] hover:text-[#fffdf6] hover:shadow-md"
+          class="mt-8 inline-flex items-center rounded-full bg-[#e8c95a] px-7 py-3.5 font-sans text-xs font-medium uppercase tracking-[0.2em] text-wedding-heading shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#426b7a] hover:text-[#fffdf6] hover:shadow-md"
         >
           {t.location.openMaps}
         </a>
