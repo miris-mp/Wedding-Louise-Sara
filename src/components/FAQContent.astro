@@ -6,19 +6,19 @@ const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);
 ---
 
-<section id="faq" class="bg-stone-50 py-24">
-  <div class="mx-auto max-w-4xl px-6">
+<section id="faq" class="faq-section relative py-16 md:py-24">
+  <div class="relative z-10 mx-auto max-w-4xl px-6">
     <!-- Header -->
-    <div class="mb-16 text-center">
-      <p class="text-sm uppercase tracking-[0.35em] text-stone-500">
+    <div class="mb-12 text-center md:mb-16">
+      <p class="faq-eyebrow">
         {t.faq.eyebrow}
       </p>
 
-      <h2 class="mt-4 font-serif text-5xl text-stone-800">
+      <h2 class="faq-heading">
         {t.faq.title}
       </h2>
 
-      <div class="mx-auto mt-6 h-px w-24 bg-stone-300"></div>
+      <div class="faq-divider"></div>
     </div>
 
     <!-- FAQ -->
@@ -28,18 +28,30 @@ const t = getTranslations(locale);
           const item = t.faq.items[faq.questionKey as keyof typeof t.faq.items];
 
           return (
-            <details class="group rounded-3xl border border-stone-200 bg-white p-6 transition open:shadow-md">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl text-stone-800">
-                {item.question}
+            <details class="faq-card group">
+              <summary class="faq-question">
+                <span>{item.question}</span>
 
-                <span class="flex h-8 w-8 items-center justify-center rounded-full border border-stone-300 text-stone-500 transition group-open:rotate-45">
-                  +
+                <span class="faq-plus" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 5v14M5 12h14"
+                    />
+                  </svg>
                 </span>
               </summary>
 
-              <p class="mt-5 max-w-3xl leading-7 text-stone-600">
-                {item.answer}
-              </p>
+              <div class="faq-answer">
+                <p>{item.answer}</p>
+              </div>
             </details>
           );
         })
@@ -47,3 +59,342 @@ const t = getTranslations(locale);
     </div>
   </div>
 </section>
+
+<style>
+  /* =========================================================
+     SECTION
+     ========================================================= */
+
+  .faq-section {
+    position: relative;
+
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+
+    background: var(--color-page-bg);
+  }
+
+  /*
+   * Same soft diagonal transitions used
+   * throughout the wedding website.
+   */
+
+  .faq-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: -3.5rem;
+    left: 0;
+
+    width: 100%;
+    height: 3.5rem;
+
+    background: var(--color-page-bg);
+
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  .faq-section::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -3.5rem;
+    left: 0;
+
+    width: 100%;
+    height: 3.5rem;
+
+    background: var(--color-page-bg);
+
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  /* =========================================================
+     HEADER
+     ========================================================= */
+
+  .faq-eyebrow {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+
+    color: var(--color-secondary);
+  }
+
+  .faq-heading {
+    margin-top: 0.75rem;
+
+    font-family: "DM Serif Display", Georgia, serif;
+
+    font-size: 2.5rem;
+    line-height: 1.15;
+
+    color: var(--color-heading);
+  }
+
+  .faq-divider {
+    width: 3rem;
+    height: 0.22rem;
+
+    margin: 1rem auto 0;
+
+    border-radius: 999px;
+
+    background: var(--color-primary);
+  }
+
+  /* =========================================================
+     FAQ CARD
+     ========================================================= */
+
+  .faq-card {
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 1.5rem;
+
+    background: var(--color-surface);
+
+    box-shadow: 0 2px 8px rgba(47, 74, 63, 0.025);
+
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  /*
+   * Subtle hover state.
+   *
+   * Keep this very restrained because the FAQ
+   * contains a lot of repeated elements.
+   */
+
+  .faq-card:hover {
+    border-color: var(--color-border-soft);
+
+    box-shadow: 0 8px 24px rgba(47, 74, 63, 0.06);
+  }
+
+  .faq-card[open] {
+    border-color: rgba(207, 137, 129, 0.28);
+
+    box-shadow: 0 8px 28px rgba(47, 74, 63, 0.07);
+  }
+
+  /* =========================================================
+     QUESTION
+     ========================================================= */
+
+  .faq-question {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1.5rem;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+
+    font-family: "DM Serif Display", Georgia, serif;
+
+    font-size: 1.25rem;
+    line-height: 1.35;
+
+    color: var(--color-heading);
+
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  /*
+   * Remove native disclosure marker.
+   */
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::marker {
+    display: none;
+  }
+
+  .faq-card:hover .faq-question {
+    color: var(--color-primary-hover);
+  }
+
+  .faq-card[open] .faq-question {
+    color: var(--color-heading);
+  }
+
+  /* =========================================================
+     PLUS BUTTON
+     ========================================================= */
+
+  .faq-plus {
+    display: flex;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border: 1px solid var(--color-border-soft);
+
+    border-radius: 9999px;
+
+    color: var(--color-secondary);
+
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .faq-card:hover .faq-plus {
+    border-color: rgba(207, 137, 129, 0.35);
+
+    color: var(--color-primary);
+  }
+
+  .faq-card[open] .faq-plus {
+    transform: rotate(45deg);
+
+    border-color: var(--color-primary);
+
+    background: var(--color-primary);
+
+    color: var(--color-surface);
+  }
+
+  /* =========================================================
+     ANSWER
+     ========================================================= */
+
+  .faq-answer {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    opacity: 0;
+
+    transition:
+      grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 250ms ease;
+  }
+
+  .faq-answer > p {
+    min-height: 0;
+
+    overflow: hidden;
+
+    margin: 0;
+
+    padding: 0 1.5rem 0 1.5rem;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.9rem;
+    line-height: 1.8;
+
+    color: var(--color-text);
+
+    border-top: 1px solid transparent;
+
+    transition:
+      padding 400ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 300ms ease;
+  }
+
+  .faq-card[open] .faq-answer {
+    grid-template-rows: 1fr;
+
+    opacity: 1;
+  }
+
+  .faq-card[open] .faq-answer > p {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+
+    border-color: var(--color-border-soft);
+  }
+
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+
+  @media (max-width: 767px) {
+    .faq-section {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-section::before {
+      top: -2.5rem;
+      height: 2.5rem;
+    }
+
+    .faq-section::after {
+      bottom: -2.5rem;
+      height: 2.5rem;
+    }
+
+    .faq-heading {
+      font-size: 2.25rem;
+    }
+
+    .faq-question {
+      gap: 1rem;
+
+      padding: 1.1rem 1rem 1.1rem 1.25rem;
+
+      font-size: 1.15rem;
+    }
+
+    .faq-plus {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .faq-answer > p {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .faq-card[open] .faq-answer > p {
+      padding-bottom: 1.25rem;
+    }
+  }
+
+  /* =========================================================
+     REDUCED MOTION
+     ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-card,
+    .faq-plus,
+    .faq-answer,
+    .faq-answer > p,
+    .faq-question {
+      transition: none !important;
+    }
+  }
+</style>

@@ -157,19 +157,69 @@ export const en = {
     imageAlt: "Bride and bride embracing",
   },
   honeymoon: {
-    eyebrow: "A little note",
-    title: "Your Presence Is Our Gift",
+    eyebrow: "Our Japan Honeymoon",
+
+    title: "Our Japan Honeymoon Fund",
+
     intro:
-      "To help you plan your trip for our wedding at Masseria San Lorenzo, we’ve curated a list of recommended accommodations. Options range from boutique hotels in Lecce’s historic center to larger group-friendly hotels and countryside masserias.",
-    italianAccount: "Italian account",
-    englishAccount: "English account",
+      "Having you celebrate with us on our big day is the greatest gift of all! Because we have lived together for a while, our home is already full of everything we need. Instead of a traditional gift registry, we’ve set up a honeymoon fund to help us take the adventure of a lifetime across Japan.",
+
+    wishlistTitle: "Experiences on Our Wishlist",
+
+    wishlistIntro:
+      "We are still finalizing our itinerary, but here are a few classic experiences we are dreaming of:",
+
+    experiences: {
+      ryokan: {
+        title: "A Night at a Traditional Ryokan",
+        description:
+          "Soaking in natural hot spring onsens with mountain views and sleeping on tatami mats.",
+      },
+
+      kaiseki: {
+        title: "Kaiseki Dining & Omakase Sushi",
+        description:
+          "Splurging on multi-course seasonal dinners and fresh sushi counters.",
+      },
+
+      tokyoFood: {
+        title: "Tokyo Street Food Crawl",
+        description:
+          "Sampling takoyaki, skewers in Omoide Yokocho, and piping-hot ramen.",
+      },
+
+      kyoto: {
+        title: "Kyoto Temple & Garden Walks",
+        description:
+          "Wandering through the Arashiyama bamboo groves and the torii gates of Fushimi Inari.",
+      },
+    },
+
+    registryTitle: "Gift Registry & Bank Transfer Details",
+
+    registryIntro:
+      "If you would like to contribute toward our adventure, you can do so directly via bank transfer below. Please include your name in the reference field so we know who to thank!",
+
+    italianAccount: "Italian Account",
+
+    englishAccount: "English Account",
+    accountNumber: "Account number",
+    sortCode: "Sort code",
+
     ibanLabel: "IBAN",
+    BankName: "Bank name",
+
     accountHolder: "Account holder",
+
     copyIban: "Copy IBAN",
+
     copied: "IBAN copied ❤️",
+
     qrTitle: "Or scan our QR code",
+
     qrIntro:
       "If you prefer, you can use our QR code to make your contribution.",
+
     qrAlt: "QR code for our honeymoon fund",
   },
   location: {

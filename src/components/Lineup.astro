@@ -88,32 +88,9 @@ const icons: Record<string, string> = {
 </section>
 
 <style>
-  :global(:root) {
-    --color-rose: #cf8981;
-    --color-ivory: #f2e6da;
-    --color-peach: #dfa688;
-    --color-sage: #7e9b86;
-    --color-forest: #2f4a3f;
-
-    --color-surface: #fffdf9;
-    --color-surface-soft: #f8eee8;
-
-    --color-text: #496158;
-    --color-text-muted: #6f8078;
-
-    --color-primary-hover: #bd746c;
-
-    --color-border: rgba(47, 74, 63, 0.14);
-    --color-border-soft: rgba(126, 155, 134, 0.25);
-
-    --color-highlight: rgba(207, 137, 129, 0.15);
-    --color-sage-soft: rgba(126, 155, 134, 0.14);
-    --color-peach-soft: rgba(223, 166, 136, 0.18);
-  }
-
-  /* =========================
+  /* =========================================================
      SECTION
-     ========================= */
+     ========================================================= */
 
   .lineup-section {
     position: relative;
@@ -121,83 +98,95 @@ const icons: Record<string, string> = {
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
 
-    background: var(--color-ivory);
+    background: var(--color-section-bg);
   }
 
-  /* Top diagonal */
+  /*
+   * Top diagonal transition
+   */
 
   .lineup-section::before {
     content: "";
 
     position: absolute;
+
     top: -3.5rem;
     left: 0;
 
     width: 100%;
     height: 3.5rem;
 
-    background: var(--color-ivory);
+    background: var(--color-section-bg);
 
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    clip-path: polygon(
+      0 100%,
+      100% 0,
+      100% 100%
+    );
   }
 
-  /* Bottom diagonal */
+  /*
+   * Bottom diagonal transition
+   */
 
   .lineup-section::after {
     content: "";
 
     position: absolute;
+
     bottom: -3.5rem;
     left: 0;
 
     width: 100%;
     height: 3.5rem;
 
-    background: var(--color-ivory);
+    background: var(--color-section-bg);
 
-    clip-path: polygon(0 0, 100% 0, 0 100%);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      0 100%
+    );
   }
 
-  /* =========================
+  /* =========================================================
      HEADER
-     ========================= */
+     ========================================================= */
 
   .lineup-eyebrow {
     margin: 0;
 
     font-family: "DM Sans", sans-serif;
+
     font-size: 0.7rem;
     font-weight: 600;
 
     letter-spacing: 0.3em;
     text-transform: uppercase;
 
-    color: var(--color-sage);
+    color: var(--color-secondary);
   }
 
   .lineup-heading {
     margin-top: 0.75rem;
 
     font-family: "DM Serif Display", Georgia, serif;
+
     font-size: 2.5rem;
     line-height: 1.15;
 
-    color: var(--color-forest);
+    color: var(--color-heading);
   }
 
   .lineup-divider {
     width: 3rem;
-    height: 0.25rem;
+    height: 0.22rem;
 
     margin: 1rem auto 0;
 
     border-radius: 999px;
 
-    background: linear-gradient(
-      90deg,
-      var(--color-rose),
-      var(--color-peach)
-    );
+    background: var(--color-primary);
   }
 
   .lineup-intro {
@@ -206,26 +195,30 @@ const icons: Record<string, string> = {
     margin: 1.25rem auto 0;
 
     font-family: "DM Sans", sans-serif;
+
     font-size: 1rem;
     line-height: 1.75;
 
     color: var(--color-text);
   }
 
-  /* =========================
+  /* =========================================================
      TIMELINE
-     ========================= */
+     ========================================================= */
 
   .timeline {
     position: relative;
 
-    margin: 0 auto;
-
     max-width: 900px;
+
+    margin: 0 auto;
   }
 
   /*
-   * Central line
+   * Central timeline line.
+   *
+   * Intentionally subtle.
+   * The rose markers are the visual focus.
    */
 
   .timeline::before {
@@ -237,13 +230,13 @@ const icons: Record<string, string> = {
     bottom: 0;
     left: 50%;
 
-    width: 2px;
+    width: 1px;
 
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      var(--color-sage) 8%,
-      var(--color-sage) 92%,
+      rgba(126, 155, 134, 0.45) 10%,
+      rgba(126, 155, 134, 0.45) 90%,
       transparent 100%
     );
 
@@ -266,59 +259,81 @@ const icons: Record<string, string> = {
     align-items: center;
   }
 
-  /*
-   * Content
-   */
+  /* =========================================================
+     CONTENT CARDS
+     ========================================================= */
 
   .timeline-content {
     position: relative;
 
     padding: 1.5rem 2rem;
 
+    border: 1px solid var(--color-border-soft);
+
     transition:
       transform 0.25s ease,
-      background-color 0.25s ease;
+      box-shadow 0.25s ease;
   }
+
+  /*
+   * Left side
+   */
 
   .timeline-item-even .timeline-content {
     grid-column: 1;
 
+    margin-right: 0.75rem;
+
     text-align: right;
 
-    margin-right: 0.75rem;
+    background: rgba(255, 253, 250, 0.92);
+
+    border-radius:
+      1.25rem
+      0.35rem
+      1.25rem
+      1.25rem;
   }
+
+  /*
+   * Right side
+   */
 
   .timeline-item-odd .timeline-content {
     grid-column: 3;
 
+    margin-left: 0.75rem;
+
     text-align: left;
 
-    margin-left: 0.75rem;
-  }
+    background: rgba(255, 253, 250, 0.70);
 
-  /*
-   * Very subtle alternating surfaces
-   */
-
-  .timeline-item-even .timeline-content {
-    background: rgba(255, 253, 249, 0.55);
-
-    border-radius: 1rem 0.25rem 1rem 1rem;
-  }
-
-  .timeline-item-odd .timeline-content {
-    background: rgba(248, 238, 232, 0.5);
-
-    border-radius: 0.25rem 1rem 1rem 1rem;
+    border-radius:
+      0.35rem
+      1.25rem
+      1.25rem
+      1.25rem;
   }
 
   .timeline-content:hover {
     transform: translateY(-2px);
+
+    box-shadow:
+      0 8px 24px rgba(47, 74, 63, 0.07);
   }
 
   /*
-   * Marker
+   * Romantic event gets a slightly stronger
+   * wedding-colored border.
    */
+
+  .timeline-item-romantic .timeline-content {
+    border-color: rgba(207, 137, 129, 0.30);
+  }
+
+  /* =========================================================
+     MARKER
+     ========================================================= */
 
   .timeline-marker {
     z-index: 2;
@@ -336,30 +351,41 @@ const icons: Record<string, string> = {
 
     margin: 0 auto;
 
-    border: 5px solid var(--color-ivory);
+    border: 5px solid var(--color-section-bg);
 
     border-radius: 9999px;
 
-    background: var(--color-peach);
+    /*
+     * Rose is the main wedding identity.
+     */
+
+    background: var(--color-primary);
 
     box-shadow:
-      0 4px 14px rgba(47, 74, 63, 0.14);
+      0 5px 18px rgba(207, 137, 129, 0.25);
+
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .timeline-item:hover .timeline-marker {
+    transform: scale(1.05);
+
+    box-shadow:
+      0 7px 22px rgba(207, 137, 129, 0.30);
   }
 
   /*
-   * Alternate marker colors
-   *
-   * Peach is the default.
-   * Sage adds a natural garden feel.
-   * Romantic moments use dusty rose.
+   * Keep romantic moments especially soft,
+   * without introducing another color.
    */
 
-  .timeline-item:nth-child(3n) .timeline-marker {
-    background: var(--color-sage);
-  }
-
   .timeline-item-romantic .timeline-marker {
-    background: var(--color-rose);
+    background: var(--color-primary);
+
+    box-shadow:
+      0 7px 24px rgba(207, 137, 129, 0.38);
   }
 
   .timeline-icon {
@@ -378,9 +404,9 @@ const icons: Record<string, string> = {
     color: var(--color-surface);
   }
 
-  /*
-   * Time
-   */
+  /* =========================================================
+     TIME
+     ========================================================= */
 
   .timeline-time {
     margin: 0;
@@ -393,12 +419,25 @@ const icons: Record<string, string> = {
     letter-spacing: 0.25em;
     text-transform: uppercase;
 
-    color: var(--color-sage);
+    /*
+     * Rose makes the time feel like a
+     * small wedding-stationery detail.
+     */
+
+    color: var(--color-primary);
   }
 
   /*
-   * Title
+   * Romantic event gets slightly stronger emphasis.
    */
+
+  .timeline-item-romantic .timeline-time {
+    color: var(--color-primary-hover);
+  }
+
+  /* =========================================================
+     TITLE
+     ========================================================= */
 
   .timeline-title {
     margin-top: 0.4rem;
@@ -408,12 +447,21 @@ const icons: Record<string, string> = {
     font-size: 1.75rem;
     line-height: 1.2;
 
-    color: var(--color-forest);
+    color: var(--color-heading);
   }
 
   /*
-   * Description
+   * Keep the title forest by default.
+   * Only romantic moments get the rose treatment.
    */
+
+  .timeline-item-romantic .timeline-title {
+    color: var(--color-primary-hover);
+  }
+
+  /* =========================================================
+     DESCRIPTION
+     ========================================================= */
 
   .timeline-description {
     max-width: 300px;
@@ -432,9 +480,9 @@ const icons: Record<string, string> = {
     margin-left: auto;
   }
 
-  /*
-   * Small decorative accent
-   */
+  /* =========================================================
+     DECORATIVE DOTS
+     ========================================================= */
 
   .timeline-item-even .timeline-content::after {
     content: "";
@@ -449,7 +497,12 @@ const icons: Record<string, string> = {
 
     border-radius: 50%;
 
-    background: var(--color-peach);
+    /*
+     * Peach is deliberately reserved
+     * for tiny decorative details.
+     */
+
+    background: var(--color-accent);
   }
 
   .timeline-item-odd .timeline-content::after {
@@ -465,12 +518,20 @@ const icons: Record<string, string> = {
 
     border-radius: 50%;
 
-    background: var(--color-rose);
+    background: var(--color-primary);
   }
 
   /*
-   * Empty column
+   * Romantic moments use rose consistently.
    */
+
+  .timeline-item-romantic .timeline-content::after {
+    background: var(--color-primary);
+  }
+
+  /* =========================================================
+     EMPTY COLUMN
+     ========================================================= */
 
   .timeline-spacer {
     grid-row: 1;
@@ -484,9 +545,9 @@ const icons: Record<string, string> = {
     grid-column: 1;
   }
 
-  /* =========================
+  /* =========================================================
      MOBILE
-     ========================= */
+     ========================================================= */
 
   @media (max-width: 767px) {
     .lineup-section {
@@ -533,13 +594,21 @@ const icons: Record<string, string> = {
     .timeline-content,
     .timeline-item-even .timeline-content,
     .timeline-item-odd .timeline-content {
-      padding: 1rem 1.1rem 1rem 1.5rem;
+      padding:
+        1rem
+        1.1rem
+        1rem
+        1.5rem;
 
       margin: 0;
 
       text-align: left;
 
-      border-radius: 0.25rem 1rem 1rem 1rem;
+      border-radius:
+        0.35rem
+        1.25rem
+        1.25rem
+        1.25rem;
     }
 
     .timeline-marker {
@@ -575,6 +644,17 @@ const icons: Record<string, string> = {
     .timeline-item-even .timeline-content::after,
     .timeline-item-odd .timeline-content::after {
       display: none;
+    }
+  }
+
+  /* =========================================================
+     REDUCED MOTION
+     ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-content,
+    .timeline-marker {
+      transition: none !important;
     }
   }
 </style>

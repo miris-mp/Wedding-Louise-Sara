@@ -160,19 +160,68 @@ export const it = {
     imageAlt: "Bride and bride embracing",
   },
   honeymoon: {
-    eyebrow: "Una piccola nota",
-    title: "La tua presenza è il nostro regalo",
+    eyebrow: "La nostra luna di miele in Giappone",
+
+    title: "Il nostro fondo per la luna di miele",
+
     intro:
-      "Avere te a celebrare questo giorno speciale con noi è già il regalo più grande. Se desideri contribuire al nostro futuro insieme, saremo grati per la tua gentilezza.",
+      "Avervi con noi per celebrare il nostro grande giorno è il regalo più bello che potessimo desiderare! Vivendo insieme già da qualche tempo, la nostra casa è già piena di tutto ciò di cui abbiamo bisogno. Invece di una tradizionale lista nozze, abbiamo creato un fondo per la luna di miele, per aiutarci a vivere un'avventura indimenticabile attraverso il Giappone.",
+
+    wishlistTitle: "Le esperienze che sogniamo",
+
+    wishlistIntro:
+      "Stiamo ancora definendo il nostro itinerario, ma queste sono alcune delle esperienze che sogniamo di vivere:",
+
+    experiences: {
+      ryokan: {
+        title: "Una notte in un ryokan tradizionale",
+        description:
+          "Immergerci nelle acque termali naturali con vista sulle montagne e dormire sui tatami.",
+      },
+
+      kaiseki: {
+        title: "Cena Kaiseki & Sushi Omakase",
+        description:
+          "Concederci cene stagionali con più portate e sushi preparato al momento dai maestri del banco.",
+      },
+
+      tokyoFood: {
+        title: "Street Food a Tokyo",
+        description:
+          "Assaggiare takoyaki, spiedini a Omoide Yokocho e ramen fumanti.",
+      },
+
+      kyoto: {
+        title: "Templi e giardini di Kyoto",
+        description:
+          "Passeggiare tra i bambù di Arashiyama e attraversare i torii di Fushimi Inari.",
+      },
+    },
+
+    registryTitle: "Lista nozze e coordinate bancarie",
+
+    registryIntro:
+      "Se desiderate contribuire alla nostra avventura, potete farlo direttamente tramite bonifico bancario utilizzando le coordinate qui sotto. Vi chiediamo gentilmente di inserire il vostro nome nella causale, così sapremo chi ringraziare!",
+
     italianAccount: "Conto italiano",
+
     englishAccount: "Conto inglese",
+    accountNumber: "Numero di conto",
+
     ibanLabel: "IBAN",
+    BankName: "Nome della banca",
     accountHolder: "Intestatario del conto",
+    sortCode: "Sort code",
+
     copyIban: "Copia IBAN",
+
     copied: "IBAN copiato ❤️",
+
     qrTitle: "Oppure scansiona il nostro codice QR",
+
     qrIntro:
       "Se preferisci, puoi utilizzare il nostro codice QR per effettuare il tuo contributo.",
+
     qrAlt: "Codice QR per il nostro fondo luna di miele",
   },
   location: {

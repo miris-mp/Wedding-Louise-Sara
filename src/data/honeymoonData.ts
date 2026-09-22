@@ -1,14 +1,13 @@
 export const honeymoonData = {
   italian: {
-    iban: "IT00X0000000000000000000000",
-    accountName: "Louise & Sara",
-    bankName: "Nome della banca",
+    iban: "IT44J0306912765100000005401",
+    accountName: "Sara Petrocchi",
+    bankName: "Intesa Sanpaolo",
   },
-
   english: {
-    iban: "GB00XXXX00000000000000",
-    accountName: "Louise & Sara",
-    bankName: "Bank name",
+    accountNumber: "41944429",
+    accountName: "Sara Petrocchi",
+    sortCode: "04-29-09",
   },
 
   qrCode: "/images/honeymoon-qr.png",

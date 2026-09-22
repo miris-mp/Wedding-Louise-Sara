@@ -8,65 +8,52 @@
 }
 
 :root {
-  /* =========================
-     PALETTE
-     ========================= */
+  /* ========================================
+     WEDDING BRAND
+     ======================================== */
 
-  --color-rose: #cf8981;
-  --color-ivory: #f2e6da;
-  --color-peach: #dfa688;
-  --color-sage: #7e9b86;
-  --color-forest: #2f4a3f;
+  --color-primary: #cf8981;
+  --color-primary-hover: #bb716a;
 
-  /* =========================
-     SEMANTIC
-     ========================= */
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
 
-  --color-page-bg: var(--color-ivory);
+  --color-heading: #2f4a3f;
+  --color-text: #53635c;
+  --color-text-muted: #78837e;
 
-  --color-surface: #fffdf9;
-  --color-surface-soft: #f8eee8;
+  /* ========================================
+     BACKGROUNDS
+     ======================================== */
 
-  --color-heading: var(--color-forest);
-  --color-text: #496158;
-  --color-text-muted: #6f8078;
+  --color-page-bg: #fffcf8;
+  --color-section-bg: #f2e6da;
 
-  --color-primary: var(--color-rose);
-  --color-primary-hover: #bd746c;
+  --color-surface: #fffdfa;
+  --color-surface-soft: #faf4ef;
 
-  --color-secondary: var(--color-sage);
-  --color-accent: var(--color-peach);
+  /* ========================================
+     SECONDARY COLORS
+     ======================================== */
 
-  --color-border: rgba(47, 74, 63, 0.14);
-  --color-border-soft: rgba(126, 155, 134, 0.25);
+  --color-secondary: #7e9b86;
+  --color-accent: #dfa688;
 
-  /* =========================
-     SPECIAL WEDDING COLORS
-     ========================= */
+  /* ========================================
+     BORDERS
+     ======================================== */
 
-  --color-floral: var(--color-rose);
-  --color-nature: var(--color-sage);
-  --color-dark: var(--color-forest);
+  --color-border: rgba(47, 74, 63, 0.1);
+  --color-border-soft: rgba(126, 155, 134, 0.2);
 
-  --color-highlight: rgba(207, 137, 129, 0.15);
-  --color-sage-soft: rgba(126, 155, 134, 0.14);
-  --color-peach-soft: rgba(223, 166, 136, 0.18);
+  /* ========================================
+     SOFT COLORS
+     ======================================== */
 
-  /* =========================
-     GRADIENTS
-     ========================= */
-
-  --gradient-wedding: linear-gradient(
-    135deg,
-    var(--color-rose),
-    var(--color-peach)
-  );
-
-  --gradient-soft: linear-gradient(
-    135deg,
-    var(--color-ivory),
-    var(--color-sage-soft)
-  );
+  --color-primary-soft: rgba(207, 137, 129, 0.12);
+  --color-secondary-soft: rgba(126, 155, 134, 0.1);
+  --color-accent-soft: rgba(223, 166, 136, 0.1);
 }
 html,
 body {
