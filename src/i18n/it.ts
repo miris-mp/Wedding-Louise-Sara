@@ -217,7 +217,7 @@ export const it = {
 
     copied: "IBAN copiato ❤️",
 
-    qrTitle: "Oppure scansiona il nostro codice QR",
+    qrTitle: "Conto americano",
 
     qrIntro:
       "Se preferisci, puoi utilizzare il nostro codice QR per effettuare il tuo contributo.",

@@ -2,25 +2,32 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 ---
 
-<section class="memory-game relative bg-[#e1f3e4] py-16 md:py-20">
+<section class="memory-game relative py-14 md:py-20">
+  <div class="memory-decoration memory-decoration-one"></div>
+  <div class="memory-decoration memory-decoration-two"></div>
+
   <div class="relative z-10 mx-auto max-w-5xl px-6">
+    ```
     <!-- Header -->
     <div class="mb-10 text-center md:mb-12">
       <p
-        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[#426b7a]"
+        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
       >
         Our Story
       </p>
 
-      <h2 class="mt-3 font-serif text-4xl text-wedding-heading md:text-5xl">
+      <h2
+        class="mt-3 font-serif text-4xl text-[var(--color-heading)] md:text-5xl"
+      >
         Where Did It Happen?
       </h2>
 
-      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[#e8c95a]"></div>
+      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[var(--color-primary)]">
+      </div>
 
       <p
         id="instructions"
-        class="mx-auto mt-5 max-w-xl font-sans text-base leading-7 text-[#426b7a]"
+        class="mx-auto mt-5 max-w-xl font-sans text-base leading-7 text-[var(--color-text)]"
       >
         Can you guess where this memory happened?
       </p>
@@ -29,7 +36,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
     <!-- Memory introduction -->
     <div class="memory-intro mx-auto mb-8 max-w-3xl">
       <div
-        class="memory-card overflow-hidden rounded-[2rem] border border-white/70 bg-[#fffdf6] shadow-md"
+        class="memory-card overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md"
       >
         <!-- Optional memory image -->
         <div
@@ -46,19 +53,22 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
         <div class="p-7 text-center md:p-9">
           <p
-            class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#7e9b72]"
+            class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-sage)]"
           >
             The memory
           </p>
 
           <h3
             id="city-name"
-            class="mt-2 font-serif text-3xl text-wedding-heading md:text-4xl"
+            class="mt-2 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
           >
             Loading...
           </h3>
 
-          <p id="city-country" class="mt-1 font-sans text-sm text-[#426b7a]">
+          <p
+            id="city-country"
+            class="mt-1 font-sans text-sm text-[var(--color-text)]"
+          >
           </p>
         </div>
       </div>
@@ -66,16 +76,15 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     <!-- Map -->
     <div class="map-card relative mx-auto max-w-4xl">
-      <div id="map" class="overflow-hidden rounded-[2rem] shadow-xl"></div>
+      <div id="map" class="overflow-hidden rounded-[2rem]"></div>
 
-      <!-- Map instruction -->
       <div id="map-message" class="map-message">
         Click anywhere on the map to place your guess.
       </div>
     </div>
 
     <!-- Actions -->
-    <div class="game-actions mt-6 flex justify-center">
+    <div class="game-actions mt-6 flex justify-center gap-3">
       <button id="guess-button" type="button" disabled class="game-button">
         Reveal the memory
       </button>
@@ -87,33 +96,34 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     <!-- Result / Story -->
     <section id="result" hidden class="result-card mx-auto mt-10 max-w-3xl">
-      <!-- Distance -->
       <div class="distance-badge">
         <span>You were</span>
         <strong id="distance"></strong>
         <span>away</span>
       </div>
 
-      <!-- Story -->
       <div class="story-card">
         <div class="story-card-inner">
           <p
-            class="font-sans text-xs font-medium uppercase tracking-[0.25em] text-[#7e9b72]"
+            class="font-sans text-xs font-medium uppercase tracking-[0.25em] text-[var(--color-sage)]"
           >
             The memory
           </p>
 
           <h2
             id="result-title"
-            class="mt-3 font-serif text-3xl text-wedding-heading md:text-4xl"
+            class="mt-3 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
           >
           </h2>
 
-          <div class="mx-auto mt-4 h-1 w-10 rounded-full bg-[#e8c95a]"></div>
+          <div
+            class="mx-auto mt-4 h-1 w-10 rounded-full bg-[var(--color-primary)]"
+          >
+          </div>
 
           <p
             id="result-story"
-            class="mt-6 font-sans text-base leading-8 text-[#426b7a]"
+            class="mt-6 font-sans text-base leading-8 text-[var(--color-text)]"
           >
           </p>
 
@@ -129,8 +139,317 @@ import "maplibre-gl/dist/maplibre-gl.css";
         </div>
       </div>
     </section>
+    ```
   </div>
 </section>
+
+<style>
+  /* -----------------------------------------------
+     Section
+  ------------------------------------------------ */
+
+  .memory-game {
+    position: relative;
+    overflow: hidden;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    background: var(--color-surface);
+  }
+
+  /*
+   * Very subtle decorative color.
+   * The page remains predominantly white.
+   */
+
+  .memory-game::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 42rem;
+    height: 42rem;
+    transform: translate(-50%, -55%);
+    border-radius: 999px;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-wedding-soft) 55%, transparent) 0%,
+      transparent 68%
+    );
+    pointer-events: none;
+  }
+
+  .memory-game::after {
+    content: "";
+    position: absolute;
+    right: -10rem;
+    bottom: -18rem;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 999px;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-primary) 10%, transparent) 0%,
+      transparent 68%
+    );
+    pointer-events: none;
+  }
+
+  /* Small decorative shapes */
+
+  .memory-decoration {
+    position: absolute;
+    z-index: 0;
+    border: 1px solid color-mix(in srgb, var(--color-sage) 18%, transparent);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+
+  .memory-decoration-one {
+    top: 8rem;
+    left: -5rem;
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .memory-decoration-two {
+    right: -6rem;
+    bottom: 8rem;
+    width: 14rem;
+    height: 14rem;
+  }
+
+  /* -----------------------------------------------
+     Map
+  ------------------------------------------------ */
+
+  #map {
+    width: 100%;
+    height: 520px;
+    cursor: crosshair;
+    background: var(--color-surface-soft);
+  }
+
+  .map-card {
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 4px solid var(--color-surface);
+    box-shadow: 0 20px 45px rgba(41, 70, 83, 0.12);
+  }
+
+  /* -----------------------------------------------
+     Floating map message
+  ------------------------------------------------ */
+
+  .map-message {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-heading) 88%, transparent);
+    color: var(--color-surface);
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    transition:
+      opacity 300ms ease,
+      transform 300ms ease;
+  }
+
+  /* -----------------------------------------------
+     Buttons
+  ------------------------------------------------ */
+
+  .game-button {
+    padding: 0.85rem 1.8rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-heading);
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(41, 70, 83, 0.1);
+    transition:
+      transform 300ms ease,
+      box-shadow 300ms ease,
+      background 300ms ease;
+  }
+
+  .game-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: var(--color-primary-hover);
+    color: var(--color-surface);
+    box-shadow: 0 10px 22px rgba(41, 70, 83, 0.16);
+  }
+
+  .game-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* -----------------------------------------------
+     Result
+  ------------------------------------------------ */
+
+  .result-card {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition:
+      opacity 600ms ease,
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .result-card.result-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .distance-badge {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-sage);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+  }
+
+  .distance-badge strong {
+    color: var(--color-heading);
+    font-family: serif;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  /* -----------------------------------------------
+     Story card
+  ------------------------------------------------ */
+
+  .story-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid var(--color-border-soft);
+    background: var(--color-surface);
+    box-shadow: 0 14px 35px rgba(41, 70, 83, 0.09);
+  }
+
+  .story-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--color-primary);
+  }
+
+  .story-card-inner {
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .heart-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: var(--color-wedding-soft);
+    color: var(--color-sage);
+  }
+
+  /* -----------------------------------------------
+     Memory card
+  ------------------------------------------------ */
+
+  .memory-card {
+    transition:
+      transform 400ms ease,
+      box-shadow 400ms ease;
+  }
+
+  .memory-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 14px 30px rgba(41, 70, 83, 0.1);
+  }
+
+  #memory-image {
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .memory-card:hover #memory-image {
+    transform: scale(1.035);
+  }
+
+  /* -----------------------------------------------
+     Mobile
+  ------------------------------------------------ */
+
+  @media (max-width: 767px) {
+    .memory-game {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    #map {
+      height: 440px;
+    }
+
+    .map-card {
+      border-width: 4px;
+      border-radius: 1.5rem;
+    }
+
+    .map-message {
+      bottom: 0.75rem;
+      max-width: calc(100% - 2rem);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .story-card-inner {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .game-actions {
+      flex-wrap: wrap;
+    }
+
+    .memory-decoration-one {
+      left: -8rem;
+    }
+
+    .memory-decoration-two {
+      right: -9rem;
+    }
+  }
+
+  /* -----------------------------------------------
+     Reduced motion
+  ------------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .result-card,
+    .memory-card,
+    #memory-image,
+    .game-button {
+      transition: none !important;
+    }
+  }
+</style>
 
 <script>
   import {
@@ -163,7 +482,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     history: string;
 
-    // Optional image for the memory
     image?: string;
   };
 
@@ -248,7 +566,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     cityCountryElement!.textContent = currentCity.country;
 
-    // Optional image
     if (currentCity.image) {
       memoryImage!.src = currentCity.image;
       memoryImage!.alt = `${currentCity.name}, ${currentCity.country}`;
@@ -338,10 +655,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
       data: {
         type: "Feature",
+
         geometry: {
           type: "LineString",
           coordinates: [],
         },
+
         properties: {},
       },
     });
@@ -381,17 +700,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
       lat,
     };
 
-    // Remove previous marker
     guessMarker?.remove();
 
-    // Add new guess marker
     guessMarker = new Marker({
-      color: "#426b7a",
+      color: "#7e9b72",
     })
       .setLngLat([lng, lat])
       .addTo(map);
 
-    // Enable reveal
     guessButton!.disabled = false;
 
     mapMessageElement!.textContent = "Happy with your guess?";
@@ -421,20 +737,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     const actualLocation = currentCity.coordinates;
 
-    // ----------------------------------------------
     // Real location marker
-    // ----------------------------------------------
-
     realMarker = new Marker({
-      color: "#d69e2e",
+      color: "#e8c95a",
     })
       .setLngLat([actualLocation.lng, actualLocation.lat])
       .addTo(map);
 
-    // ----------------------------------------------
     // Distance
-    // ----------------------------------------------
-
     const distance = distanceInKm(
       playerGuess.lat,
       playerGuess.lng,
@@ -444,10 +754,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     const roundedDistance = Math.round(distance);
 
-    // ----------------------------------------------
     // Line
-    // ----------------------------------------------
-
     const lineSource = map.getSource("guess-line") as
       | import("maplibre-gl").GeoJSONSource
       | undefined;
@@ -468,47 +775,32 @@ import "maplibre-gl/dist/maplibre-gl.css";
       properties: {},
     });
 
-    // ----------------------------------------------
     // Result content
-    // ----------------------------------------------
-
     distanceElement!.textContent = `${roundedDistance.toLocaleString()} km`;
 
     resultTitleElement!.textContent = `${currentCity.name}, ${currentCity.country}`;
 
     resultStoryElement!.textContent = currentCity.history;
 
-    // ----------------------------------------------
     // Reveal story
-    // ----------------------------------------------
-
     resultElement!.hidden = false;
 
     requestAnimationFrame(() => {
       resultElement!.classList.add("result-visible");
     });
 
-    // ----------------------------------------------
     // Buttons
-    // ----------------------------------------------
-
     guessButton!.hidden = true;
 
     nextButton!.hidden = false;
 
-    // ----------------------------------------------
     // Instructions
-    // ----------------------------------------------
-
     instructionsElement!.textContent =
       "And this is where the memory really happened.";
 
     mapMessageElement!.textContent = `${roundedDistance.toLocaleString()} km away`;
 
-    // ----------------------------------------------
     // Fit map around both locations
-    // ----------------------------------------------
-
     const bounds = new LngLatBounds();
 
     bounds.extend([playerGuess.lng, playerGuess.lat]);
@@ -549,7 +841,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     realMarker = null;
 
-    // Clear line
     const lineSource = map.getSource("guess-line") as
       | import("maplibre-gl").GeoJSONSource
       | undefined;
@@ -559,33 +850,28 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
       geometry: {
         type: "LineString",
-
         coordinates: [],
       },
 
       properties: {},
     });
 
-    // Hide result
     resultElement!.hidden = true;
 
     resultElement!.classList.remove("result-visible");
 
-    // Buttons
     guessButton!.hidden = false;
 
     guessButton!.disabled = true;
 
     nextButton!.hidden = true;
 
-    // Text
     instructionsElement!.textContent =
       "Can you guess where this memory happened?";
 
     mapMessageElement!.textContent =
       "Click anywhere on the map to place your guess.";
 
-    // Reset map
     map.flyTo({
       center: [10, 45],
 
@@ -594,368 +880,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
       duration: 1200,
     });
 
-    // Next memory
     selectNextCity();
   }
 </script>
-
-<style>
-  /* -----------------------------------------------
-     Section
-  ------------------------------------------------ */
-
-  .memory-game {
-    position: relative;
-
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  .memory-game::before {
-    content: "";
-
-    position: absolute;
-
-    top: -4rem;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 4rem;
-
-    background: #fff;
-
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  }
-
-  .memory-game::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: -4rem;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 4rem;
-
-    background: #fff;
-
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-  }
-
-  /* -----------------------------------------------
-     Map
-  ------------------------------------------------ */
-
-  #map {
-    width: 100%;
-
-    height: 520px;
-
-    cursor: crosshair;
-
-    background: #dce8e5;
-  }
-
-  .map-card {
-    overflow: hidden;
-
-    border-radius: 2rem;
-
-    border: 6px solid rgba(255, 253, 246, 0.75);
-
-    box-shadow: 0 20px 45px rgba(41, 70, 83, 0.12);
-  }
-
-  /* -----------------------------------------------
-     Floating map message
-  ------------------------------------------------ */
-
-  .map-message {
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 1.25rem;
-
-    transform: translateX(-50%);
-
-    padding: 0.65rem 1.1rem;
-
-    border-radius: 999px;
-
-    background: rgba(41, 70, 83, 0.88);
-
-    color: #fffdf6;
-
-    font-family: sans-serif;
-
-    font-size: 0.75rem;
-
-    letter-spacing: 0.04em;
-
-    white-space: nowrap;
-
-    pointer-events: none;
-
-    backdrop-filter: blur(8px);
-
-    transition:
-      opacity 300ms ease,
-      transform 300ms ease;
-  }
-
-  /* -----------------------------------------------
-     Buttons
-  ------------------------------------------------ */
-
-  .game-button {
-    padding: 0.85rem 1.8rem;
-
-    border: 0;
-
-    border-radius: 999px;
-
-    background: #e8c95a;
-
-    color: #294653;
-
-    font-family: sans-serif;
-
-    font-size: 0.7rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.16em;
-
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    box-shadow: 0 6px 15px rgba(41, 70, 83, 0.1);
-
-    transition:
-      transform 300ms ease,
-      box-shadow 300ms ease,
-      background 300ms ease;
-  }
-
-  .game-button:hover:not(:disabled) {
-    transform: translateY(-2px) scale(1.02);
-
-    background: #426b7a;
-
-    color: #fffdf6;
-
-    box-shadow: 0 10px 22px rgba(41, 70, 83, 0.16);
-  }
-
-  .game-button:disabled {
-    opacity: 0.45;
-
-    cursor: not-allowed;
-
-    box-shadow: none;
-  }
-
-  /* -----------------------------------------------
-     Result
-  ------------------------------------------------ */
-
-  .result-card {
-    opacity: 0;
-
-    transform: translateY(20px) scale(0.98);
-
-    transition:
-      opacity 600ms ease,
-      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .result-card.result-visible {
-    opacity: 1;
-
-    transform: translateY(0) scale(1);
-  }
-
-  /* -----------------------------------------------
-     Distance
-  ------------------------------------------------ */
-
-  .distance-badge {
-    display: flex;
-
-    align-items: baseline;
-
-    justify-content: center;
-
-    gap: 0.45rem;
-
-    margin-bottom: 1.25rem;
-
-    color: #426b7a;
-
-    font-family: sans-serif;
-
-    font-size: 0.8rem;
-  }
-
-  .distance-badge strong {
-    color: #294653;
-
-    font-family: serif;
-
-    font-size: 2rem;
-
-    font-weight: 400;
-  }
-
-  /* -----------------------------------------------
-     Story card
-  ------------------------------------------------ */
-
-  .story-card {
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: 2rem;
-
-    background: #fffdf6;
-
-    border: 1px solid rgba(185, 220, 229, 0.55);
-
-    box-shadow: 0 14px 35px rgba(41, 70, 83, 0.09);
-  }
-
-  .story-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 5px;
-
-    background: #e8c95a;
-  }
-
-  .story-card-inner {
-    padding: 2rem 1.5rem;
-
-    text-align: center;
-  }
-
-  .heart-divider {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 2.5rem;
-
-    height: 2.5rem;
-
-    margin: 0 auto;
-
-    border-radius: 999px;
-
-    background: #e1f3e4;
-
-    color: #7e9b72;
-  }
-
-  /* -----------------------------------------------
-     Memory card
-  ------------------------------------------------ */
-
-  .memory-card {
-    transition:
-      transform 400ms ease,
-      box-shadow 400ms ease;
-  }
-
-  .memory-card:hover {
-    transform: scale(1.01);
-
-    box-shadow: 0 14px 30px rgba(41, 70, 83, 0.1);
-  }
-
-  #memory-image {
-    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .memory-card:hover #memory-image {
-    transform: scale(1.035);
-  }
-
-  /* -----------------------------------------------
-     Mobile
-  ------------------------------------------------ */
-
-  @media (max-width: 767px) {
-    .memory-game {
-      margin-top: 2.5rem;
-
-      margin-bottom: 2.5rem;
-    }
-
-    .memory-game::before {
-      top: -2.5rem;
-
-      height: 2.5rem;
-    }
-
-    .memory-game::after {
-      bottom: -2.5rem;
-
-      height: 2.5rem;
-    }
-
-    #map {
-      height: 440px;
-    }
-
-    .map-card {
-      border-width: 4px;
-
-      border-radius: 1.5rem;
-    }
-
-    .map-message {
-      bottom: 0.75rem;
-
-      max-width: calc(100% - 2rem);
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
-    }
-
-    .story-card-inner {
-      padding: 1.75rem 1.25rem;
-    }
-  }
-
-  /* -----------------------------------------------
-     Reduced motion
-  ------------------------------------------------ */
-
-  @media (prefers-reduced-motion: reduce) {
-    .result-card,
-    .memory-card,
-    #memory-image,
-    .game-button {
-      transition: none !important;
-    }
-  }
-</style>

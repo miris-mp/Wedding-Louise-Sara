@@ -10,5 +10,5 @@ export const honeymoonData = {
     sortCode: "04-29-09",
   },
 
-  qrCode: "/images/honeymoon-qr.png",
+  qrCode: "/images/contoAmericano.png",
 };
