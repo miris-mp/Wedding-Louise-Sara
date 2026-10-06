@@ -50,7 +50,25 @@ const t = getTranslations(locale);
               </summary>
 
               <div class="faq-answer">
-                <p>{item.answer}</p>
+                <div class="faq-answer-content">
+                  <p>{item.answer}</p>
+
+                  {"taxiLinks" in item && item.taxiLinks && (
+                    <ul class="faq-links">
+                      {item.taxiLinks.map((link) => (
+                        <li>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             </details>
           );
@@ -301,14 +319,12 @@ const t = getTranslations(locale);
       opacity 250ms ease;
   }
 
-  .faq-answer > p {
+  .faq-answer-content {
     min-height: 0;
 
     overflow: hidden;
 
-    margin: 0;
-
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.5rem;
 
     font-family: "DM Sans", sans-serif;
 
@@ -324,19 +340,59 @@ const t = getTranslations(locale);
       border-color 300ms ease;
   }
 
+  .faq-answer-content p {
+    margin: 0;
+  }
+
   .faq-card[open] .faq-answer {
     grid-template-rows: 1fr;
 
     opacity: 1;
   }
 
-  .faq-card[open] .faq-answer > p {
+  .faq-card[open] .faq-answer-content {
     padding-top: 1rem;
     padding-bottom: 1.5rem;
 
     border-color: var(--color-border-soft);
   }
 
+  .faq-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+    margin: 1rem 0 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .faq-links a {
+    display: inline-flex;
+
+    align-items: center;
+
+    font-weight: 600;
+
+    color: var(--color-primary);
+
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+
+    transition:
+      color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .faq-links a:hover {
+    color: var(--color-primary-hover);
+
+    opacity: 0.8;
+  }
   /* =========================================================
      MOBILE
      ========================================================= */
@@ -373,13 +429,11 @@ const t = getTranslations(locale);
       width: 2rem;
       height: 2rem;
     }
-
-    .faq-answer > p {
+    .faq-answer-content {
       padding-left: 1.25rem;
       padding-right: 1.25rem;
     }
-
-    .faq-card[open] .faq-answer > p {
+    .faq-card[open] .faq-answer-content {
       padding-bottom: 1.25rem;
     }
   }

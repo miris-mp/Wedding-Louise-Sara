@@ -9,7 +9,7 @@ export const it = {
     eyebrow: "Per i nostri ospiti",
     title: "Dove alloggiare",
     intro:
-      "Per aiutarvi a organizzare il vostro soggiorno in Salento in occasione del nostro matrimonio alla Masseria San Lorenzo, abbiamo selezionato una gamma di strutture consigliate.",
+      "Per aiutarvi a organizzare il vostro soggiorno in Salento in occasione del nostro matrimonio alla Masseria San Lorenzo, abbiamo selezionato una gamma di strutture consigliate. Guarda la pagina degli alloggi per cercare qualche suggemimento.",
     discover: "Scopri",
 
     categories: {
@@ -83,7 +83,7 @@ export const it = {
       indoorOutdoor: {
         question: "Il matrimonio si svolgerà al chiuso o all'aperto?",
         answer:
-          "Stiamo organizzando tutto al chiuso, anche se il programma potrebbe cambiare in base alle condizioni meteorologiche.",
+          "Stiamo organizzando tutto all'aperto, anche se il programma potrebbe cambiare in base alle condizioni meteorologiche.",
       },
 
       dietary: {
@@ -108,7 +108,21 @@ export const it = {
       gettingThere: {
         question: "Come possiamo raggiungere la location?",
         answer:
-          "La location è facilmente raggiungibile in auto. Forniremo inoltre informazioni sul servizio navetta più vicino alla data del matrimonio.",
+          "La location è facilmente raggiungibile in auto. Se serve questi sono i link per contattare il servizio taxi locale:",
+        taxiLinks: [
+          {
+            label: "Salento taxi service",
+            url: "https://www.salentotaxiservice.com/",
+          },
+          {
+            label: "Taxi in Lecce",
+            url: "https://www.taxincclecce.it/",
+          },
+          {
+            label: "Lecce in taxi",
+            url: "https://leccein.taxi/",
+          },
+        ],
       },
     },
   },
@@ -123,7 +137,7 @@ export const it = {
     guideTitle: "Tre modi per scoprire la Puglia",
 
     focus: "L'idea",
-    sleepingBases: "Dove soggiornare",
+    sleepingBases: "Itinerari suggeriti",
     nights: "Notti",
 
     day: "Giorno",
@@ -214,6 +228,7 @@ export const it = {
     sortCode: "Sort code",
 
     copyIban: "Copia IBAN",
+    copyAccountNumber: "Copia numero di conto",
 
     copied: "IBAN copiato ❤️",
 
@@ -281,5 +296,7 @@ export const it = {
         description: "È ora di salutarci e tornare a casa.",
       },
     },
+    pending:
+      "Stiamo ancora definendo i dettagli del resto della giornata e vi aggiorneremo presto con il programma completo.",
   },
 };

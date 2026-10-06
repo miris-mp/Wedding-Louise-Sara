@@ -8,7 +8,7 @@ export const en = {
     eyebrow: "For our guests",
     title: "Where to stay",
     intro:
-      "To help you organise your stay in Salento for our wedding at Masseria San Lorenzo, we have selected a range of recommended places to stay.",
+      "To help you organise your stay in Lecce for our wedding at Masseria San Lorenzo, we have selected a range of recommended places to stay.",
     discover: "Discover",
     categories: {
       centerCouples: {
@@ -80,7 +80,7 @@ export const en = {
       indoorOutdoor: {
         question: "Will the wedding be indoors or outdoors?",
         answer:
-          "We are planning for everything to be indoors, though this may shift depending on the weather.",
+          "We are planning for everything to be outdoor, though this may shift depending on the weather.",
       },
 
       dietary: {
@@ -99,13 +99,27 @@ export const en = {
       accommodation: {
         question: "Are there accommodation options nearby?",
         answer:
-          "Yes! We have selected a few hotels and charming stays close to the venue.",
+          "Yes! We have selected a few hotels and charming stays close to the venue. Please see the accomodation tab for some suggestions.",
       },
 
       gettingThere: {
         question: "How can we reach the venue?",
         answer:
-          "The venue is accessible by car. We will also provide shuttle information closer to the wedding date.",
+          "The venue is accessible by car. However here are some options for the local taxi service:",
+        taxiLinks: [
+          {
+            label: "Salento taxi service",
+            url: "https://www.salentotaxiservice.com/",
+          },
+          {
+            label: "Taxi in Lecce",
+            url: "https://www.taxincclecce.it/",
+          },
+          {
+            label: "Lecce in taxi",
+            url: "https://leccein.taxi/",
+          },
+        ],
       },
     },
   },
@@ -120,7 +134,7 @@ export const en = {
     guideTitle: "Three ways to explore Puglia",
 
     focus: "The idea",
-    sleepingBases: "Where to stay",
+    sleepingBases: "Suggested Itinerary",
     nights: "Nights",
 
     day: "Day",
@@ -212,6 +226,7 @@ export const en = {
     accountHolder: "Account holder",
 
     copyIban: "Copy IBAN",
+    copyAccountNumber: "Copy account number",
 
     copied: "IBAN copied ❤️",
 
@@ -278,5 +293,7 @@ export const en = {
         description: "Time to say goodnight and head home.",
       },
     },
+    pending:
+      "We are still finalizing the details of our day, but we will update this section soon with the full timeline of events.",
   },
 };
