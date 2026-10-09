@@ -48,13 +48,21 @@ const navItems = [
     <nav class="nav-menu" aria-label="Main navigation">
       <ul>
         {
-          navItems.map((item) => (
-            <li>
-              <a href={item.href} class="nav-link">
-                {item.name}
-              </a>
-            </li>
-          ))
+          navItems.map((item) => {
+            const isActive = Astro.url.pathname === item.href;
+
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={["nav-link", { active: isActive }]}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.name}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </nav>
@@ -229,14 +237,12 @@ const navItems = [
       transform 0.25s ease;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.active {
     color: var(--color-heading);
-
     background: var(--color-sage-soft);
-
     transform: translateY(-1px);
   }
-
   /* =========================
      RSVP
      ========================= */
