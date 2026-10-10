@@ -6,7 +6,7 @@ interface Props {
   logoPath?: string;
 }
 
-const { logoPath = "/images/logoPizzaSimple.png" } = Astro.props;
+const { logoPath = "/images/logo.png" } = Astro.props;
 
 const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);
