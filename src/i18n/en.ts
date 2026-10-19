@@ -260,8 +260,16 @@ export const en = {
     title: "A day to remember",
     intro:
       "From saying I do to dancing into the night, here is how we'll celebrate together.",
-
+    days: {
+      dayBefore: "The day before",
+      weddingDay: "Wedding day",
+    },
     events: {
+      happyHour: {
+        title: "Happy hour",
+        description:
+          "Join us the evening before the ceremony to mingle, enjoy a drink and get the celebrations started.",
+      },
       ceremony: {
         title: "Wedding ceremony",
         description: "The moment we've all been waiting for.",

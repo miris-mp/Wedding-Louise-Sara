@@ -1,9 +1,6 @@
 export const timelineData = [
-  {
-    id: "ceremony",
-    time: "≈16:00",
-    icon: "heart",
-  },
+  { id: "happyHour", day: "dayBefore", time: "18:00", icon: "happyHour" },
+  { id: "ceremony", day: "weddingDay", time: "16:00", icon: "heart" },
   // {
   //   id: "photos",
   //   time: "16:30",
