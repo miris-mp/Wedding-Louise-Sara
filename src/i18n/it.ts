@@ -247,16 +247,6 @@ export const it = {
     ceremony: "Cerimonia",
     openMaps: "Apri in Google Maps",
   },
-  nav: {
-    rsvp: "RSVP",
-    explorePuglia: "Esplora la Puglia",
-    timeline: "Timeline",
-    accommodation: "Dove alloggiare",
-    ourStory: "La nostra storia",
-    honeymoon: "Luna di miele",
-    gift: "Regalo",
-    faq: "FAQ",
-  },
   lineup: {
     eyebrow: "LA GIORNATA",
     title: "Una giornata da ricordare",
@@ -314,5 +304,63 @@ export const it = {
     },
     pending:
       "Stiamo ancora definendo i dettagli del resto della giornata e vi aggiorneremo presto con il programma completo.",
+  },
+  nav: {
+    rsvp: "RSVP",
+    explorePuglia: "Esplora la Puglia",
+    timeline: "Timeline",
+    accommodation: "Dove alloggiare",
+    ourStory: "La nostra storia",
+    honeymoon: "Luna di miele",
+    gift: "Regalo",
+    faq: "FAQ",
+  },
+
+  rsvp: {
+    eyebrow: "Ci farebbe piacere ricevere tue notizie",
+    title: "Ci sarai?",
+    intro:
+      "La tua presenza significherebbe tantissimo per noi. Facci sapere se festeggerai questo giorno speciale insieme a noi.",
+
+    name: "Il tuo nome",
+    namePlaceholder: "Il tuo nome",
+
+    dietary: "Esigenze alimentari",
+    dietaryPlaceholder:
+      "Facci sapere se hai esigenze alimentari particolari...",
+
+    email: "Indirizzo email",
+    emailPlaceholder: "tu@example.com",
+
+    attendance: "Parteciperai al matrimonio?",
+    accept: "Con gioia, ci sarò!",
+    acceptDescription: "Non vediamo l'ora di vederti!",
+    decline: "Purtroppo non potrò esserci",
+    declineDescription: "Ci mancherai!",
+
+    guests: "Numero di invitati",
+    secondGuestName: "Nome del secondo invitato",
+    secondGuestNamePlaceholder: "Nome del secondo invitato",
+    secondGuestDietary: "Esigenze alimentari del secondo invitato",
+
+    song: "Una canzone che ti fa scatenare in pista 🎶",
+    songPlaceholder: "Titolo della canzone o artista...",
+    songHint: "Suggeriscici la canzone perfetta per ballare!",
+
+    message: "Un pensiero per gli sposi",
+    messagePlaceholder: "Lasciaci un piccolo messaggio...",
+
+    submit: "Invia la conferma",
+    sending: "Invio in corso...",
+
+    successYesTitle: "Non vediamo l'ora di vederti!",
+    successYesMessage:
+      "Grazie per festeggiare con noi questo giorno speciale. Non vediamo l'ora di condividerlo con te.",
+
+    successNoTitle: "Ci mancherai!",
+    successNoMessage:
+      "Grazie per averci avvisato. Ci dispiace che tu non possa esserci, ma ti penseremo.",
+
+    error: "Qualcosa è andato storto. Riprova.",
   },
 };

@@ -245,16 +245,6 @@ export const en = {
     ceremony: "Ceremony",
     openMaps: "Open in Google Maps",
   },
-  nav: {
-    rsvp: "RSVP",
-    explorePuglia: "Explore Puglia",
-    timeline: "Timeline",
-    accommodation: "Accommodation",
-    ourStory: "Our Story",
-    honeymoon: "Honeymoon",
-    gift: "Gift",
-    faq: "FAQ",
-  },
   lineup: {
     eyebrow: "THE DAY",
     title: "A day to remember",
@@ -303,5 +293,62 @@ export const en = {
     },
     pending:
       "We are still finalizing the details of our day, but we will update this section soon with the full timeline of events.",
+  },
+  nav: {
+    rsvp: "RSVP",
+    explorePuglia: "Explore Puglia",
+    timeline: "Timeline",
+    accommodation: "Accommodation",
+    ourStory: "Our Story",
+    honeymoon: "Honeymoon",
+    gift: "Gift",
+    faq: "FAQ",
+  },
+
+  rsvp: {
+    eyebrow: "We'd love to hear from you",
+    title: "Will You Join Us?",
+    intro:
+      "Your presence would mean the world to us. Please let us know if you'll be celebrating with us.",
+
+    name: "Your name",
+    namePlaceholder: "Your name",
+
+    dietary: "Dietary requirements",
+    dietaryPlaceholder: "Please let us know about any dietary requirements...",
+
+    email: "Email address",
+    emailPlaceholder: "you@example.com",
+
+    attendance: "Will you be joining us?",
+    accept: "Joyfully accepting",
+    acceptDescription: "We'll see you there!",
+    decline: "Sadly declining",
+    declineDescription: "We'll miss you!",
+
+    guests: "Number of guests",
+    secondGuestName: "Second guest's name",
+    secondGuestNamePlaceholder: "Second guest's name",
+    secondGuestDietary: "Second guest's dietary requirements",
+
+    song: "A song that gets you on the dance floor 🎶",
+    songPlaceholder: "Song title or artist...",
+    songHint: "Give us your ultimate dance-floor anthem.",
+
+    message: "A little note for the couple",
+    messagePlaceholder: "Leave us a little message...",
+
+    submit: "Send My RSVP",
+    sending: "Sending...",
+
+    successYesTitle: "We'll see you there!",
+    successYesMessage:
+      "Thank you for celebrating this special day with us. We can't wait to share it with you.",
+
+    successNoTitle: "We'll miss you!",
+    successNoMessage:
+      "Thank you so much for letting us know. We're sorry you won't be able to join us, but we'll be thinking of you.",
+
+    error: "Something went wrong. Please try again.",
   },
 };

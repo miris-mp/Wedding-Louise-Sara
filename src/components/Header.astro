@@ -26,6 +26,11 @@ const navItems = [
   { name: t.nav.honeymoon, href: `${prefix}/honeymoon` },
   { name: t.nav.faq, href: `${prefix}/faq` },
 ];
+
+// Equivalent URLs for the current page in both languages.
+const englishPath = normalize(currentPath.replace(/^\/it(?=\/|$)/, ""));
+
+const italianPath = englishPath === "/" ? "/it/" : `/it${englishPath}`;
 ---
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,10 +40,14 @@ const navItems = [
   rel="stylesheet"
 />
 
-<header class="wedding-header">
+<header class="wedding-header" id="wedding-header">
   <div class="header-container">
     <!-- Logo -->
-    <a href={locale === "en" ? "/" : "/it/"} class="logo-link">
+    <a
+      href={locale === "en" ? "/" : "/it/"}
+      class="logo-link"
+      aria-label="Louise and Sara — home"
+    >
       <Image
         src={logoPath}
         width={100}
@@ -48,15 +57,12 @@ const navItems = [
       />
     </a>
 
-    <!-- Navigation -->
-    <nav class="nav-menu" aria-label="Main navigation">
+    <!-- Desktop navigation; also used in the mobile dropdown -->
+    <nav class="nav-menu" id="main-navigation" aria-label="Main navigation">
       <ul>
         {
           navItems.map((item) => {
             const isActive = currentPath === normalize(item.href);
-            console.log(
-              `Checking if ${Astro.url.pathname} === ${item.href}: ${isActive}`
-            );
 
             return (
               <li>
@@ -74,14 +80,87 @@ const navItems = [
       </ul>
     </nav>
 
-    <!-- Mobile Menu -->
-    <button class="mobile-toggle" aria-label="Toggle Menu">
+    <!-- Language switcher -->
+    <nav class="language-switcher" aria-label="Choose language">
+      <a
+        href={englishPath}
+        class:list={["language-option", { "language-active": locale === "en" }]}
+        lang="en"
+        aria-current={locale === "en" ? "page" : undefined}
+        aria-label="English"
+      >
+        🇬🇧
+      </a>
+
+      <span class="language-separator" aria-hidden="true">|</span>
+
+      <a
+        href={italianPath}
+        class:list={["language-option", { "language-active": locale === "it" }]}
+        lang="it"
+        aria-current={locale === "it" ? "page" : undefined}
+        aria-label="Italiano"
+      >
+        🇮🇹
+      </a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      class="mobile-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector("#wedding-header");
+
+  if (header && !header.hasAttribute("data-menu-ready")) {
+    header.setAttribute("data-menu-ready", "true");
+
+    const toggle = header.querySelector(".mobile-toggle");
+    const links = header.querySelectorAll(".nav-link, .language-option");
+
+    const setMenuOpen = (open: boolean) => {
+      header.classList.toggle("menu-open", open);
+      toggle?.setAttribute("aria-expanded", String(open));
+      toggle?.setAttribute(
+        "aria-label",
+        open ? "Close navigation menu" : "Open navigation menu"
+      );
+    };
+
+    toggle?.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      setMenuOpen(!isOpen);
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    });
+
+    // Close the dropdown if the screen changes to desktop size.
+    window
+      .matchMedia("(min-width: 768px)")
+      .addEventListener("change", (event) => {
+        if (event.matches) setMenuOpen(false);
+      });
+  }
+</script>
 
 <style>
   :root {
@@ -178,7 +257,8 @@ const navItems = [
     padding: 0.7rem 2rem;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 0.4rem;
   }
@@ -268,6 +348,70 @@ const navItems = [
   }
 
   /* =========================
+   LANGUAGE SWITCHER
+   ========================= */
+
+  .language-switcher {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+
+    padding: 0.3rem;
+  }
+
+  .language-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.4rem 0.65rem;
+
+    border-radius: 999px;
+
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+
+    color: var(--color-heading);
+    text-decoration: none;
+
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .language-option:hover,
+  .language-option.language-active {
+    background: var(--color-sage-soft);
+  }
+
+  .language-option:focus-visible {
+    outline: 2px solid var(--color-primary-hover);
+    outline-offset: 3px;
+  }
+
+  .language-separator {
+    color: var(--color-border);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 767px) {
+    .language-switcher {
+      margin-top: 0.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .language-option {
+      transition: none;
+    }
+  }
+
+  /* =========================
      MOBILE MENU
      ========================= */
 
@@ -296,45 +440,123 @@ const navItems = [
      DESKTOP
      ========================= */
 
-  @media (min-width: 768px) {
-    .header-container {
-      flex-direction: row;
-      justify-content: space-between;
-
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+  /* QUICK FIX: MOBILE HAMBURGER */
+  @media screen and (max-width: 767px) {
+    .wedding-header .header-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0;
+      padding: 0.4rem 1rem;
     }
 
-    .logo-img {
-      height: 90px;
+    .wedding-header .mobile-toggle {
+      display: flex !important;
+      grid-column: 2;
+      grid-row: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 46px;
+      height: 46px;
+      padding: 10px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-soft);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
     }
 
-    .nav-menu ul {
-      gap: 0.2rem;
+    .wedding-header .mobile-toggle span {
+      display: block;
+      width: 21px;
+      height: 2px;
+      background: var(--color-forest);
+      border-radius: 2px;
+    }
+
+    .wedding-header .nav-menu,
+    .wedding-header .language-switcher {
+      display: none;
+    }
+
+    .wedding-header.menu-open .nav-menu {
+      display: block;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      width: 100%;
+      margin-top: 0.65rem;
+      padding: 0.65rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-soft);
+      border-radius: 18px;
+    }
+
+    .wedding-header.menu-open .language-switcher {
+      display: inline-flex;
+      grid-column: 1 / -1;
+      grid-row: 3;
+      justify-self: start;
+      align-items: center;
+      gap: 0.1rem;
+      margin: 0.35rem 0 0;
+      padding: 0.1rem;
+      border: none;
+      background: transparent;
+    }
+
+    .wedding-header .language-option {
+      min-width: 34px;
+      min-height: 34px;
+      padding: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .wedding-header .language-separator {
+      font-size: 0.65rem;
+    }
+
+    .wedding-header .nav-menu ul {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .wedding-header .nav-menu li,
+    .wedding-header .nav-link {
+      width: 100%;
+    }
+
+    .wedding-header .nav-link {
+      min-height: 44px;
+      padding: 0.7rem 0.9rem;
+    }
+
+    .wedding-header.menu-open .mobile-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .wedding-header.menu-open .mobile-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .wedding-header.menu-open .mobile-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
   }
 
-  /* =========================
-     SMALL SCREENS
-     ========================= */
-
-  @media (max-width: 600px) {
-    .header-container {
-      padding: 0.6rem 1rem;
+  @media screen and (min-width: 768px) {
+    .wedding-header .mobile-toggle {
+      display: none !important;
     }
 
-    .logo-img {
-      height: 90px;
+    .wedding-header .nav-menu {
+      display: block;
     }
 
-    .nav-menu ul {
-      gap: 0.1rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-link {
-      font-size: 0.78rem;
-      padding: 0.35rem 0.55rem;
+    .wedding-header .language-switcher {
+      display: inline-flex;
     }
   }
 </style>
