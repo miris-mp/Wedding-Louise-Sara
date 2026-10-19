@@ -13,6 +13,10 @@ const t = getTranslations(locale);
 
 const prefix = locale === "en" ? "" : `/${locale}`;
 
+const normalize = (p: string) => p.replace(/\/+$/, "") || "/";
+
+const currentPath = normalize(Astro.url.pathname);
+
 const navItems = [
   { name: t.nav.rsvp, href: `${prefix}/rsvp` },
   { name: t.nav.timeline, href: `${prefix}/timeline` },
@@ -49,7 +53,10 @@ const navItems = [
       <ul>
         {
           navItems.map((item) => {
-            const isActive = Astro.url.pathname === item.href;
+            const isActive = currentPath === normalize(item.href);
+            console.log(
+              `Checking if ${Astro.url.pathname} === ${item.href}: ${isActive}`
+            );
 
             return (
               <li>
