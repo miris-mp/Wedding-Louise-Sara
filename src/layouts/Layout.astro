@@ -41,9 +41,81 @@ const image = `${siteUrl}/images/logo.png`;
   </head>
   <body>
     <Header />
-    <main>
+    <main class="main-content">
+      <div class="faq-ambient" aria-hidden="true">
+        <span class="faq-orb faq-orb-rose"></span>
+        <span class="faq-orb faq-orb-sage"></span>
+        <span class="faq-orb faq-orb-peach"></span>
+      </div>
       <slot />
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  /* Soft ambient background */
+  .main-content {
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-page-bg);
+  }
+
+  .faq-ambient {
+    position: absolute;
+    inset: 0;
+    z-index: 0; /* Above the section background */
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .faq-orb {
+    position: absolute;
+    display: block;
+    width: clamp(280px, 42vw, 520px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(65px);
+    opacity: 1;
+  }
+
+  .faq-orb-rose {
+    top: 0;
+    left: -10%;
+    background: radial-gradient(
+      circle,
+      rgba(207, 137, 129, 0.42) 0%,
+      rgba(207, 137, 129, 0.18) 45%,
+      transparent 70%
+    );
+  }
+
+  .faq-orb-sage {
+    top: 30%;
+    right: -10%;
+    background: radial-gradient(
+      circle,
+      rgba(126, 155, 134, 0.38) 0%,
+      rgba(126, 155, 134, 0.16) 45%,
+      transparent 70%
+    );
+  }
+
+  .faq-orb-peach {
+    bottom: -5%;
+    left: 20%;
+    background: radial-gradient(
+      circle,
+      rgba(223, 166, 136, 0.38) 0%,
+      rgba(223, 166, 136, 0.16) 45%,
+      transparent 70%
+    );
+  }
+
+  @media (max-width: 767px) {
+    .faq-orb {
+      width: 300px;
+      filter: blur(45px);
+    }
+  }
+</style>

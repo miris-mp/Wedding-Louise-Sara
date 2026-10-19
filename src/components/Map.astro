@@ -148,48 +148,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
   .memory-game {
     position: relative;
-    overflow: hidden;
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
-    background: var(--color-surface);
-  }
-
-  /*
-   * Very subtle decorative color.
-   * The page remains predominantly white.
-   */
-
-  .memory-game::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 42rem;
-    height: 42rem;
-    transform: translate(-50%, -55%);
-    border-radius: 999px;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-wedding-soft) 55%, transparent) 0%,
-      transparent 68%
-    );
-    pointer-events: none;
-  }
-
-  .memory-game::after {
-    content: "";
-    position: absolute;
-    right: -10rem;
-    bottom: -18rem;
-    width: 30rem;
-    height: 30rem;
-    border-radius: 999px;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-primary) 10%, transparent) 0%,
-      transparent 68%
-    );
-    pointer-events: none;
   }
 
   /* Small decorative shapes */
@@ -397,11 +355,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
   ------------------------------------------------ */
 
   @media (max-width: 767px) {
-    .memory-game {
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
     #map {
       height: 440px;
     }

@@ -251,45 +251,6 @@ const experiences = [
      SECTION
      ========================================================= */
 
-    .honeymoon-section {
-      margin-top: 3.5rem;
-      margin-bottom: 3.5rem;
-
-      background: var(--color-page-bg);
-    }
-
-    .honeymoon-section::before {
-      content: "";
-
-      position: absolute;
-
-      top: -3.5rem;
-      left: 0;
-
-      width: 100%;
-      height: 3.5rem;
-
-      background: var(--color-page-bg);
-
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
-    }
-
-    .honeymoon-section::after {
-      content: "";
-
-      position: absolute;
-
-      bottom: -3.5rem;
-      left: 0;
-
-      width: 100%;
-      height: 3.5rem;
-
-      background: var(--color-page-bg);
-
-      clip-path: polygon(0 0, 100% 0, 0 100%);
-    }
-
     /* =========================================================
      INTRO
      ========================================================= */
@@ -695,21 +656,6 @@ const experiences = [
      ========================================================= */
 
     @media (max-width: 767px) {
-      .honeymoon-section {
-        margin-top: 2.5rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .honeymoon-section::before {
-        top: -2.5rem;
-        height: 2.5rem;
-      }
-
-      .honeymoon-section::after {
-        bottom: -2.5rem;
-        height: 2.5rem;
-      }
-
       .honeymoon-heading {
         font-size: 2.25rem;
       }
