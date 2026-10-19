@@ -123,53 +123,6 @@ const formattedTime = new Intl.DateTimeFormat(locale, {
 </section>
 
 <style>
-  .location-section {
-    position: relative;
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
-  }
-
-  /* Top diagonal */
-  .location-section::before {
-    content: "";
-    position: absolute;
-    top: -3.5rem;
-    left: 0;
-    width: 100%;
-    height: 3.5rem;
-    background: var(--color-surface);
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  }
-
-  /* Bottom diagonal */
-  .location-section::after {
-    content: "";
-    position: absolute;
-    bottom: -3.5rem;
-    left: 0;
-    width: 100%;
-    height: 3.5rem;
-    background: var(--color-surface);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-  }
-
-  @media (max-width: 767px) {
-    .location-section {
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .location-section::before {
-      top: -2.5rem;
-      height: 2.5rem;
-    }
-
-    .location-section::after {
-      bottom: -2.5rem;
-      height: 2.5rem;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .location-section a {
       transition: none !important;

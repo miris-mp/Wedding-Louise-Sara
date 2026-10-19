@@ -109,31 +109,6 @@ const items = [
 <style>
   .countdown-section {
     position: relative;
-    margin-bottom: 3.5rem;
-    background: var(--color-surface);
-  }
-
-  /* Bottom diagonal */
-  .countdown-section::after {
-    content: "";
-    position: absolute;
-    bottom: -3.5rem;
-    left: 0;
-    width: 100%;
-    height: 3.5rem;
-    background: var(--color-surface);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-  }
-
-  @media (max-width: 767px) {
-    .countdown-section {
-      margin-bottom: 2.5rem;
-    }
-
-    .countdown-section::after {
-      bottom: -2.5rem;
-      height: 2.5rem;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {

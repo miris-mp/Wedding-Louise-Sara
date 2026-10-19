@@ -37,7 +37,7 @@ export const it = {
   },
   countdown: {
     title: "Contiamo i giorni",
-    subtitle: "Fino a quando diremo 'Sì'",
+    subtitle: "Quando diremo 'Sì'",
   },
   faq: {
     eyebrow: "Informazioni utili",
@@ -241,7 +241,7 @@ export const it = {
   },
   location: {
     eyebrow: "Unisciti a noi",
-    title: 'Dove diremo "Sì"',
+    title: "Dove",
     venue: "La location",
     date: "Data",
     ceremony: "Cerimonia",
