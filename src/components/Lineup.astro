@@ -5,16 +5,28 @@ import { timelineData } from "@data/timelineData";
 const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);
 
-const icons: Record<string, string> = {
-  happyHour: "🥂",
+type TimelineIcon =
+  | { type: "emoji"; value: string }
+  | { type: "image"; src: string; alt: string };
+
+const icons: Record<string, TimelineIcon> = {
+  happyHour: {
+    type: "image",
+    src: "/images/icons/cheers.webp",
+    alt: "Champagne glasses",
+  },
   // U+2764 + U+FE0F forces the colored emoji version
-  heart: "\u2764\uFE0F",
-  camera: "⌾",
-  glass: "♢",
-  utensils: "♨",
-  music: "♪",
-  cake: "✦",
-  car: "→",
+  heart: {
+    type: "image",
+    src: "/images/icons/heart.png",
+    alt: "Champagne glasses",
+  },
+  camera: { type: "emoji", value: "\u2764\uFE0F" },
+  glass: { type: "emoji", value: "\u2764\uFE0F" },
+  utensils: { type: "emoji", value: "\u2764\uFE0F" },
+  music: { type: "emoji", value: "\u2764\uFE0F" },
+  cake: { type: "emoji", value: "\u2764\uFE0F" },
+  car: { type: "emoji", value: "\u2764\uFE0F" },
 };
 ---
 
@@ -42,16 +54,16 @@ const icons: Record<string, string> = {
       {
         timelineData.map((event, index) => {
           const translation =
-            t.lineup.events[event.id as keyof typeof t.lineup.events];
+    t.lineup.events[event.id as keyof typeof t.lineup.events];
 
-          const dayLabel =
-            t.lineup.days[event.day as keyof typeof t.lineup.days];
+  const dayLabel =
+    t.lineup.days[event.day as keyof typeof t.lineup.days];
 
-          const isEven = index % 2 === 0;
+  const isEven = index % 2 === 0;
+  const icon = icons[event.icon];
 
-          // Show a label whenever the day changes (and for the first item)
-          const prev = timelineData[index - 1];
-          const showDayLabel = !prev || prev.day !== event.day;
+  const prev = timelineData[index - 1];
+  const showDayLabel = !prev || prev.day !== event.day;
 
           return (
             <>
@@ -80,11 +92,26 @@ const icons: Record<string, string> = {
                 </div>
 
                 <!-- Icon -->
-                <div class="timeline-marker" aria-hidden="true">
-                  <span class="timeline-icon">
-                    {icons[event.icon]}
-                  </span>
-                </div>
+      
+{/* Icon */}
+<div class="timeline-marker">
+  <span class="timeline-icon" aria-hidden="true">
+    {icon?.type === "image" ? (
+      <img
+        src={icon.src}
+        alt=""
+        class="timeline-icon-image"
+        loading="lazy"
+      />
+    ) : icon?.type === "emoji" ? (
+      icon.value
+    ) : (
+      "•"
+    )}
+  </span>
+</div>
+
+
 
                 <!-- Empty side on alternating layout -->
                 <div class="timeline-spacer"></div>
@@ -340,7 +367,7 @@ const icons: Record<string, string> = {
   }
 
   .timeline-item-romantic .timeline-marker {
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
 
     box-shadow: 0 7px 24px rgba(207, 137, 129, 0.38);
   }
