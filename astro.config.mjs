@@ -1,22 +1,23 @@
-// @ts-check
 import { defineConfig } from "astro/config";
-
+import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://astro.build/config
 export default defineConfig({
+  output: "server",
+  adapter: vercel(),
+
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
       exclude: ["maplibre-gl"],
     },
   },
-  i18n: {
-    locales: ["en", "it"], // Locales you want to support
-    defaultLocale: "en", // Default locale (fallback)
 
+  i18n: {
+    locales: ["en", "it"],
+    defaultLocale: "en",
     routing: {
-      prefixDefaultLocale: false, // Ensures that your default locale is prefixed aswell
+      prefixDefaultLocale: false,
     },
   },
 });

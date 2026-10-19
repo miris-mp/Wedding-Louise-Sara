@@ -9,9 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^11.0.15",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.3",
     "maplibre-gl": "^6.10.0",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5"
   }
 }
