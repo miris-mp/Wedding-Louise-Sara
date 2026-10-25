@@ -253,16 +253,8 @@ export const it = {
     intro:
       "Dal momento del sì fino ai balli della sera, ecco come festeggeremo insieme.",
     days: {
-      dayBefore: {
-        title: "Il giorno prima",
-        description:
-          "Un momento per rilassarsi, chiacchierare e godersi un drink prima della cerimonia.",
-      },
-      weddingDay: {
-        title: "Il giorno del matrimonio",
-        description:
-          "Il grande giorno! Dalla cerimonia al taglio della torta, ecco come si svolgerà la giornata.",
-      },
+      dayBefore: "Il giorno prima",
+      weddingDay: "Il giorno del matrimonio",
     },
     events: {
       happyHour: {
