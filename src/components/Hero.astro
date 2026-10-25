@@ -9,13 +9,30 @@ const t = getTranslations(locale);
 
 <section
   data-parallax
-  class="relative flex min-h-screen items-center justify-center overflow-hidden"
+  class="relative flex min-h-screen items-center justify-center overflow-hidden
+         max-md:min-h-0 max-md:h-[55svh]"
 >
-  <!-- Background Image -->
+  <!-- Mobile blurred background -->
+  <Image
+    src={heroImage}
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 hidden h-full w-full scale-110 object-cover
+           blur-xl opacity-70 max-md:block"
+    widths={[640, 768, 1024]}
+    sizes="100vw"
+    format="webp"
+    quality={85}
+    loading="eager"
+  />
+
+  <!-- Main image -->
   <Image
     src={heroImage}
     alt={t.hero.imageAlt}
-    class="parallax-image absolute inset-0 h-[120%] w-full object-cover"
+    class="parallax-image absolute inset-0 h-[120%] w-full object-cover
+           max-md:inset-x-0 max-md:top-0 max-md:h-[95%]
+           max-md:object-contain"
     widths={[640, 768, 1024, 1280, 1600, 1920]}
     sizes="100vw"
     format="webp"
@@ -26,15 +43,18 @@ const t = getTranslations(locale);
   <!-- Overlay -->
   <div class="absolute inset-0 bg-black/25"></div>
 
-  <!-- Content -->
+  <!-- Content: over the image on both mobile and desktop -->
   <div
-    class="relative z-10 mx-auto max-w-4xl px-6 text-center text-[#F7EFE5]/80"
+    class="relative z-10 mx-auto max-w-4xl px-6 text-center
+           text-[#F7EFE5]/90 max-md:px-4"
   >
-    <h1 class="font-serif text-5xl md:text-9xl">
+    <h1 class="font-serif text-5xl md:text-9xl max-md:text-4xl">
       {t.hero.title}
     </h1>
 
-    <p class="mt-6 text-lg text-[#F7EFE5]/80 md:text-4xl">
+    <p
+      class="mt-6 text-lg text-[#F7EFE5]/90 md:text-4xl max-md:mt-3 max-md:text-base"
+    >
       {t.hero.subtitle}
     </p>
   </div>
@@ -42,10 +62,13 @@ const t = getTranslations(locale);
 
 <script>
   const sections = document.querySelectorAll("[data-parallax]");
+  const mobileQuery = window.matchMedia("(max-width: 767px)");
 
   const updateParallax = () => {
     sections.forEach((section) => {
-      const image = section.querySelector(".parallax-image") as HTMLElement;
+      const image = section.querySelector(
+        ".parallax-image"
+      ) as HTMLElement | null;
 
       if (!image) return;
 
@@ -56,25 +79,35 @@ const t = getTranslations(locale);
 
       const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
 
-      const offset = -180;
-      const movement = (progress - 0.5) * 650 + offset;
-
-      image.style.transform = `translate3d(0, ${movement}px, 0)`;
+      if (mobileQuery.matches) {
+        // Gentle movement on mobile.
+        const movement = (progress - 0.5) * 350;
+        image.style.transform = `translate3d(0, ${movement}px, 0)`;
+      } else {
+        // Original desktop parallax, unchanged.
+        const offset = -180;
+        const movement = (progress - 0.5) * 650 + offset;
+        image.style.transform = `translate3d(0, ${movement}px, 0)`;
+      }
     });
   };
 
   let ticking = false;
 
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        updateParallax();
-        ticking = false;
-      });
+  const onScroll = () => {
+    if (ticking) return;
 
-      ticking = true;
-    }
-  });
+    ticking = true;
+
+    requestAnimationFrame(() => {
+      updateParallax();
+      ticking = false;
+    });
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", updateParallax);
+  mobileQuery.addEventListener("change", updateParallax);
 
   updateParallax();
 </script>
