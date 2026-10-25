@@ -9,17 +9,57 @@ const t = getTranslations(locale);
 const categories = [
   {
     id: "center-couples",
-    translation: t.accommodation.categories.centerCouples,
+    title: t.accommodation.categories.centerCouples.title,
+    subtitle: t.accommodation.categories.centerCouples.subtitle,
+    description: t.accommodation.categories.centerCouples.description,
   },
   {
     id: "city-groups",
-    translation: t.accommodation.categories.cityGroups,
+    title: t.accommodation.categories.cityGroups.title,
+    subtitle: t.accommodation.categories.cityGroups.subtitle,
+    description: t.accommodation.categories.cityGroups.description,
   },
   {
     id: "countryside",
-    translation: t.accommodation.categories.countryside,
+    title: t.accommodation.categories.countryside.title,
+    subtitle: t.accommodation.categories.countryside.subtitle,
+    description: t.accommodation.categories.countryside.description,
+  },
+  {
+    id: "apartments",
+    title: "Apartments & Holiday Homes",
+    subtitle: "INDEPENDENT STAYS",
+    description: "Private spaces with the comforts of home.",
+  },
+  {
+    id: "villa-pool",
+    title: "Villas with a Pool",
+    subtitle: "VILLAS & RELAXATION",
+    description: "More space to unwind during your stay.",
+  },
+  {
+    id: "rural-stay",
+    title: "Rural Hospitality",
+    subtitle: "COUNTRYSIDE",
+    description: "A quieter stay in a traditional rural setting.",
+  },
+  {
+    id: "b&b",
+    title: "Bed & Breakfasts",
+    subtitle: "B&Bs",
+    description: "Welcoming stays for discovering Lecce and Salento.",
+  },
+  {
+    id: "unspecified",
+    title: "More Places to Stay",
+    subtitle: "OTHER ACCOMMODATIONS",
+    description: "Explore the property details on Booking.com.",
   },
 ];
+
+const visibleCategories = categories.filter((category) =>
+  hotels.some((hotel) => hotel.category === category.id)
+);
 ---
 
 <section
@@ -27,7 +67,6 @@ const categories = [
   class="accommodation-section relative py-14 md:py-18"
 >
   <div class="relative z-10 mx-auto max-w-6xl px-6">
-
     <!-- Header -->
     <div class="mb-12 text-center md:mb-16">
       <p
@@ -56,32 +95,29 @@ const categories = [
     <!-- Categories -->
     <div class="space-y-16">
       {
-        categories.map((category) => {
+        visibleCategories.map((category) => {
           const categoryHotels = hotels.filter(
             (hotel) => hotel.category === category.id
           );
 
           return (
             <div>
-
               <!-- Category heading -->
               <div class="mb-8 text-center">
                 <p
                   class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
                 >
-                  {category.translation.subtitle}
+                  {category.subtitle}
                 </p>
 
                 <h3
                   class="mt-2 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
                 >
-                  {category.translation.title}
+                  {category.title}
                 </h3>
 
-                <p
-                  class="mt-2 font-sans text-sm text-[var(--color-text)]"
-                >
-                  {category.translation.description}
+                <p class="mt-2 font-sans text-sm text-[var(--color-text)]">
+                  {category.description}
                 </p>
               </div>
 
@@ -90,7 +126,7 @@ const categories = [
                 {
                   categoryHotels.map((hotel) => (
                     <article
-                      class="group overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                      class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                       {hotel.image && (
                         <div class="h-52 overflow-hidden">
@@ -106,8 +142,7 @@ const categories = [
                         </div>
                       )}
 
-                      <div class="p-7">
-
+                      <div class="flex flex-1 flex-col p-7">
                         <!-- Hotel name -->
                         <h4
                           class="font-serif text-2xl text-[var(--color-heading)] md:text-3xl"
@@ -116,15 +151,22 @@ const categories = [
                         </h4>
 
                         <!-- Description -->
-                        <p
-                          class="mt-4 font-sans text-sm leading-6 text-[var(--color-text)]"
-                        >
-                          {hotel.description}
-                        </p>
+                        {hotel.description ? (
+                          <p
+                            class="mt-4 font-sans text-sm leading-6 text-[var(--color-text)]"
+                          >
+                            {hotel.description}
+                          </p>
+                        ) : (
+                          <p
+                            class="mt-4 font-sans text-sm leading-6 text-[var(--color-text-muted)]"
+                          >
+                            View photos, amenities, and property details on Booking.com.
+                          </p>
+                        )}
 
                         {hotel.features && (
                           <div class="mt-5">
-
                             <p
                               class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-sage)]"
                             >
@@ -136,7 +178,6 @@ const categories = [
                             >
                               {hotel.features}
                             </p>
-
                           </div>
                         )}
 
@@ -153,12 +194,11 @@ const categories = [
                             href={hotel.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-6 inline-flex rounded-full bg-[var(--color-primary)] px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-surface)] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] hover:shadow-md"
+                            class="mt-6 inline-flex self-start rounded-full bg-[var(--color-primary)] px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-surface)] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] hover:shadow-md"
                           >
                             {t.accommodation.discover}
                           </a>
                         )}
-
                       </div>
                     </article>
                   ))
@@ -176,6 +216,4 @@ const categories = [
   .accommodation-section {
     position: relative;
   }
-
- 
 </style>
