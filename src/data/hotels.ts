@@ -1,3 +1,13 @@
+import baccoEBarocco from "../assets/images/accommodation/baccoEBarocco.jpg";
+import palazzoDeGiorgi from "../assets/images/accommodation/palazzoDeGiorgi.jpg";
+import palazzoEmy from "../assets/images/accommodation/palazzoEmy.jpg";
+import habitare from "../assets/images/accommodation/habitare.jpg";
+import leChicche from "../assets/images/accommodation/leChicche.jpg";
+import villettaSanlea from "../assets/images/accommodation/villettaSanlea.jpg";
+import innuendo from "../assets/images/accommodation/innuendo.jpg";
+import villaQueen from "../assets/images/accommodation/villaQueen.jpg";
+import masseriaLaLizza from "../assets/images/accommodation/masseriaLaLizza.jpg";
+
 export const hotels = [
   // ─────────────────────────────────────────
   // LECCE CENTRO — PALAZZI & B&B
@@ -13,7 +23,7 @@ export const hotels = [
       "Air conditioning, private bathrooms, free Wi-Fi, and breakfast options.",
     distance: "Via degli Stampacchia 17, Lecce",
     url: "https://www.booking.com/Share-c7BHIF",
-    image: null,
+    image: palazzoEmy,
   },
 
   {
@@ -24,29 +34,29 @@ export const hotels = [
     features: null,
     distance: "Via di Vaste 25, Lecce",
     url: "https://www.booking.com/Share-pFFe3D",
-    image: null,
+    image: habitare,
   },
 
   {
     name: "Le Chicche Suite",
-    category: "unspecified",
+    category: "center-couples",
     location: null,
     description: null,
     features: null,
     distance: null,
     url: "https://www.booking.com/Share-DUUFsOw",
-    image: null,
+    image: leChicche,
   },
 
   {
     name: "Villetta Sanlea",
-    category: "unspecified",
+    category: "villa-pool",
     location: null,
     description: null,
     features: null,
     distance: null,
     url: "https://www.booking.com/Share-5iiQLX",
-    image: null,
+    image: villettaSanlea,
   },
 
   {
@@ -58,7 +68,7 @@ export const hotels = [
     features: "Free Wi-Fi, free parking, kitchen, balcony, and terrace.",
     distance: "Via Tirso 2, Lecce",
     url: "https://www.booking.com/Share-MwzxQ2p",
-    image: null,
+    image: innuendo,
   },
 
   // ─────────────────────────────────────────
@@ -75,7 +85,7 @@ export const hotels = [
       "Private outdoor pool, garden, kitchen, air conditioning, washing machine, and free Wi-Fi.",
     distance: "Via Adriatica 150, Lecce",
     url: "https://www.booking.com/Share-F7mDRN",
-    image: null,
+    image: villaQueen,
   },
 
   {
@@ -87,7 +97,7 @@ export const hotels = [
     features: null,
     distance: "Via G. A. Roggerone 56, Lecce",
     url: "https://www.booking.com/Share-bD41bg",
-    image: null,
+    image: masseriaLaLizza,
   },
 
   // ─────────────────────────────────────────
@@ -104,7 +114,7 @@ export const hotels = [
       "Breakfast, free Wi-Fi, free parking, terrace, air conditioning, and shared kitchen facilities.",
     distance: "Via Clemente Rebora 14, Lecce",
     url: "https://www.booking.com/Share-vZvrGE9",
-    image: null,
+    image: baccoEBarocco,
   },
 
   {
@@ -116,6 +126,6 @@ export const hotels = [
     features: null,
     distance: "Viale O. Quarta 7, Lecce",
     url: "https://www.booking.com/Share-Yvc5TO",
-    image: null,
+    image: palazzoDeGiorgi,
   },
 ];

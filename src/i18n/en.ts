@@ -99,7 +99,7 @@ export const en = {
       accommodation: {
         question: "Are there accommodation options nearby?",
         answer:
-          "Yes! We have selected a few hotels and charming stays close to the venue. Please see the accomodation tab for some suggestions.",
+          "Yes! We have selected a few hotels and charming stays close to the venue. Please see the accommodation tab for some suggestions.",
       },
 
       gettingThere: {

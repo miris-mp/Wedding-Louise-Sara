@@ -6,208 +6,111 @@ import { getTranslations, type Locale } from "../i18n/utils";
 const locale = (Astro.currentLocale ?? "en") as Locale;
 const t = getTranslations(locale);
 
-const categories = [
-  {
-    id: "center-couples",
-    title: t.accommodation.categories.centerCouples.title,
-    subtitle: t.accommodation.categories.centerCouples.subtitle,
-    description: t.accommodation.categories.centerCouples.description,
-  },
-  {
-    id: "city-groups",
-    title: t.accommodation.categories.cityGroups.title,
-    subtitle: t.accommodation.categories.cityGroups.subtitle,
-    description: t.accommodation.categories.cityGroups.description,
-  },
-  {
-    id: "countryside",
-    title: t.accommodation.categories.countryside.title,
-    subtitle: t.accommodation.categories.countryside.subtitle,
-    description: t.accommodation.categories.countryside.description,
-  },
-  {
-    id: "apartments",
-    title: "Apartments & Holiday Homes",
-    subtitle: "INDEPENDENT STAYS",
-    description: "Private spaces with the comforts of home.",
-  },
-  {
-    id: "villa-pool",
-    title: "Villas with a Pool",
-    subtitle: "VILLAS & RELAXATION",
-    description: "More space to unwind during your stay.",
-  },
-  {
-    id: "rural-stay",
-    title: "Rural Hospitality",
-    subtitle: "COUNTRYSIDE",
-    description: "A quieter stay in a traditional rural setting.",
-  },
-  {
-    id: "b&b",
-    title: "Bed & Breakfasts",
-    subtitle: "B&Bs",
-    description: "Welcoming stays for discovering Lecce and Salento.",
-  },
-  {
-    id: "unspecified",
-    title: "More Places to Stay",
-    subtitle: "OTHER ACCOMMODATIONS",
-    description: "Explore the property details on Booking.com.",
-  },
-];
-
-const visibleCategories = categories.filter((category) =>
-  hotels.some((hotel) => hotel.category === category.id)
-);
+const categoryLabels: Record<string, string> = {
+  "center-couples": t.accommodation.categories.centerCouples.title,
+  "city-groups": t.accommodation.categories.cityGroups.title,
+  countryside: t.accommodation.categories.countryside.title,
+  apartments: "Apartments & Holiday Homes",
+  "villa-pool": "Villa with Pool",
+  "rural-stay": "Rural Stay",
+  "b&b": "Bed & Breakfast",
+  unspecified: "Accommodation",
+};
 ---
 
-<section
-  id="accommodation"
-  class="accommodation-section relative py-14 md:py-18"
->
+<section id="accommodation" class="accommodation-section relative py-14 md:py-18">
   <div class="relative z-10 mx-auto max-w-6xl px-6">
-    <!-- Header -->
     <div class="mb-12 text-center md:mb-16">
-      <p
-        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
-      >
+      <p class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-(--color-sage)">
         {t.accommodation.eyebrow}
       </p>
 
-      <h2
-        class="mt-3 font-serif text-4xl text-[var(--color-heading)] md:text-5xl"
-      >
+      <h2 class="mt-3 font-serif text-4xl text-(--color-heading) md:text-5xl">
         {t.accommodation.title}
       </h2>
 
-      <div
-        class="mx-auto mt-4 h-1 w-12 rounded-full bg-[var(--color-primary)]"
-      ></div>
+      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-(--color-primary)"></div>
 
-      <p
-        class="mx-auto mt-5 max-w-2xl font-sans text-base leading-7 text-[var(--color-text)]"
-      >
+      <p class="mx-auto mt-5 max-w-2xl font-sans text-base leading-7 text-(--color-text)">
         {t.accommodation.intro}
       </p>
     </div>
 
-    <!-- Categories -->
-    <div class="space-y-16">
-      {
-        visibleCategories.map((category) => {
-          const categoryHotels = hotels.filter(
-            (hotel) => hotel.category === category.id
-          );
+    <!-- One grid for all accommodations -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {hotels.map((hotel) => (
+        <article class="group flex h-full flex-col overflow-hidden rounded-4xl border border-(--color-border-soft) bg-(--color-surface) shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+         
+{hotel.image && (
+  <div class="h-52 overflow-hidden">
+    <Image
+      src={hotel.image}
+      alt={hotel.name}
+      class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+      width={800}
+      height={520}
+      quality={85}
+      format="webp"
+      loading="lazy"
+    />
+  </div>
+)}
 
-          return (
-            <div>
-              <!-- Category heading -->
-              <div class="mb-8 text-center">
-                <p
-                  class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
-                >
-                  {category.subtitle}
-                </p>
 
-                <h3
-                  class="mt-2 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
-                >
-                  {category.title}
-                </h3>
-
-                <p class="mt-2 font-sans text-sm text-[var(--color-text)]">
-                  {category.description}
-                </p>
-              </div>
-
-              <!-- Hotel cards -->
-              <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {
-                  categoryHotels.map((hotel) => (
-                    <article
-                      class="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                    >
-                      {hotel.image && (
-                        <div class="h-52 overflow-hidden">
-                          <Image
-                            src={hotel.image}
-                            alt={hotel.name}
-                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                            inferSize={true}
-                            width={100}
-                            height={100}
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
-
-                      <div class="flex flex-1 flex-col p-7">
-                        <!-- Hotel name -->
-                        <h4
-                          class="font-serif text-2xl text-[var(--color-heading)] md:text-3xl"
-                        >
-                          {hotel.name}
-                        </h4>
-
-                        <!-- Description -->
-                        {hotel.description ? (
-                          <p
-                            class="mt-4 font-sans text-sm leading-6 text-[var(--color-text)]"
-                          >
-                            {hotel.description}
-                          </p>
-                        ) : (
-                          <p
-                            class="mt-4 font-sans text-sm leading-6 text-[var(--color-text-muted)]"
-                          >
-                            View photos, amenities, and property details on Booking.com.
-                          </p>
-                        )}
-
-                        {hotel.features && (
-                          <div class="mt-5">
-                            <p
-                              class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-sage)]"
-                            >
-                              {t.accommodation.features}
-                            </p>
-
-                            <p
-                              class="mt-2 font-sans text-sm leading-6 text-[var(--color-text)]"
-                            >
-                              {hotel.features}
-                            </p>
-                          </div>
-                        )}
-
-                        {hotel.distance && (
-                          <p
-                            class="mt-5 font-sans text-xs text-[var(--color-text-muted)]"
-                          >
-                            📍 {hotel.distance}
-                          </p>
-                        )}
-
-                        {hotel.url && hotel.url !== "---" && (
-                          <a
-                            href={hotel.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="mt-6 inline-flex self-start rounded-full bg-[var(--color-primary)] px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-surface)] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] hover:shadow-md"
-                          >
-                            {t.accommodation.discover}
-                          </a>
-                        )}
-                      </div>
-                    </article>
-                  ))
-                }
-              </div>
+          <div class="flex flex-1 flex-col p-7">
+            <!-- Category pill -->
+            <div class="mb-3">
+              <span class="inline-flex items-center rounded-full border border-(--color-border-soft) bg-(--color-surface) px-3 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.16em] text-(--color-sage)">
+                {categoryLabels[hotel.category] ?? "Accommodation"}
+              </span>
             </div>
-          );
-        })
-      }
+
+            <h3 class="font-serif text-2xl text-(--color-heading) md:text-3xl">
+              {hotel.name}
+            </h3>
+
+            {hotel.description ? (
+              <p class="mt-4 font-sans text-sm leading-6 text-(--color-text)">
+                {hotel.description}
+              </p>
+            ) : (
+              <p class="mt-4 font-sans text-sm leading-6 text-(--color-text-muted)">
+                View photos, amenities, and property details on Booking.com.
+              </p>
+            )}
+
+            {/* {hotel.features && (
+              <div class="mt-5">
+                <p class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-(--color-sage)">
+                  {t.accommodation.features}
+                </p>
+                <p class="mt-2 font-sans text-sm leading-6 text-(--color-text)">
+                  {hotel.features}
+                </p>
+              </div>
+            )} */}
+
+            {hotel.distance && (
+              <p class="my-5 font-sans text-xs text-(--color-text-muted)">
+                📍 {hotel.distance}
+              </p>
+            )}
+
+            
+{hotel.url && hotel.url !== "---" && (
+  <a
+    href={hotel.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-auto inline-flex self-end rounded-full bg-(--color-primary) px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-(--color-surface) shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--color-primary-hover) hover:shadow-md"
+  >
+    {t.accommodation.discover}
+  </a>
+)}
+
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
