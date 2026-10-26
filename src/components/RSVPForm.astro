@@ -184,6 +184,8 @@ const rsvp = t.rsvp;
         </div>
 
         <!-- Playlist -->
+
+        <!-- Song request -->
         <div id="playlist-field">
           <label for="rsvp-song" class="rsvp-label">
             {rsvp.song}
@@ -193,28 +195,15 @@ const rsvp = t.rsvp;
             id="rsvp-song"
             name="song"
             type="text"
-            list="song-suggestions"
-            placeholder={rsvp.songPlaceholder}
+            placeholder="e.g. September — Earth, Wind & Fire"
             autocomplete="off"
+            maxlength="200"
             class="rsvp-input"
           />
 
-          <datalist id="song-suggestions">
-            <option value="Dancing Queen — ABBA"></option>
-            <option value="September — Earth, Wind & Fire"></option>
-            <option value="I Wanna Dance with Somebody — Whitney Houston"
-            ></option>
-            <option value="Mr. Brightside — The Killers"></option>
-            <option value="Don't Stop Me Now — Queen"></option>
-            <option value="Dancing in the Moonlight — Toploader"></option>
-            <option value="Mamma Mia — ABBA"></option>
-            <option value="Levitating — Dua Lipa"></option>
-            <option value="Music Sounds Better with You — Stardust"></option>
-            <option value="Finally — CeCe Peniston"></option>
-          </datalist>
-
           <p class="rsvp-hint">
-            {rsvp.songHint}
+            Got a song that will get everyone dancing? Tell us the title and
+            artist!
           </p>
         </div>
 
@@ -680,9 +669,9 @@ const rsvp = t.rsvp;
      ========================================================= */
 
   .rsvp-guest-two {
-    border: 1px solid var(--color-sage);
+    border: 1px solid black;
     border-radius: 1.25rem;
-    background: var(--color-surface-soft);
+
     padding: 1.25rem;
   }
 

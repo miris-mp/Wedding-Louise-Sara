@@ -309,7 +309,7 @@ export const it = {
   },
 
   rsvp: {
-    eyebrow: "Ci farebbe piacere ricevere tue notizie",
+    eyebrow: "Ci farebbe piacere saprere",
     title: "Ci sarai?",
     intro:
       "La tua presenza significherebbe tantissimo per noi. Facci sapere se festeggerai questo giorno speciale insieme a noi.",
