@@ -12,6 +12,10 @@ export const faqData = [
     questionKey: "ceilidh",
   },
   {
+    id: "kilt",
+    questionKey: "kilt",
+  },
+  {
     id: "venues",
     questionKey: "venues",
   },

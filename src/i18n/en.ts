@@ -59,6 +59,11 @@ export const en = {
           "Yes! We’re adding a taster of ceilidh dancing to the evening to celebrate our Scottish roots. Absolutely zero rhythm, style, or experience is required—just bring enthusiasm! A pair of comfortable dancing shoes to change into is recommended.",
       },
 
+      kilt: {
+        question: "Do I have to wear a kilt?",
+        answer:
+          "You don't have to, but kilts are more than welcome! In fact, whether you're Scottish or not, we would be absolutely thrilled to see you rocking one and celebrating with us.",
+      },
       venues: {
         question: "Do we have to travel between venues?",
         answer:

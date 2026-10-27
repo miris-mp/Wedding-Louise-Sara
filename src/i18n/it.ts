@@ -61,6 +61,11 @@ export const it = {
         answer:
           "Sì! Durante la serata ci sarà un piccolo assaggio di ceilidh, per celebrare le nostre radici scozzesi. Non servono ritmo, stile o esperienza: portate solo tanto entusiasmo! Vi consigliamo di avere con voi un paio di scarpe comode da indossare per ballare.",
       },
+      kilt: {
+        question: "Devo indossare il kilt?",
+        answer:
+          "Non è obbligatorio, ma se ti va di indossarlo ne saremo felicissimi! Che tu sia Scozzese o meno, il kilt è sempre il benvenuto: sarà bellissimo festeggiare insieme con un tocco di stile in più.",
+      },
 
       venues: {
         question: "Dovremo spostarci tra diverse location?",
