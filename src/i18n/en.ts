@@ -294,6 +294,166 @@ export const en = {
     pending:
       "We are still finalizing the details of our day, but we will update this section soon with the full timeline of events.",
   },
+  memories: {
+    ui: {
+      eyebrow: "Our Story",
+      heading: "Where Did It Happen?",
+      instructions: "Can you guess where this memory happened?",
+      findPlace: "Find this place",
+      round: "Round",
+      score: "Score",
+      reveal: "Reveal answer",
+      next: "Next round",
+      playAgain: "Play again",
+      memory: "The memory",
+      guessPrompt: "Can you find this place on the map?",
+      adjustGuess: "Click another location to change your guess.",
+      distancePrefix: "You were",
+      distanceSuffix: "away",
+      roundComplete: "Round complete!",
+      pointsEarned: "You earned",
+      pointsThisRound: "points this round!",
+    },
+
+    memories: {
+      giza: {
+        name: "Giza",
+        country: "Egypt",
+        history:
+          "One of our more adventure holiday that involve a military escort!",
+      },
+
+      "nassau-bahamas": {
+        name: "Bahamas",
+        country: "Bahamas",
+        history:
+          "Louise rescued Sara that was almost drowning from unexpected tropical thunderstorms 🌩️",
+      },
+
+      seljalandsfoss: {
+        name: "Seljalandsfoss",
+        country: "Iceland",
+        history: "Sara has banned another cold holiday until 2030 😃",
+      },
+
+      "chichen-itza": {
+        name: "Chichen Itza",
+        country: "Mexico",
+        history:
+          "Exploring Chichen Itza provided a captivating look into Maya civilization. The scale and astronomical precision of El Castillo made an indelible impression.",
+      },
+
+      "lake-garda": {
+        name: "Lake Garda",
+        country: "Italy",
+        history:
+          "Standard holiday : Louise drinking Lambrusco and Sara running a marathon!",
+      },
+
+      "niagara-falls": {
+        name: "Niagara Falls",
+        country: "Canada",
+        history:
+          "Niagara Falls was a spectacular display of natural force. Seeing the sheer volume of water rushing over the edge left a lasting memory of nature's power.",
+      },
+
+      glastonbury: {
+        name: "Glastonbury",
+        country: "United Kingdom",
+        history:
+          "Glastonbury had a distinct atmosphere filled with myths, legends, and history. Climbing the Tor and taking in the panoramic views of the Somerset countryside was unforgettable.",
+      },
+
+      "san-benedetto-del-tronto": {
+        name: "San Benedetto del Tronto",
+        country: "Italy",
+        history:
+          "San Benedetto del Tronto brought delightful moments along the Adriatic coast. The palm-lined promenade and fresh seafood captured the essence of coastal Italian summer.",
+      },
+
+      skopje: {
+        name: "Skopje",
+        country: "North Macedonia",
+        history:
+          "Exploring North Macedonia revealed a rich blend of cultural influences, ancient history, and scenic landscapes. It offered a unique and rewarding journey through Balkan heritage.",
+      },
+
+      philadelphia: {
+        name: "Philadelphia",
+        country: "United States",
+        history: "First weekend as a couple!",
+      },
+
+      pitlochry: {
+        name: "Pitlochry",
+        country: "United Kingdom",
+        history:
+          "Nestled in the Scottish Highlands, Pitlochry offered breathtaking mountain air, lush pine forests, and quiet charm. It was the perfect refuge in nature.",
+      },
+
+      "new-york": {
+        name: "New York",
+        country: "United States",
+        history:
+          "New York was one of those places where everything felt bigger and faster. Moving through its iconic neighborhoods made every corner feel like part of a larger story.",
+      },
+
+      "cape-town": {
+        name: "Cape Town",
+        country: "South Africa",
+        history:
+          "Cape Town stood out for its dramatic scenery, where majestic mountains meet two oceans. Standing atop Table Mountain looking out over the coastline was unforgettable.",
+      },
+
+      "plettenberg-bay": {
+        name: "Plettenberg Bay",
+        country: "South Africa",
+        history: "Safari preparation after another marathon 😁",
+      },
+
+      sardinia: {
+        name: "La pelosa, Stintino",
+        country: "Italy",
+        history:
+          "Our favorite activity in one of the most beautiful beach in the world!",
+      },
+
+      seville: {
+        name: "Seville",
+        country: "Spain",
+        history:
+          "Seville captivated me with its warm sun, historic Moorish architecture, and vibrant Andalusian spirit. Walking through the narrow streets of Barrio Santa Cruz was pure magic.",
+      },
+
+      algarve: {
+        name: "Algarve",
+        country: "Portugal",
+        history:
+          "The Algarve coastline was breathtaking with its dramatic golden sea cliffs, hidden coves, and warm ocean breeze. It was a place for pure relaxation and coastal exploration.",
+      },
+
+      "loch-lomond": {
+        name: "Loch Lomond",
+        country: "United Kingdom",
+        history:
+          "Loch Lomond offered calm waters surrounded by rolling hills and Scottish highlands. The peacefulness of walking along the loch shore created a deeply restful atmosphere.",
+      },
+
+      cappadocia: {
+        name: "Cappadocia",
+        country: "Turkey",
+        history:
+          "Cappadocia felt like stepping onto another planet. Seeing hot air balloons drift over fairy chimneys at sunrise was one of the most mesmerizing landscapes imaginable.",
+      },
+
+      summerdown: {
+        name: "Summerdown",
+        country: "United Kingdom",
+        history:
+          "Summerdown offered scenic rural English countryside trails and tranquil green pastures, ideal for a quiet getaway away from the fast pace of urban life.",
+      },
+    },
+  },
   nav: {
     rsvp: "RSVP",
     explorePuglia: "Explore Puglia",

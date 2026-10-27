@@ -297,6 +297,169 @@ export const it = {
     pending:
       "Stiamo ancora definendo i dettagli del resto della giornata e vi aggiorneremo presto con il programma completo.",
   },
+  memories: {
+    ui: {
+      eyebrow: "La nostra storia",
+      heading: "Dove è successo?",
+      instructions: "Riesci a indovinare dove è successo questo ricordo?",
+      findPlace: "Trova questo luogo",
+      round: "Round",
+      score: "Punteggio",
+      reveal: "Scopri la risposta",
+      next: "Prossimo round",
+      playAgain: "Gioca ancora",
+      memory: "Il ricordo",
+      guessPrompt: "Riesci a trovare questo luogo sulla mappa?",
+      adjustGuess: "Clicca in un altro punto per modificare la tua scelta.",
+      distancePrefix: "Eri a",
+      distanceSuffix: "di distanza",
+      roundComplete: "Partita completata!",
+      pointsEarned: "Hai guadagnato",
+      pointsThisRound: "punti in questo round!",
+    },
+
+    memories: {
+      giza: {
+        name: "Giza",
+        country: "Egitto",
+        history:
+          "Giza ci ha fatto sentire profondamente legati alla storia antica. Trovarsi davanti alle monumentali piramidi e percepire il peso di migliaia di anni di storia umana è stata un'esperienza straordinaria.",
+      },
+
+      "nassau-bahamas": {
+        name: "Bahamas",
+        country: "Bahamas",
+        history:
+          "The trip to the Bahamas was defined by endless stretches of turquoise water and vibrant island life. It was a place that offered total tranquility and unhurried days by the sea.",
+      },
+
+      seljalandsfoss: {
+        name: "Seljalandsfoss",
+        country: "Iceland",
+        history:
+          "Seljalandsfoss captured the raw, dramatic beauty of Iceland's landscape. Walking behind the cascade and feeling the mist of the powerful waterfall was an invigorating moment.",
+      },
+
+      "chichen-itza": {
+        name: "Chichen Itza",
+        country: "Mexico",
+        history:
+          "Exploring Chichen Itza provided a captivating look into Maya civilization. The scale and astronomical precision of El Castillo made an indelible impression.",
+      },
+
+      "lake-garda": {
+        name: "Lake Garda",
+        country: "Italy",
+        history:
+          "Lake Garda combined sweeping alpine backdrops with the relaxed charm of northern Italian lakeside towns. Wandering its historic shores felt both peaceful and inspiring.",
+      },
+
+      "niagara-falls": {
+        name: "Niagara Falls",
+        country: "Canada",
+        history:
+          "Niagara Falls was a spectacular display of natural force. Seeing the sheer volume of water rushing over the edge left a lasting memory of nature's power.",
+      },
+
+      glastonbury: {
+        name: "Glastonbury",
+        country: "United Kingdom",
+        history:
+          "Glastonbury had a distinct atmosphere filled with myths, legends, and history. Climbing the Tor and taking in the panoramic views of the Somerset countryside was unforgettable.",
+      },
+
+      "san-benedetto-del-tronto": {
+        name: "San Benedetto del Tronto",
+        country: "Italy",
+        history:
+          "San Benedetto del Tronto brought delightful moments along the Adriatic coast. The palm-lined promenade and fresh seafood captured the essence of coastal Italian summer.",
+      },
+
+      skopje: {
+        name: "Skopje",
+        country: "North Macedonia",
+        history:
+          "Exploring North Macedonia revealed a rich blend of cultural influences, ancient history, and scenic landscapes. It offered a unique and rewarding journey through Balkan heritage.",
+      },
+
+      philadelphia: {
+        name: "Philadelphia",
+        country: "United States",
+        history:
+          "Philadelphia felt alive with historic significance and energy. From walking through historic cobblestone streets to enjoying its vibrant food scene, it was a memorable city to explore.",
+      },
+
+      pitlochry: {
+        name: "Pitlochry",
+        country: "United Kingdom",
+        history:
+          "Nestled in the Scottish Highlands, Pitlochry offered breathtaking mountain air, lush pine forests, and quiet charm. It was the perfect refuge in nature.",
+      },
+
+      "new-york": {
+        name: "New York",
+        country: "United States",
+        history:
+          "New York was one of those places where everything felt bigger and faster. Moving through its iconic neighborhoods made every corner feel like part of a larger story.",
+      },
+
+      "cape-town": {
+        name: "Cape Town",
+        country: "South Africa",
+        history:
+          "Cape Town stood out for its dramatic scenery, where majestic mountains meet two oceans. Standing atop Table Mountain looking out over the coastline was unforgettable.",
+      },
+
+      "plettenberg-bay": {
+        name: "Plettenberg Bay",
+        country: "South Africa",
+        history:
+          "Plettenberg Bay along the Garden Route was a haven of golden beaches, ocean wildlife, and coastal forest trails that showcased the incredible natural beauty of South Africa.",
+      },
+
+      sardinia: {
+        name: "Sardinia",
+        country: "Italy",
+        history:
+          "Sardinia felt like a world of its own, with crystal-clear waters, rugged mountainous interiors, and ancient coastal traditions that made every day of the trip feel special.",
+      },
+
+      seville: {
+        name: "Seville",
+        country: "Spain",
+        history:
+          "Seville captivated me with its warm sun, historic Moorish architecture, and vibrant Andalusian spirit. Walking through the narrow streets of Barrio Santa Cruz was pure magic.",
+      },
+
+      algarve: {
+        name: "Algarve",
+        country: "Portugal",
+        history:
+          "The Algarve coastline was breathtaking with its dramatic golden sea cliffs, hidden coves, and warm ocean breeze. It was a place for pure relaxation and coastal exploration.",
+      },
+
+      "loch-lomond": {
+        name: "Loch Lomond",
+        country: "Inghilterra",
+        history:
+          "Loch Lomond offered calm waters surrounded by rolling hills and Scottish highlands. The peacefulness of walking along the loch shore created a deeply restful atmosphere.",
+      },
+
+      cappadocia: {
+        name: "Cappadocia",
+        country: "Turchia",
+        history:
+          "Cappadocia felt like stepping onto another planet. Seeing hot air balloons drift over fairy chimneys at sunrise was one of the most mesmerizing landscapes imaginable.",
+      },
+
+      summerdown: {
+        name: "Summerdown",
+        country: "Inghilterra",
+        history:
+          "Summerdown offered scenic rural English countryside trails and tranquil green pastures, ideal for a quiet getaway away from the fast pace of urban life.",
+      },
+    },
+  },
   nav: {
     rsvp: "RSVP",
     explorePuglia: "Esplora la Puglia",

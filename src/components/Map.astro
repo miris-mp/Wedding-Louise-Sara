@@ -1,8 +1,10 @@
 ---
 import "maplibre-gl/dist/maplibre-gl.css";
+
+const pageLocale = Astro.currentLocale ?? "en";
 ---
 
-<section class="memory-game relative py-14 md:py-20">
+<section class="memory-game relative py-14 md:py-20" data-locale={pageLocale}>
   <div class="memory-decoration memory-decoration-one"></div>
   <div class="memory-decoration memory-decoration-two"></div>
 
@@ -10,64 +12,87 @@ import "maplibre-gl/dist/maplibre-gl.css";
     <!-- Header -->
     <div class="mb-10 text-center md:mb-12">
       <p
-        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-sage)]"
+        class="font-sans text-xs font-medium uppercase tracking-[0.3em] text-(--color-sage)"
+        data-i18n="eyebrow"
       >
         Our Story
       </p>
 
       <h2
-        class="mt-3 font-serif text-4xl text-[var(--color-heading)] md:text-5xl"
+        class="mt-3 font-serif text-4xl text-(--color-heading) md:text-5xl"
+        data-i18n="heading"
       >
         Where Did It Happen?
       </h2>
 
-      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-[var(--color-primary)]">
+      <div class="mx-auto mt-4 h-1 w-12 rounded-full bg-(--color-primary)">
       </div>
 
       <p
         id="instructions"
-        class="mx-auto mt-5 max-w-xl font-sans text-base leading-7 text-[var(--color-text)]"
+        class="mx-auto mt-5 max-w-xl font-sans text-base leading-7 text-(--color-text)"
       >
         Can you guess where this memory happened?
       </p>
     </div>
 
-    <!-- Memory introduction -->
-    <div class="memory-intro mx-auto mb-8 max-w-3xl">
+    <!-- City to guess + score -->
+    <div
+      class="memory-intro mx-auto mb-5 grid max-w-4xl grid-cols-1 items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto]"
+    >
       <div
-        class="memory-card overflow-hidden rounded-[2rem] border border-[var(--color-border-soft)] bg-[var(--color-surface)] shadow-md"
+        class="memory-card min-w-0 rounded-2xl border border-(--color-border-soft) bg-(--color-surface) px-5 py-4 shadow-sm sm:px-6"
       >
-        <!-- Optional memory image -->
-        <div
-          id="memory-image-wrapper"
-          class="hidden h-56 overflow-hidden md:h-72"
+        <p
+          class="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-(--color-sage)"
+          data-i18n="findPlace"
         >
-          <img
-            id="memory-image"
-            src=""
-            alt=""
-            class="h-full w-full object-cover"
-          />
-        </div>
+          Find this place
+        </p>
 
-        <div class="p-7 text-center md:p-9">
+        <h3
+          id="city-name"
+          class="mt-1 break-words font-serif text-xl leading-tight text-(--color-heading) sm:text-2xl"
+        >
+          Loading...
+        </h3>
+
+        <p id="city-country" class="mt-1 text-sm text-(--color-text)"></p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 sm:flex sm:gap-2">
+        <div
+          class="score-card rounded-2xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3 text-center"
+        >
           <p
-            class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-sage)]"
+            class="text-[0.65rem] font-medium uppercase tracking-wider text-(--color-sage)"
+            data-i18n="round"
           >
-            The memory
+            Round
           </p>
 
-          <h3
-            id="city-name"
-            class="mt-2 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
-          >
-            Loading...
-          </h3>
-
           <p
-            id="city-country"
-            class="mt-1 font-sans text-sm text-[var(--color-text)]"
+            id="round-counter"
+            class="mt-1 font-serif text-lg leading-tight text-(--color-heading)"
           >
+            1 / 5
+          </p>
+        </div>
+
+        <div
+          class="score-card rounded-2xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3 text-center"
+        >
+          <p
+            class="text-[0.65rem] font-medium uppercase tracking-wider text-(--color-sage)"
+            data-i18n="score"
+          >
+            Score
+          </p>
+          <p
+            id="score"
+            class="mt-1 font-serif text-lg leading-tight tabular-nums text-(--color-heading)"
+          >
+            0
           </p>
         </div>
       </div>
@@ -75,26 +100,15 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
     <!-- Map -->
     <div class="map-card relative mx-auto max-w-4xl">
-      <div id="map" class="overflow-hidden rounded-[2rem]"></div>
+      <div id="map" class="overflow-hidden rounded-4xl"></div>
 
       <div id="map-message" class="map-message">
         Click anywhere on the map to place your guess.
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="game-actions mt-6 flex justify-center gap-3">
-      <button id="guess-button" type="button" disabled class="game-button">
-        Reveal the memory
-      </button>
-
-      <button id="next-button" type="button" hidden class="game-button">
-        Next memory
-      </button>
-    </div>
-
     <!-- Result / Story -->
-    <section id="result" hidden class="result-card mx-auto mt-10 max-w-3xl">
+    <section id="result" hidden class="result-card mx-auto mt-6 max-w-4xl">
       <div class="distance-badge">
         <span>You were</span>
         <strong id="distance"></strong>
@@ -102,42 +116,55 @@ import "maplibre-gl/dist/maplibre-gl.css";
       </div>
 
       <div class="story-card">
-        <div class="story-card-inner">
-          <p
-            class="font-sans text-xs font-medium uppercase tracking-[0.25em] text-[var(--color-sage)]"
-          >
-            The memory
-          </p>
-
-          <h2
-            id="result-title"
-            class="mt-3 font-serif text-3xl text-[var(--color-heading)] md:text-4xl"
-          >
-          </h2>
-
+        <div
+          class="story-card-inner grid grid-cols-1 gap-5 text-left sm:p-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center"
+        >
+          <!-- Photo on the left -->
           <div
-            class="mx-auto mt-4 h-1 w-10 rounded-full bg-[var(--color-primary)]"
+            id="memory-image-wrapper"
+            class="hidden min-h-0 overflow-hidden rounded-xl"
           >
+            <img
+              id="memory-image"
+              src=""
+              alt=""
+              loading="lazy"
+              class="memory-photo w-full object-cover"
+            />
           </div>
 
-          <p
-            id="result-story"
-            class="mt-6 font-sans text-base leading-8 text-[var(--color-text)]"
-          >
-          </p>
+          <!-- Story on the right -->
+          <div class="min-w-0 px-1 py-2 sm:px-0">
+            <p
+              class="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-(--color-sage)"
+              data-i18n="memory"
+            >
+              The memory
+            </p>
 
-          <div class="mt-7 flex justify-center">
-            <span class="heart-divider">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                <path
-                  d="M12 21s-7-4.35-9.5-9.15C.5 7.8 2.8 4 6.5 4c2.05 0 3.45 1.15 4.5 2.6C12.05 5.15 13.45 4 15.5 4 19.2 4 21.5 7.8 21.5 11.85 19 16.65 12 21 12 21Z"
-                ></path>
-              </svg>
-            </span>
+            <h2
+              id="result-title"
+              class="mt-2 font-serif text-xl leading-snug text-(--color-heading) sm:text-2xl"
+            >
+            </h2>
+
+            <div class="mt-3 h-0.5 w-9 rounded-full bg-(--color-primary)"></div>
+
+            <p
+              id="result-story"
+              class="mt-4 whitespace-pre-line text-sm leading-6 text-(--color-text) sm:text-[0.925rem] sm:leading-7"
+            >
+            </p>
           </div>
         </div>
       </div>
     </section>
+    <!-- Actions -->
+    <div class="game-actions mt-4 flex flex-wrap justify-center gap-2">
+      <button id="next-button" type="button" hidden class="game-button">
+        Next round
+      </button>
+    </div>
   </div>
 </section>
 
@@ -413,32 +440,30 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 
-  import { cities } from "../data/memories";
+  import { cities, type City } from "../data/memories";
+  import { getTranslations, type Locale } from "../i18n/utils";
 
   setWorkerUrl(workerUrl);
+  const gameElement = document.querySelector<HTMLElement>(".memory-game");
 
-  // --------------------------------------------------
-  // Types
-  // --------------------------------------------------
-
-  type City = {
-    id: string;
-    name: string;
-    country: string;
-
-    coordinates: {
-      lng: number;
-      lat: number;
-    };
-
-    history: string;
-
-    image?: string;
-  };
-
+  const locale = (gameElement?.dataset.locale ?? "en") as Locale;
+  const t = getTranslations(locale);
   // --------------------------------------------------
   // DOM
   // --------------------------------------------------
+
+  function applyTranslations() {
+    document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n as keyof typeof t.memories.ui;
+      const value = t.memories.ui[key];
+
+      if (typeof value === "string") {
+        element.textContent = value;
+      }
+    });
+  }
+
+  applyTranslations();
 
   const cityNameElement =
     document.querySelector<HTMLHeadingElement>("#city-name");
@@ -451,9 +476,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
   const mapMessageElement =
     document.querySelector<HTMLDivElement>("#map-message");
-
-  const guessButton =
-    document.querySelector<HTMLButtonElement>("#guess-button");
 
   const nextButton = document.querySelector<HTMLButtonElement>("#next-button");
 
@@ -473,11 +495,27 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
   const memoryImage = document.querySelector<HTMLImageElement>("#memory-image");
 
+  const roundCounterElement =
+    document.querySelector<HTMLParagraphElement>("#round-counter");
+
+  const scoreElement = document.querySelector<HTMLParagraphElement>("#score");
   // --------------------------------------------------
   // Game state
   // --------------------------------------------------
 
-  let currentCity: City;
+  // --------------------------------------------------
+  // Game state
+  // --------------------------------------------------
+
+  const TOTAL_ROUNDS = 5;
+  const MAX_POINTS = 1000;
+  const ZERO_POINTS_DISTANCE = 5000;
+
+  let roundCities: City[] = [];
+  let roundIndex = 0;
+  let totalScore = 0;
+
+  let currentCity!: City;
 
   let playerGuess: {
     lng: number;
@@ -485,46 +523,58 @@ import "maplibre-gl/dist/maplibre-gl.css";
   } | null = null;
 
   let guessMarker: Marker | null = null;
-
   let realMarker: Marker | null = null;
 
   let gameState: "guessing" | "revealed" = "guessing";
 
-  let cityNum = 0;
-
   // --------------------------------------------------
-  // Select next city
+  // Randomly select five different memories
   // --------------------------------------------------
 
-  function selectNextCity() {
-    if (!cities.length) return;
+  function shuffleCities(): City[] {
+    const shuffled = [...cities];
 
-    currentCity = cities[cityNum % cities.length] as City;
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
 
-    cityNum++;
-
-    updateCityUI();
+    return shuffled.slice(0, Math.min(TOTAL_ROUNDS, shuffled.length));
   }
 
   // --------------------------------------------------
-  // Update memory UI
+  // Update score and progress
   // --------------------------------------------------
 
-  function updateCityUI() {
-    if (!currentCity) return;
+  function updateScoreUI() {
+    scoreElement!.textContent = totalScore.toLocaleString();
 
-    cityNameElement!.textContent = currentCity.name;
+    roundCounterElement!.textContent = `${roundIndex + 1} / ${roundCities.length}`;
+  }
 
-    cityCountryElement!.textContent = currentCity.country;
+  // --------------------------------------------------
+  // Load the current memory
+  // --------------------------------------------------
 
-    if (currentCity.image) {
-      memoryImage!.src = currentCity.image;
-      memoryImage!.alt = `${currentCity.name}, ${currentCity.country}`;
+  function selectCurrentCity() {
+    currentCity = roundCities[roundIndex];
 
-      memoryImageWrapper!.classList.remove("hidden");
-    } else {
-      memoryImageWrapper!.classList.add("hidden");
+    const memory =
+      t.memories.memories[currentCity.id as keyof typeof t.memories.memories];
+
+    if (!memory) {
+      console.error(`Missing translation for memory: ${currentCity.id}`);
+      return;
     }
+
+    cityNameElement!.textContent = memory.name;
+    cityCountryElement!.textContent = memory.country;
+
+    memoryImageWrapper!.classList.add("hidden");
+    memoryImage!.removeAttribute("src");
+    memoryImage!.alt = "";
+
+    updateScoreUI();
   }
 
   // --------------------------------------------------
@@ -632,7 +682,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
       },
     });
 
-    selectNextCity();
+    startNewGame();
   });
 
   // --------------------------------------------------
@@ -659,22 +709,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
       .setLngLat([lng, lat])
       .addTo(map);
 
-    guessButton!.disabled = false;
+    revealAnswer();
 
     mapMessageElement!.textContent = "Happy with your guess?";
 
     instructionsElement!.textContent =
       "You can move your guess by clicking somewhere else.";
-  });
-
-  // --------------------------------------------------
-  // Reveal button
-  // --------------------------------------------------
-
-  guessButton?.addEventListener("click", () => {
-    if (!playerGuess) return;
-
-    revealAnswer();
   });
 
   // --------------------------------------------------
@@ -726,111 +766,173 @@ import "maplibre-gl/dist/maplibre-gl.css";
       properties: {},
     });
 
+    // --------------------------------------------------
+    // Calculate points
+    // --------------------------------------------------
+
+    const points = Math.round(
+      MAX_POINTS * Math.max(0, 1 - roundedDistance / ZERO_POINTS_DISTANCE)
+    );
+
+    totalScore += points;
+
+    // --------------------------------------------------
+    // Reveal the memory image
+    // --------------------------------------------------
+
+    if (currentCity.image) {
+      memoryImage!.src = currentCity.image.src;
+      memoryImage!.alt = `${currentCity.name}, ${currentCity.country}`;
+      memoryImageWrapper!.classList.remove("hidden");
+    }
+
+    // --------------------------------------------------
     // Result content
+    // --------------------------------------------------
+
     distanceElement!.textContent = `${roundedDistance.toLocaleString()} km`;
 
     resultTitleElement!.textContent = `${currentCity.name}, ${currentCity.country}`;
 
     resultStoryElement!.textContent = currentCity.history;
 
-    // Reveal story
+    updateScoreUI();
+
+    // --------------------------------------------------
+    // Reveal the story
+    // --------------------------------------------------
+
     resultElement!.hidden = false;
 
     requestAnimationFrame(() => {
       resultElement!.classList.add("result-visible");
     });
 
+    // --------------------------------------------------
     // Buttons
-    guessButton!.hidden = true;
-
+    // --------------------------------------------------
     nextButton!.hidden = false;
 
+    const isLastRound = roundIndex === roundCities.length - 1;
+
+    nextButton!.textContent = isLastRound ? "Play again" : "Next round";
+
+    // --------------------------------------------------
     // Instructions
-    instructionsElement!.textContent =
-      "And this is where the memory really happened.";
+    // --------------------------------------------------
+
+    instructionsElement!.textContent = isLastRound
+      ? `Round complete! You earned ${points.toLocaleString()} points.`
+      : `You earned ${points.toLocaleString()} points this round!`;
 
     mapMessageElement!.textContent = `${roundedDistance.toLocaleString()} km away`;
 
+    // --------------------------------------------------
     // Fit map around both locations
+    // --------------------------------------------------
+
     const bounds = new LngLatBounds();
 
     bounds.extend([playerGuess.lng, playerGuess.lat]);
-
     bounds.extend([actualLocation.lng, actualLocation.lat]);
 
     map.fitBounds(bounds, {
       padding: 100,
-
       duration: 1500,
-
       maxZoom: 8,
     });
   }
 
   // --------------------------------------------------
-  // Next memory
+  // Start a new game
+  // --------------------------------------------------
+
+  function startNewGame() {
+    if (cities.length === 0) return;
+
+    roundCities = shuffleCities();
+    roundIndex = 0;
+    totalScore = 0;
+
+    resetRoundUI();
+    selectCurrentCity();
+
+    instructionsElement!.textContent = "Can you find this place on the map?";
+
+    if (roundCities.length < TOTAL_ROUNDS) {
+      instructionsElement!.textContent =
+        `This game has ${roundCities.length} rounds because only ` +
+        `${roundCities.length} memories are available.`;
+    }
+  }
+
+  // --------------------------------------------------
+  // Next round / play again
   // --------------------------------------------------
 
   nextButton?.addEventListener("click", () => {
-    resetGame();
+    if (gameState !== "revealed") return;
+
+    if (roundIndex >= roundCities.length - 1) {
+      startNewGame();
+      return;
+    }
+
+    roundIndex++;
+
+    resetRoundUI();
+    selectCurrentCity();
+
+    instructionsElement!.textContent = "Can you find this place on the map?";
   });
 
   // --------------------------------------------------
-  // Reset
+  // Reset the current round's UI
   // --------------------------------------------------
 
-  function resetGame() {
+  function resetRoundUI() {
     gameState = "guessing";
-
     playerGuess = null;
 
     guessMarker?.remove();
-
     realMarker?.remove();
 
     guessMarker = null;
-
     realMarker = null;
 
+    // Clear the line between the guess and the real location.
     const lineSource = map.getSource("guess-line") as
       | import("maplibre-gl").GeoJSONSource
       | undefined;
 
     lineSource?.setData({
       type: "Feature",
-
       geometry: {
         type: "LineString",
         coordinates: [],
       },
-
       properties: {},
     });
 
+    // Hide the previous result and image.
     resultElement!.hidden = true;
-
     resultElement!.classList.remove("result-visible");
 
-    guessButton!.hidden = false;
-
-    guessButton!.disabled = true;
+    memoryImageWrapper!.classList.add("hidden");
+    memoryImage!.removeAttribute("src");
+    memoryImage!.alt = "";
 
     nextButton!.hidden = true;
-
-    instructionsElement!.textContent =
-      "Can you guess where this memory happened?";
+    nextButton!.textContent = "Next round";
 
     mapMessageElement!.textContent =
       "Click anywhere on the map to place your guess.";
 
+    // Reset the map view.
     map.flyTo({
       center: [10, 45],
-
       zoom: 2,
-
       duration: 1200,
     });
-
-    selectNextCity();
   }
 </script>
