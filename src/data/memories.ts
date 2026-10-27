@@ -13,7 +13,7 @@ import capetownsouthAfrica from "../assets/images/memories/capetownsouthAfrica.j
 import plettenburghsouthAfrica from "../assets/images/memories/plettenburghsouthAfrica.jpg";
 import sardiniaItaly from "../assets/images/memories/sardiniaItaly.jpg";
 import sevilleSpain from "../assets/images/memories/sevilleSpain.jpg";
-import algarvePortugal from "../assets/images/memories/algarvePortugal.jpg";
+import algarvePortugal from "../assets/images/memories/AlgarvePortugal.jpg";
 import cappadociaTurkey from "../assets/images/memories/cappadociaTurkey.jpg";
 import summerdownUnitedKingdom from "../assets/images/memories/summerdownUnitedKingdom.jpg";
 import lochLomondScotland from "../assets/images/memories/lochLomondScotland.jpg";
