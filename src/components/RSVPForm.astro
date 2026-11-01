@@ -250,7 +250,9 @@ const rsvp = t.rsvp;
             </p>
           </div>
         </div>
-
+        <div id="email-duplicate" class="rsvp-error" role="alert" hidden>
+          {rsvp.duplicate}
+        </div>
         <!-- Error -->
         <div id="error" class="rsvp-error" role="alert" hidden>
           {rsvp.error}
@@ -270,6 +272,7 @@ const rsvp = t.rsvp;
   const success = document.querySelector("#success");
   const successYes = document.querySelector("#success-yes");
   const successNo = document.querySelector("#success-no");
+  const duplicateMessage = document.querySelector("#email-duplicate");
   const errorMessage = document.querySelector("#error");
 
   const guestsField = document.querySelector("#guests-field");
@@ -368,6 +371,7 @@ const rsvp = t.rsvp;
     if (!form || !button) return;
 
     errorMessage?.setAttribute("hidden", "");
+    duplicateMessage?.setAttribute("hidden", "");
 
     button.disabled = true;
     button.textContent = sendingText;
@@ -396,6 +400,16 @@ const rsvp = t.rsvp;
         throw new Error(result.error || "Google Apps Script returned an error");
       }
 
+      // Stop here if this email has already submitted an RSVP.
+      if (result.duplicate) {
+        duplicateMessage?.removeAttribute("hidden");
+
+        button.disabled = false;
+        button.textContent = submitText;
+
+        return;
+      }
+
       const attendance = data.attendance;
 
       if (attendance === "Yes") {
@@ -406,9 +420,6 @@ const rsvp = t.rsvp;
         successYes?.setAttribute("hidden", "");
       }
 
-      /*
-       * Hide the form controls after successful submission.
-       */
       form
         .querySelectorAll<HTMLElement>(
           "input, textarea, select, button, fieldset, label"

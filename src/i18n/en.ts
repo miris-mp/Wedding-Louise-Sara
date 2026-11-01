@@ -514,6 +514,8 @@ export const en = {
     successNoMessage:
       "Thank you so much for letting us know. We're sorry you won't be able to join us, but we'll be thinking of you.",
 
+    duplicate:
+      "This email address has already been used to submit an RSVP. Please contact us if you need to change your response",
     error: "Something went wrong. Please try again.",
   },
 };

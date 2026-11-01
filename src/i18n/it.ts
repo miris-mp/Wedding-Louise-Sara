@@ -520,7 +520,8 @@ export const it = {
     successNoTitle: "Ci mancherai!",
     successNoMessage:
       "Grazie per averci avvisato. Ci dispiace che tu non possa esserci, ma ti penseremo.",
-
+    duplicate:
+      "Sembra che questa email sia già stata utilizzata per confermare la tua presenza. Se desideri modificare la tua risposta, contattaci direttamente.",
     error: "Qualcosa è andato storto. Riprova.",
   },
 };
