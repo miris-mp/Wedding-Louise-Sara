@@ -325,137 +325,132 @@ export const en = {
         name: "Giza",
         country: "Egypt",
         history:
-          "One of our more adventure holiday that involve a military escort!",
+          "One of our more adventurous holidays, which involved a military escort and surviving food poisoning. Definitely a trip we will never forget!",
       },
 
       "nassau-bahamas": {
         name: "Bahamas",
         country: "Bahamas",
         history:
-          "Louise rescued Sara that was almost drowning from unexpected tropical thunderstorms 🌩️",
+          "Louise rescued Sara, who was almost drowning in an unexpected tropical storm. Our very own dramatic rescue story!",
       },
 
       seljalandsfoss: {
         name: "Seljalandsfoss",
         country: "Iceland",
-        history: "Sara has banned another cold holiday until 2030 😃",
+        history:
+          "The cold was unreal and we only had one shot at getting this picture! Sara has since banned cold holidays until 2030 :D",
       },
 
       "chichen-itza": {
         name: "Chichen Itza",
         country: "Mexico",
         history:
-          "Exploring Chichen Itza provided a captivating look into Maya civilization. The scale and astronomical precision of El Castillo made an indelible impression.",
+          "One of the New Seven Wonders of the World, where Sara was scammed into paying $4 for a magnet. A souvenir that definitely comes with a story!",
       },
 
       "lake-garda": {
         name: "Lake Garda",
         country: "Italy",
         history:
-          "Standard holiday : Louise drinking Lambrusco and Sara running a marathon!",
+          "Our standard holiday starter pack: Louise drinking Lambrusco and Sara running a marathon!",
       },
 
       "niagara-falls": {
         name: "Niagara Falls",
         country: "Canada",
         history:
-          "Niagara Falls was a spectacular display of natural force. Seeing the sheer volume of water rushing over the edge left a lasting memory of nature's power.",
+          "Niagara Falls: we got a lot of water during the boat tour, and we were completely soaked by the end! It was worth every drop for the view and the memories.",
       },
 
       glastonbury: {
         name: "Glastonbury",
         country: "United Kingdom",
         history:
-          "Glastonbury had a distinct atmosphere filled with myths, legends, and history. Climbing the Tor and taking in the panoramic views of the Somerset countryside was unforgettable.",
+          "We hope luck will be on our side so that we can go back to Glasto in the future. Fingers crossed for next time!",
       },
 
       "san-benedetto-del-tronto": {
         name: "San Benedetto del Tronto",
         country: "Italy",
         history:
-          "San Benedetto del Tronto brought delightful moments along the Adriatic coast. The palm-lined promenade and fresh seafood captured the essence of coastal Italian summer.",
+          "When Louise discovered that Sara's hometown was on the beach, why not plan a visit from Philadelphia to enjoy the summer? It was a good excuse to see each other!",
       },
 
       skopje: {
         name: "Skopje",
         country: "North Macedonia",
         history:
-          "Exploring North Macedonia revealed a rich blend of cultural influences, ancient history, and scenic landscapes. It offered a unique and rewarding journey through Balkan heritage.",
+          "An important moment in our story, when we realized we had deeper feelings for each other!",
       },
 
       philadelphia: {
         name: "Philadelphia",
         country: "United States",
-        history: "First weekend as a couple!",
+        history:
+          "This picture is really important to us because it was our first weekend as a couple, and the start of everything that followed!",
       },
 
       pitlochry: {
         name: "Pitlochry",
         country: "United Kingdom",
         history:
-          "Nestled in the Scottish Highlands, Pitlochry offered breathtaking mountain air, lush pine forests, and quiet charm. It was the perfect refuge in nature.",
+          "First visit to Scotland for Sara, and our first time visiting Perth, where Louise was born and raised.",
       },
 
       "new-york": {
         name: "New York",
         country: "United States",
         history:
-          "New York was one of those places where everything felt bigger and faster. Moving through its iconic neighborhoods made every corner feel like part of a larger story.",
+          "Moving house test ongoing in New York at the Friends experience. We both love Friends and still laugh after watching it a thousand times, so we couldn't miss it!",
       },
 
       "cape-town": {
         name: "Cape Town",
         country: "South Africa",
         history:
-          "Cape Town stood out for its dramatic scenery, where majestic mountains meet two oceans. Standing atop Table Mountain looking out over the coastline was unforgettable.",
+          "Another continent, another race and another glass of wine. One of the best holidays we have ever had!",
       },
 
       "plettenberg-bay": {
         name: "Plettenberg Bay",
         country: "South Africa",
-        history: "Safari preparation after another marathon 😁",
+        history:
+          "Exploring after the marathon, with Sara slowing down the pace due to broken legs. A good break for a picture!",
       },
 
       sardinia: {
         name: "La pelosa, Stintino",
         country: "Italy",
         history:
-          "Our favorite activity in one of the most beautiful beach in the world!",
+          "One of the best beaches in the world. We loved it, even if the booking process required some serious planning skills ;)",
       },
 
       seville: {
         name: "Seville",
         country: "Spain",
         history:
-          "Seville captivated me with its warm sun, historic Moorish architecture, and vibrant Andalusian spirit. Walking through the narrow streets of Barrio Santa Cruz was pure magic.",
+          "For us, the best place in Spain to enjoy tapas, with so many small, iconic bars and restaurants to choose from.",
       },
-
-      algarve: {
-        name: "Algarve",
-        country: "Portugal",
-        history:
-          "The Algarve coastline was breathtaking with its dramatic golden sea cliffs, hidden coves, and warm ocean breeze. It was a place for pure relaxation and coastal exploration.",
-      },
-
       "loch-lomond": {
         name: "Loch Lomond",
         country: "United Kingdom",
         history:
-          "Loch Lomond offered calm waters surrounded by rolling hills and Scottish highlands. The peacefulness of walking along the loch shore created a deeply restful atmosphere.",
+          "Peace, relaxation and an amazing fine dining experience. We loved the greenery and all the nature around us.",
       },
 
       cappadocia: {
         name: "Cappadocia",
         country: "Turkey",
         history:
-          "Cappadocia felt like stepping onto another planet. Seeing hot air balloons drift over fairy chimneys at sunrise was one of the most mesmerizing landscapes imaginable.",
+          "A wonderful experience and a once-in-a-lifetime must-do. You feel like you're on another planet, surrounded by all the balloons floating in the sky.",
       },
 
       summerdown: {
         name: "Summerdown",
         country: "United Kingdom",
         history:
-          "Summerdown offered scenic rural English countryside trails and tranquil green pastures, ideal for a quiet getaway away from the fast pace of urban life.",
+          "Engagement celebration! For anyone wondering who took the brave step: Louise was the courageous one, in a beautiful shepherd's hut. It was the start of our next adventure together!",
       },
     },
   },

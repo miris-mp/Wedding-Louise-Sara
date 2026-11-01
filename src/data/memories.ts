@@ -243,20 +243,6 @@ export const cities: City[] = [
       "Seville captivated me with its warm sun, historic Moorish architecture, and vibrant Andalusian spirit. Walking through the narrow streets of Barrio Santa Cruz was pure magic.",
     image: sevilleSpain,
   },
-
-  {
-    id: "algarve",
-    name: "Algarve",
-    country: "Portugal",
-    coordinates: {
-      lng: -8.0201,
-      lat: 37.0179,
-    },
-    history:
-      "The Algarve coastline was breathtaking with its dramatic golden sea cliffs, hidden coves, and warm ocean breeze. It was a place for pure relaxation and coastal exploration.",
-    image: algarvePortugal,
-  },
-
   {
     id: "loch-lomond",
     name: "Loch Lomond",
