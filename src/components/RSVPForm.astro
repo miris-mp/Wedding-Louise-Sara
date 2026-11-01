@@ -288,8 +288,7 @@ const rsvp = t.rsvp;
     "#rsvp-guest-2-name"
   ) as HTMLInputElement | null;
 
-  const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwLPHMzx-2JmQCMVgKCjA4yXK8tPrYBfhbA7azzbLULoRvjhwTXTKfK94UYar2X-PE/exec";
+  const GOOGLE_SCRIPT_URL = import.meta.env.WEDDING_SPREEDSHET;
 
   const sendingText = form?.dataset.sending ?? "Sending...";
   const submitText = form?.dataset.submitLabel ?? "Send My RSVP";
