@@ -288,7 +288,7 @@ const rsvp = t.rsvp;
     "#rsvp-guest-2-name"
   ) as HTMLInputElement | null;
 
-  const GOOGLE_SCRIPT_URL = import.meta.env.WEDDING_SPREEDSHET;
+  const GOOGLE_SCRIPT_URL = import.meta.env.PUBLIC_WEDDING_SPREADSHEET;
 
   const sendingText = form?.dataset.sending ?? "Sending...";
   const submitText = form?.dataset.submitLabel ?? "Send My RSVP";
@@ -374,8 +374,6 @@ const rsvp = t.rsvp;
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
-    console.log("Sending RSVP:", data);
 
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
