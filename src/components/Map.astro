@@ -792,9 +792,12 @@ const pageLocale = Astro.currentLocale ?? "en";
 
     distanceElement!.textContent = `${roundedDistance.toLocaleString()} km`;
 
-    resultTitleElement!.textContent = `${currentCity.name}, ${currentCity.country}`;
+    const memory =
+      t.memories.memories[currentCity.id as keyof typeof t.memories.memories];
 
-    resultStoryElement!.textContent = currentCity.history;
+    resultTitleElement!.textContent = `${memory.name}, ${memory.country}`;
+
+    resultStoryElement!.textContent = memory?.history ?? "";
 
     updateScoreUI();
 

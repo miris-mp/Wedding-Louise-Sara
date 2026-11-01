@@ -329,7 +329,7 @@ export const en = {
       },
 
       "nassau-bahamas": {
-        name: "Bahamas",
+        name: "Nassau",
         country: "Bahamas",
         history:
           "Louise rescued Sara, who was almost drowning in an unexpected tropical storm. Our very own dramatic rescue story!",

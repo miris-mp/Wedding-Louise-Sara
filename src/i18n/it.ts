@@ -332,7 +332,7 @@ export const it = {
       },
 
       "nassau-bahamas": {
-        name: "Bahamas",
+        name: "Nassau",
         country: "Bahamas",
         history:
           "Louise ha salvato Sara, che stava per annegare durante una tempesta tropicale improvvisa. La nostra storia di salvataggio davvero emozionante!",
@@ -363,7 +363,7 @@ export const it = {
         name: "Niagara Falls",
         country: "Canada",
         history:
-          "Cascate del Niagara: durante il giro in barca ci siamo bagnati tantissimo e alla fine eravamo completamente fradici! Ne è valsa la pena, ogni singola goccia, per il panorama e i ricordi.",
+          "Cascate del Niagara: durante il giro in barca ci siamo bagnate tantissimo e alla fine eravamo completamente fradice! Ne è valsa la pena, ogni singola goccia, per il panorama e i ricordi.",
       },
 
       glastonbury: {

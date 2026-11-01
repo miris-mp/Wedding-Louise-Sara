@@ -30,8 +30,6 @@ export interface City {
     lng: number;
     lat: number;
   };
-
-  history: string;
   image: ImageMetadata;
 }
 
@@ -44,8 +42,6 @@ export const cities: City[] = [
       lng: 31.1313,
       lat: 29.9765,
     },
-    history:
-      "Giza offered a profound connection to ancient history. Standing before the monumental pyramids and feeling the weight of thousands of years of human heritage was an extraordinary experience.",
     image: gizaEgypt,
   },
 
@@ -57,8 +53,6 @@ export const cities: City[] = [
       lng: -77.3554,
       lat: 25.0343,
     },
-    history:
-      "The trip to the Bahamas was defined by endless stretches of turquoise water and vibrant island life. It was a place that offered total tranquility and unhurried days by the sea.",
     image: nassauBahamas,
   },
 
@@ -70,8 +64,6 @@ export const cities: City[] = [
       lng: -19.9886,
       lat: 63.6156,
     },
-    history:
-      "Seljalandsfoss captured the raw, dramatic beauty of Iceland's landscape. Walking behind the cascade and feeling the mist of the powerful waterfall was an invigorating moment.",
     image: seljalandsfossIceland,
   },
 
@@ -83,8 +75,7 @@ export const cities: City[] = [
       lng: -88.5678,
       lat: 20.6843,
     },
-    history:
-      "Exploring Chichen Itza provided a captivating look into Maya civilization. The scale and astronomical precision of El Castillo made an indelible impression.",
+
     image: chichenItzaMexico,
   },
 
@@ -96,8 +87,7 @@ export const cities: City[] = [
       lng: 10.6408,
       lat: 45.6049,
     },
-    history:
-      "Lake Garda combined sweeping alpine backdrops with the relaxed charm of northern Italian lakeside towns. Wandering its historic shores felt both peaceful and inspiring.",
+
     image: lakeGardaItaly,
   },
 
@@ -109,8 +99,7 @@ export const cities: City[] = [
       lng: -79.0849,
       lat: 43.0896,
     },
-    history:
-      "Niagara Falls was a spectacular display of natural force. Seeing the sheer volume of water rushing over the edge left a lasting memory of nature's power.",
+
     image: NiagaraFallsCanada,
   },
 
@@ -122,8 +111,7 @@ export const cities: City[] = [
       lng: -2.7169,
       lat: 51.1472,
     },
-    history:
-      "Glastonbury had a distinct atmosphere filled with myths, legends, and history. Climbing the Tor and taking in the panoramic views of the Somerset countryside was unforgettable.",
+
     image: glastonburyUK,
   },
 
@@ -135,8 +123,7 @@ export const cities: City[] = [
       lng: 13.8796,
       lat: 42.9553,
     },
-    history:
-      "San Benedetto del Tronto brought delightful moments along the Adriatic coast. The palm-lined promenade and fresh seafood captured the essence of coastal Italian summer.",
+
     image: sanBenedetto,
   },
 
@@ -148,8 +135,7 @@ export const cities: City[] = [
       lng: 21.4314,
       lat: 41.9981,
     },
-    history:
-      "Exploring North Macedonia revealed a rich blend of cultural influences, ancient history, and scenic landscapes. It offered a unique and rewarding journey through Balkan heritage.",
+
     image: lakeOhridNorthMacedonia,
   },
 
@@ -161,8 +147,7 @@ export const cities: City[] = [
       lng: -75.1652,
       lat: 39.9526,
     },
-    history:
-      "Philadelphia felt alive with historic significance and energy. From walking through historic cobblestone streets to enjoying its vibrant food scene, it was a memorable city to explore.",
+
     image: philadelphiaUSA,
   },
 
@@ -174,8 +159,7 @@ export const cities: City[] = [
       lng: -3.7331,
       lat: 56.7042,
     },
-    history:
-      "Nestled in the Scottish Highlands, Pitlochry offered breathtaking mountain air, lush pine forests, and quiet charm. It was the perfect refuge in nature.",
+
     image: pitlochryScotland,
   },
 
@@ -187,8 +171,6 @@ export const cities: City[] = [
       lng: -74.006,
       lat: 40.7128,
     },
-    history:
-      "New York was one of those places where everything felt bigger and faster. Moving through its iconic neighborhoods made every corner feel like part of a larger story.",
     image: newYorkUSA,
   },
 
@@ -200,8 +182,7 @@ export const cities: City[] = [
       lng: 18.4241,
       lat: -33.9249,
     },
-    history:
-      "Cape Town stood out for its dramatic scenery, where majestic mountains meet two oceans. Standing atop Table Mountain looking out over the coastline was unforgettable.",
+
     image: capetownsouthAfrica,
   },
 
@@ -213,8 +194,7 @@ export const cities: City[] = [
       lng: 23.3716,
       lat: -34.0575,
     },
-    history:
-      "Plettenberg Bay along the Garden Route was a haven of golden beaches, ocean wildlife, and coastal forest trails that showcased the incredible natural beauty of South Africa.",
+
     image: plettenburghsouthAfrica,
   },
 
@@ -226,8 +206,7 @@ export const cities: City[] = [
       lng: 8.2019841,
       lat: 40.9629653,
     },
-    history:
-      "Sardinia felt like a world of its own, with crystal-clear waters, rugged mountainous interiors, and ancient coastal traditions that made every day of the trip feel special.",
+
     image: sardiniaItaly,
   },
 
@@ -239,8 +218,7 @@ export const cities: City[] = [
       lng: -5.9845,
       lat: 37.3891,
     },
-    history:
-      "Seville captivated me with its warm sun, historic Moorish architecture, and vibrant Andalusian spirit. Walking through the narrow streets of Barrio Santa Cruz was pure magic.",
+
     image: sevilleSpain,
   },
   {
@@ -251,8 +229,7 @@ export const cities: City[] = [
       lng: -4.6303,
       lat: 56.1015,
     },
-    history:
-      "Loch Lomond offered calm waters surrounded by rolling hills and Scottish highlands. The peacefulness of walking along the loch shore created a deeply restful atmosphere.",
+
     image: lochLomondScotland,
   },
 
@@ -264,8 +241,7 @@ export const cities: City[] = [
       lng: 34.8289,
       lat: 38.6431,
     },
-    history:
-      "Cappadocia felt like stepping onto another planet. Seeing hot air balloons drift over fairy chimneys at sunrise was one of the most mesmerizing landscapes imaginable.",
+
     image: cappadociaTurkey,
   },
 
@@ -277,8 +253,7 @@ export const cities: City[] = [
       lng: -0.2796,
       lat: 51.3128,
     },
-    history:
-      "Summerdown offered scenic rural English countryside trails and tranquil green pastures, ideal for a quiet getaway away from the fast pace of urban life.",
+
     image: summerdownUnitedKingdom,
   },
 ];
