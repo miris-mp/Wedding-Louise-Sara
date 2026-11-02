@@ -247,7 +247,7 @@ export const cities: City[] = [
 
   {
     id: "summerdown",
-    name: "Summerdown",
+    name: "Basingstoke",
     country: "United Kingdom",
     coordinates: {
       lng: -0.2796,

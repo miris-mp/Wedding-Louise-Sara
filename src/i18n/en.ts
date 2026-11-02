@@ -319,138 +319,138 @@ export const en = {
       pointsEarned: "You earned",
       pointsThisRound: "points this round!",
     },
-
     memories: {
       giza: {
         name: "Giza",
         country: "Egypt",
         history:
-          "One of our more adventurous holidays, which involved a military escort and surviving food poisoning. Definitely a trip we will never forget!",
+          "One of our most adventurous holidays: between a military escort and a bout of food poisoning, we made it out unscathed with a story we'll be telling forever. It wasn't the most relaxing trip, but it's definitely one we'll never forget.",
       },
 
       "nassau-bahamas": {
         name: "Nassau",
         country: "Bahamas",
         history:
-          "Louise rescued Sara, who was almost drowning in an unexpected tropical storm. Our very own dramatic rescue story!",
+          "A tropical storm hit out of nowhere and Sara nearly drowned. Luckily Louise was there to save her. Ever since, whenever we talk about it, our hearts still beat a little faster.",
       },
 
       seljalandsfoss: {
         name: "Seljalandsfoss",
         country: "Iceland",
         history:
-          "The cold was unreal and we only had one shot at getting this picture! Sara has since banned cold holidays until 2030 :D",
+          "It was incredibly cold and we only had one chance to get this photo, so we gave it everything we had left. Once it was done, Sara declared no more cold holidays until 2030 :D",
       },
 
       "chichen-itza": {
         name: "Chichen Itza",
         country: "Mexico",
         history:
-          "One of the New Seven Wonders of the World, where Sara was scammed into paying $4 for a magnet. A souvenir that definitely comes with a story!",
+          "We were standing in front of one of the Seven Wonders of the World, but the story we remember best is a different one: Sara got scammed and paid a lot for a fridge magnet. At least it's a souvenir with a story to tell.",
       },
 
       "lake-garda": {
         name: "Lake Garda",
         country: "Italy",
         history:
-          "Our standard holiday starter pack: Louise drinking Lambrusco and Sara running a marathon!",
+          "Our standard holiday package: Louise enjoying a glass of Lambrusco while Sara runs a marathon. Everyone has their own way of relaxing, and we're perfectly happy with that.",
       },
 
       "niagara-falls": {
         name: "Niagara Falls",
         country: "Canada",
         history:
-          "Niagara Falls: we got a lot of water during the boat tour, and we were completely soaked by the end! It was worth every drop for the view and the memories.",
+          "On the boat tour we got absolutely soaked, and by the end we were completely drenched. It was worth it, every single drop, for the view and the memories we took home with us.",
       },
 
       glastonbury: {
         name: "Glastonbury",
         country: "United Kingdom",
         history:
-          "We hope luck will be on our side so that we can go back to Glasto in the future. Fingers crossed for next time!",
+          "Glasto is a place that has stayed in our hearts, and we hope we'll be able to go back one day. In the meantime, we're keeping our fingers crossed for next time!",
       },
 
       "san-benedetto-del-tronto": {
         name: "San Benedetto del Tronto",
         country: "Italy",
         history:
-          "When Louise discovered that Sara's hometown was on the beach, why not plan a visit from Philadelphia to enjoy the summer? It was a good excuse to see each other!",
+          "When Louise found out that Sara's hometown was by the sea, she thought it would be a shame not to organise a trip from Philadelphia to enjoy the summer. After all, it was also a great excuse to see each other.",
       },
 
       skopje: {
         name: "Skopje",
         country: "North Macedonia",
         history:
-          "An important moment in our story, when we realized we had deeper feelings for each other!",
+          "This was an important moment in our story: it was right here that we realised we had deeper feelings for each other, and from then on things started to change.",
       },
 
       philadelphia: {
         name: "Philadelphia",
         country: "United States",
         history:
-          "This picture is really important to us because it was our first weekend as a couple, and the start of everything that followed!",
+          "This photo means the world to us, because it dates back to our first weekend as a couple. We didn't know it yet, but it was the beginning of everything that came after.",
       },
 
       pitlochry: {
         name: "Pitlochry",
         country: "United Kingdom",
         history:
-          "First visit to Scotland for Sara, and our first time visiting Perth, where Louise was born and raised.",
+          "It was Sara's first time in Scotland, and our first time together in Perth, the city where Louise was born and raised. It was lovely for Louise to show her the places of her childhood.",
       },
 
       "new-york": {
         name: "New York",
         country: "United States",
         history:
-          "Moving house test ongoing in New York at the Friends experience. We both love Friends and still laugh after watching it a thousand times, so we couldn't miss it!",
+          "We're both huge Friends fans, we've watched it a thousand times and still laugh like it's the first, so we couldn't miss the Friends experience. This photo was taken during the \"moving\" scene, and we had so much fun.",
       },
 
       "cape-town": {
         name: "Cape Town",
         country: "South Africa",
         history:
-          "Another continent, another race and another glass of wine. One of the best holidays we have ever had!",
+          "Another continent, another culture and another glass of wine: Cape Town was one of the best holidays we've ever had, and we fell in love with everything.",
       },
 
       "plettenberg-bay": {
         name: "Plettenberg Bay",
         country: "South Africa",
         history:
-          "Exploring after the marathon, with Sara slowing down the pace due to broken legs. A good break for a picture!",
+          "We were out and about after the marathon, and Sara was walking slowly, her legs aching with every step. The perfect chance to stop and take a photo.",
       },
 
       sardinia: {
-        name: "La pelosa, Stintino",
+        name: "Sardinia",
         country: "Italy",
         history:
-          "One of the best beaches in the world. We loved it, even if the booking process required some serious planning skills ;)",
+          "One of the most beautiful beaches in the world, and we absolutely loved it. Not everyone knows that it took some serious organisational skills to manage to book it ;)",
       },
 
       seville: {
         name: "Seville",
         country: "Spain",
         history:
-          "For us, the best place in Spain to enjoy tapas, with so many small, iconic bars and restaurants to choose from.",
+          "For us, it's the best place in Spain to enjoy tapas: there are so many small, iconic bars and restaurants to choose from that every evening felt like a new discovery.",
       },
+
       "loch-lomond": {
         name: "Loch Lomond",
-        country: "United Kingdom",
+        country: "England",
         history:
-          "Peace, relaxation and an amazing fine dining experience. We loved the greenery and all the nature around us.",
+          "Here we found peace, relaxation and an extraordinary dining experience. We really appreciated the greenery and the nature all around us, and we let ourselves be lulled by the calm.",
       },
 
       cappadocia: {
         name: "Cappadocia",
         country: "Turkey",
         history:
-          "A wonderful experience and a once-in-a-lifetime must-do. You feel like you're on another planet, surrounded by all the balloons floating in the sky.",
+          "A wonderful experience that is worth living at least once in a lifetime. With all the hot air balloons floating in the sky, it truly feels like you're on another planet.",
       },
 
       summerdown: {
         name: "Summerdown",
-        country: "United Kingdom",
+        country: "England",
         history:
-          "Engagement celebration! For anyone wondering who took the brave step: Louise was the courageous one, in a beautiful shepherd's hut. It was the start of our next adventure together!",
+          "This is our engagement party! For anyone wondering who took the brave step: it was Louise, in a beautiful shepherd's hut. It was the beginning of another wonderful adventure together.",
       },
     },
   },
