@@ -4,6 +4,10 @@ import "../styles/global.css";
 const returnTo = Astro.url.searchParams.get("returnTo") ?? "/";
 const isItalian = returnTo === "/it" || returnTo.startsWith("/it/");
 const hasError = Astro.url.searchParams.get("error") === "1";
+const siteUrl = "https://wedding-louise-sara.vercel.app";
+const title = "Louise & Sara — Our Wedding";
+const description = "We can't wait to celebrate our special day with you!";
+const image = `${siteUrl}/images/logo.png`;
 ---
 
 <!doctype html>
@@ -15,6 +19,25 @@ const hasError = Astro.url.searchParams.get("error") === "1";
     <title>
       {isItalian ? "Accesso ospiti" : "Guest access"} | Louise & Sara
     </title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph: WhatsApp, Facebook, iMessage -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:secure_url" content={image} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Louise & Sara — Our Wedding" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
   </head>
 
   <body>
