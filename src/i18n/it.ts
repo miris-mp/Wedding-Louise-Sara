@@ -322,139 +322,139 @@ export const it = {
       pointsEarned: "Hai guadagnato",
       pointsThisRound: "punti in questo round!",
     },
+
     memories: {
       giza: {
         name: "Giza",
         country: "Egitto",
         history:
-          "Una delle nostre vacanze più avventurose, con tanto di scorta militare e un'intossicazione alimentare superata indenne. Sicuramente un viaggio che non dimenticheremo mai!",
+          "Una delle nostre vacanze più avventurose: tra una scorta militare e un'intossicazione alimentare, ne siamo uscite indenni e con una storia che racconteremo per sempre. Non è stata la vacanza più tranquilla, ma di sicuro una che non dimenticheremo mai.",
       },
 
       "nassau-bahamas": {
         name: "Nassau",
         country: "Bahamas",
         history:
-          "Louise ha salvato Sara, che stava per annegare durante una tempesta tropicale improvvisa. La nostra storia di salvataggio davvero emozionante!",
+          "Una tempesta tropicale è arrivata all'improvviso e Sara ha rischiato di annegare. Per fortuna c'era Louise, che l'ha salvata.",
       },
 
       seljalandsfoss: {
         name: "Seljalandsfoss",
         country: "Iceland",
         history:
-          "Il freddo era incredibile e avevamo solo una possibilità per scattare questa foto! Da allora Sara ha vietato le vacanze al freddo fino al 2030 :D",
+          "Faceva un freddo incredibile e avevamo una sola possibilità per scattare questa foto, così ci abbiamo provato con tutto il coraggio che ci restava. Una volta fatta Sara ha deciso niente più vacanze al freddo fino al 2030 :D",
       },
 
       "chichen-itza": {
         name: "Chichen Itza",
         country: "Mexico",
         history:
-          "Una delle Sette Meraviglie del Mondo, dove Sara è stata raggirata e ha pagato 4 dollari per una calamita. Un souvenir che ha sicuramente una storia da raccontare!",
+          "Eravamo davanti a una delle Sette Meraviglie del Mondo, ma la storia che ricordiamo meglio è un'altra: Sara si è fatta raggirare e ha pagato cara una calamita. Un souvenir che, almeno, ha una storia da raccontare.",
       },
 
       "lake-garda": {
         name: "Lake Garda",
         country: "Italy",
         history:
-          "Il nostro pacchetto base per le vacanze: Louise che beve Lambrusco e Sara che corre una maratona!",
+          "Il nostro pacchetto base per le vacanze: Louise che si gode un bicchiere di Lambrusco e Sara che, nel frattempo, corre una maratona. Ognuna ha il suo modo di rilassarsi!",
       },
 
       "niagara-falls": {
         name: "Niagara Falls",
         country: "Canada",
         history:
-          "Cascate del Niagara: durante il giro in barca ci siamo bagnate tantissimo e alla fine eravamo completamente fradice! Ne è valsa la pena, ogni singola goccia, per il panorama e i ricordi.",
+          "Durante il giro in barca ci siamo bagnate tantissimo e alla fine eravamo completamente fradice. Ne è valsa la pena, ogni singola goccia, per il panorama e per i ricordi che ci siamo portate a casa.",
       },
 
       glastonbury: {
         name: "Glastonbury",
         country: "United Kingdom",
         history:
-          "Speriamo che la fortuna sia dalla nostra parte, così da poter tornare a Glasto in futuro. Incrociamo le dita per la prossima volta!",
+          "Speriamo che la fortuna sia dalla nostra per il prossimo anno, speriamo di tornare presto a Glasto!",
       },
 
       "san-benedetto-del-tronto": {
         name: "San Benedetto del Tronto",
         country: "Italy",
         history:
-          "Quando Louise ha scoperto che la città natale di Sara si trovava sul mare, perché non organizzare una gita da Filadelfia per godersi l'estate? Era un'ottima scusa per vedersi!",
+          "Quando Louise ha scoperto che la città natale di Sara si trovava sul mare, ha pensato che fosse un peccato non organizzare una gita da Filadelfia per godersi l'estate. Una scusa per vederci :)",
       },
 
       skopje: {
         name: "Skopje",
         country: "North Macedonia",
         history:
-          "Un momento importante della nostra storia, quando ci siamo rese conto di provare sentimenti più profondi l'uno per l'altra!",
+          "È stato un momento importante della nostra storia: proprio qui ci siamo rese conto di provare sentimenti più profondi l'una per l'altra, e da lì le cose hanno cominciato a cambiare!",
       },
 
       philadelphia: {
         name: "Philadelphia",
         country: "United States",
         history:
-          "Questa foto è davvero importante per noi perché risale al nostro primo fine settimana da coppia e segna l'inizio di tutto ciò che è seguito!",
+          "Questa foto per noi conta moltissimo, perché risale al nostro primo fine settimana da coppia. Allora non lo sapevamo ancora, ma era l'inizio di tutto quello che è venuto dopo!",
       },
 
       pitlochry: {
         name: "Pitlochry",
         country: "United Kingdom",
         history:
-          "Per Sara era la prima volta in Scozia, mentre per noi era la prima volta a Perth, dove Louise è nata e cresciuta.",
+          "Per Sara era la prima volta in Scozia, e per noi la prima volta insieme a Perth, la città dove Louise è nata e cresciuta. ",
       },
 
       "new-york": {
         name: "New York",
         country: "United States",
         history:
-          "Test del trasloco in corso a New York alla Friends Experience. Adoriamo entrambi Friends e ridiamo ancora dopo averlo visto mille volte, quindi non potevamo certo perdercelo!",
+          "Siamo entrambe grandi fan di Friends, lo abbiamo visto mille volte e ridiamo ancora come la prima, quindi non potevamo perderci l'esperienza dedicata alla serie. Prove di trasloco ;)",
       },
 
       "cape-town": {
         name: "Cape Town",
         country: "South Africa",
         history:
-          "Un altro continente, un’altra etnia e un altro bicchiere di vino. Una delle vacanze più belle che abbiamo mai fatto!",
+          "Un altro continente, un'altra cultura e un altro bicchiere di vino:South Africa è stata una delle vacanze più belle che abbiamo mai fatto, e ci siamo innamorate di tutto!",
       },
 
       "plettenberg-bay": {
         name: "Plettenberg Bay",
         country: "South Africa",
         history:
-          "In giro dopo la maratona, con Sara che rallenta il passo a causa delle gambe doloranti. Una bella occasione per scattare una foto!",
+          "Eravamo in giro dopo la maratona e Sara camminava piano piano, con le gambe doloranti a ogni passo. L’occasione perfetta per fermarsi e scattare una foto.",
       },
 
       sardinia: {
         name: "Sardinia",
         country: "Italy",
         history:
-          "Una delle spiagge più belle del mondo. Ci è piaciuta tantissimo, anche se per prenotarla ci sono volute delle notevoli capacità organizzative ;)",
+          "Una delle spiagge più belle del mondo che ci è piaciuta tantissimo. Per prenotarla ci vogliono notevoli planning skills :)",
       },
 
       seville: {
         name: "Seville",
         country: "Spain",
         history:
-          "Per noi, il posto migliore in Spagna dove gustare le tapas, con così tanti piccoli bar e ristoranti iconici tra cui scegliere.",
+          "Per noi è il posto migliore in Spagna dove gustare le tapas: ci sono così tanti piccoli bar e ristoranti iconici tra cui scegliere che ogni sera è stata una scoperta nuova.",
       },
 
       "loch-lomond": {
         name: "Loch Lomond",
         country: "Inghilterra",
         history:
-          "Tranquillità, relax e un'esperienza gastronomica straordinaria. Abbiamo apprezzato moltissimo il verde e tutta la natura che ci circondava.",
+          "Qui abbiamo trovato tranquillità, relax e un'esperienza gastronomica straordinaria. Abbiamo apprezzato moltissimo il verde e la natura che ci circondava, e ci siamo lasciate cullare dalla calma.",
       },
 
       cappadocia: {
         name: "Cappadocia",
         country: "Turchia",
         history:
-          "Un'esperienza meravigliosa e un'occasione imperdibile, da vivere almeno una volta nella vita. Ti sembra di essere su un altro pianeta, circondato da tutti quei palloncini che fluttuano nel cielo.",
+          "Un'esperienza meravigliosa che vale la pena di vivere almeno una volta nella vita. Con tutte le mongolfiere che fluttuano nel cielo, ti sembra davvero di essere su un altro pianeta.",
       },
 
       summerdown: {
         name: "Summerdown",
         country: "Inghilterra",
-
         history:
-          "Festa di fidanzamento! Per chi si stesse chiedendo chi abbia fatto questo passo coraggioso: è stata Louise a dimostrarsi coraggiosa, in una bellissima capanna da pastore. È stato l’inizio della nostra prossima avventura insieme!",
+          "Questa è la nostra festa di fidanzamento! Per chi si stesse chiedendo chi abbia fatto il passo coraggioso: è stata Louise.  È stato l'inizio di un'altra bellissima avventura insieme.",
       },
     },
   },
