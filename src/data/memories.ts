@@ -13,7 +13,6 @@ import capetownsouthAfrica from "../assets/images/memories/capetownsouthAfrica.w
 import plettenburghsouthAfrica from "../assets/images/memories/plettenburghsouthAfrica.webp";
 import sardiniaItaly from "../assets/images/memories/sardiniaItaly.webp";
 import sevilleSpain from "../assets/images/memories/sevilleSpain.webp";
-import algarvePortugal from "../assets/images/memories/AlgarvePortugal.webp";
 import cappadociaTurkey from "../assets/images/memories/cappadociaTurkey.webp";
 import summerdownUnitedKingdom from "../assets/images/memories/summerdownUnitedKingdom.webp";
 import lochLomondScotland from "../assets/images/memories/lochLomondScotland.webp";
